@@ -1,0 +1,143 @@
+<ion-header>
+  <ion-navbar color="yayasan">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Profil
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<div *ngIf="profile">
+<div class="bg">
+  <img src="{{profile.image}}" class="user">
+</div>
+<div style="padding-top: 20px" text-center (click)="userDetails(profile)">
+  <!-- <h1>{{profile.first_name}} {{profile.last_name}}</h1> -->
+  <h1>Abu Bin Ahmad</h1>
+<!--   <p>{{profile.email}}</p> -->
+</div>
+<div padding>
+  <p text-center (click)="aboutUs()">Yayasan MyPrihatin mengucapkan ribuan terima kasih dia atas sumbangan anda</p>
+</div>
+
+
+<div text-center style="margin-bottom: 20px">
+  <h1>RM 2,000</h1>
+  <p style="margin-bottom: 20px">Jumlah Derma</p>
+  <button color="yayasan" ion-button >Cetak Penyata</button>
+</div>
+
+<hr>
+
+<div text-center>
+  <h1>Aktiviti</h1>
+</div>
+  <div class="timeline">
+  <div class="container right" *ngFor="let activity of activities">
+    <div class="contents" style="line-height: 150%">
+      <p><strong>10 Oktober 2017</strong></p>
+      <p>Sumbangan bernilai RM{{activity.amount}} dalam {{activity.campaign_name}}</p>
+    </div>
+  </div>
+</div>
+
+
+  <!-- <ion-list no-lines *ngFor="let activity of activities">  
+    <ion-item no-lines>
+      <p><strong>{{activity.donation_date.date  | date:'dd/MM/yyyy'}}</strong></p>
+      <p><strong>10 Oktober 2017</strong></p>
+      <p text-wrap>Sumbangan bernilai RM{{activity.amount}} dalam {{activity.campaign_name}}</p>
+      <ion-icon name="arrow-round-down" *ngIf="activity > 1"></ion-icon>
+    </ion-item>
+  </ion-list> -->
+
+  <!-- <div class="main-cnt">
+    <img src="assets/img/photo.png" class="dp"> 
+  </div>
+  <ion-title>
+    Mohamad Faizal
+  </ion-title> -->
+</div>
+
+</ion-content>
+
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+  <ion-navbar color="yayasan">
+  	
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<div *ngIf="profile">
+  <ion-item-divider> 
+    <div padding (click)="userDetails(profile)">  
+      <img src="{{profile.image}}" class="user">
+      <p>{{profile.first_name}} {{profile.last_name}}</p>
+      <p>{{profile.email}}</p>
+    </div>
+  </ion-item-divider -->>
+ 
+
+<!-- <h4 text-center (click)="aboutUs()">Yayasan My Prihatin</h4> -->
+<!--  <ion-item-divider>
+  <div (click)="aboutUs()">
+    <h1>
+    Yayasan My Prihatin
+  </h1>
+</div>
+</ion-item-divider>
+
+
+<hr>
+<div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <strong>Derma</strong>
+      </ion-col>
+      <ion-col>
+        <p>RM 2000</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <strong>Aktiviti</strong>
+      </ion-col>
+      <ion-col wrap-text> 
+          <ion-list  *ngFor="let activity of activities">
+            <p>{{activity.donation_date.date  | date:'dd/MM/yyyy'}}</p>
+            <p>Sumbangan ke {{activity.campaign_name}} sebanyak RM {{activity.amount}}</p>
+            <ion-icon name="arrow-round-down" *ngIf="activity > 1"></ion-icon>
+          </ion-list>
+      </ion-col>
+  </ion-row>
+</ion-grid>
+</div> -->
+
+<!--   <p>Aktiviti</p>
+  <ion-list no-lines *ngFor="let activity of activities">  
+    <ion-item text-center no-lines>
+      <h4>{{activity.donation_date.date  | date:'dd/MM/yyyy'}}</h4>
+      <p text-wrap>Sumbangan ke {{activity.campaign_name}} sebanyak RM{{activity.amount}}</p>
+      <ion-icon name="arrow-round-down" *ngIf="activity > 1"></ion-icon>
+    </ion-item>
+  </ion-list> -->
+ <!--  <div padding>
+    <button color="yayasan" ion-button block>Cetak Penyata</button>
+  </div>
+</div>
+
+</ion-content> -->

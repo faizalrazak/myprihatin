@@ -1,0 +1,21 @@
+<ion-header>
+
+<ion-navbar color="yayasan">
+  <ion-title>TERKINI</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="closeModal()"><ion-icon name="ios-close-circle-outline"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<div text-center text-wrap>
+		<h2>{{details.title}}</h2>
+		<img src="{{details.image}}">
+		<p>{{details.desc}}</p>
+	</div>
+
+</ion-content>

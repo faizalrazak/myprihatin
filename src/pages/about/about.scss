@@ -1,0 +1,82 @@
+
+  p {
+    padding: 10px 10px 10px 10px !important;
+    margin: 0;
+  }
+
+  .details{
+     padding-top: 10px;
+     padding-bottom: 10px;
+  }
+
+  .separator{
+  	border-bottom: 2px solid;
+  }
+
+    img:hover {
+    background-color: pink;
+    box-shadow: pink;
+    }
+
+.process .raised{
+  width: 100%;
+  height: 10px;
+  background: #faa;
+  border-radius: 25px;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.process .raised span{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 25px;
+  width: 46%;
+  background-color: #F04868;
+  display: block;
+  -webkit-border-top-right-radius: 25px;
+  -webkit-border-bottom-right-radius: 25px;
+         -moz-border-radius-topright: 25px;
+      -moz-border-radius-bottomright: 25px;
+             border-top-right-radius: 25px;
+          border-bottom-right-radius: 25px;
+      -webkit-border-top-left-radius: 25px;
+   -webkit-border-bottom-left-radius: 25px;
+          -moz-border-radius-topleft: 25px;
+       -moz-border-radius-bottomleft: 25px;
+              border-top-left-radius: 25px;
+           border-bottom-left-radius: 25px;
+  background-color: #F04868;
+}
+.process .raised span:after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, #56aa1c), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, #56aa1c), color-stop(.75, #56aa1c), color-stop(.75, transparent), to(transparent));
+  background-image: -webkit-linear-gradient(-45deg, #e32f51 25%, transparent 25%, transparent 50%, #e32f51 50%, #e32f51 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, #56aa1c 25%, transparent 25%, transparent 50%, #56aa1c 50%, #56aa1c 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, #56aa1c 25%, transparent 25%, transparent 50%, #56aa1c 50%, #56aa1c 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, #56aa1c 25%, transparent 25%, transparent 50%, #56aa1c 50%, #56aa1c 75%, transparent 75%, transparent);
+  z-index: 1;
+  -webkit-background-size: 20px 20px;
+  -moz-background-size:    20px 20px;
+  background-size:         20px 20px;
+  -webkit-animation: move 2s linear infinite;
+     -webkit-border-top-right-radius: 25px;
+  -webkit-border-bottom-right-radius: 25px;
+         -moz-border-radius-topright: 25px;
+      -moz-border-radius-bottomright: 25px;
+             border-top-right-radius: 25px;
+          border-bottom-right-radius: 25px;
+      -webkit-border-top-left-radius: 25px;
+   -webkit-border-bottom-left-radius: 25px;
+          -moz-border-radius-topleft: 25px;
+       -moz-border-radius-bottomleft: 25px;
+              border-top-left-radius: 25px;
+           border-bottom-left-radius: 25px;
+  overflow: hidden;
+}
+

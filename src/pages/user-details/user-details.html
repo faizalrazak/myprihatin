@@ -1,0 +1,78 @@
+<!--
+  Generated template for the UserDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+ <ion-navbar color="yayasan">
+  <ion-title>{{profile.name}}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="closeModal()"><ion-icon name="ios-close-circle-outline"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+<!-- <div text-center padding (click)="userDetails(profile)">  
+  <img src="{{profile.image}}" class="user"> 
+  <h2>{{profile.first_name}} {{profile.last_name}}</h2>
+  <p>{{profile.email}}</p>
+</div> -->
+<!-- 
+	<ion-card>
+		<img src="{{profile.image}}">
+	</ion-card> -->
+	<div class="bg" >
+	  <img src="{{profile.image}}" class="user">
+	</div>
+
+
+
+	<ion-list style="margin-top: 35px">
+	  <ion-item>
+	    <ion-icon name="person" item-start></ion-icon>
+	    	{{profile.name}}
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-icon name="mail" item-start></ion-icon>
+	     {{profile.email}}
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-icon name="home" item-start></ion-icon>
+	      {{profile.address}}
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-icon name="call" item-start></ion-icon>
+	      {{profile.phone_number}}
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-icon name="calendar" item-start></ion-icon>
+	      {{profile.birthdate}}
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-icon name="male" item-start></ion-icon>
+	      {{profile.gender}}
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-icon name="flag" item-start></ion-icon>
+	      {{profile.locale}}
+	  </ion-item>
+	</ion-list>
+
+<div padding>
+	<button ion-button block color='yayasan' (click)="editProfile(profile)">Edit Profile</button>
+	
+</div>
+	
+
+</ion-content>

@@ -1,0 +1,83 @@
+<!--
+  Generated template for the SignPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="yayasan">
+  <ion-title>LOGIN</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="closeModal()"><ion-icon name="ios-close-circle-outline"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h1 style="margin-bottom: 20px; text-align: center;">Daftar Masuk</h1>
+  <button color="facebook" ion-button block (click)="facebookConnect()" style="margin-bottom: 20px">Log in with Facebook</button>
+  <p style="text-align: center;">Atau</p>
+  
+
+<ion-list>
+
+  <form [formGroup]="loginForm" (submit)="login()" novalidate>
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input formControlName="email" type="email" [class.invalid]="!loginForm.controls.email.valid && blur"></ion-input>
+    </ion-item>
+    <!-- <ion-item class="error-message" 
+      *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.dirty">
+      <p style="background-color: red">
+        Email is invalid !!
+      </p>
+    </ion-item> -->
+
+    <ion-item style="margin-bottom: 20px">
+      <ion-label floating>Password</ion-label>
+      <ion-input formControlName="password" type="password" [class.invalid]="!loginForm.controls.password.valid && blur"></ion-input>
+    </ion-item>
+    <!-- <ion-item class="error-message" 
+      *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty">
+      <p style="background-color: red">
+        Password Required !!
+      </p>
+    </ion-item> -->
+
+    <button ion-button block type="submit" color="yayasan" [disabled]="!loginForm.valid">
+      Login
+    </button>
+   <!--  <ion-row>
+      <ion-col no-padding>
+      <button ion-button small full clear ion-start (click)="forgetPassword()">Forgot Password?</button>
+    </ion-col>
+    <ion-col no-padding>
+      <button ion-button small full clear ion-end (click)="register()">Sign Up!</button>
+    </ion-col>
+    </ion-row> -->
+  </form>
+
+</ion-list>
+
+<h1 text-center style="margin-top:70px; margin-bottom: 20px " (click)="register()" >Daftar Akaun Baru</h1>
+<button ion-button block color="facebook" style="margin-bottom: 15px">Continue with Facebook</button>
+<!-- <p text-wrap style="text-align: center;">By clicking Register me, you indicate that you have read and understand our Privacy Policy and Terms of Use and represent that you are at least 13 years of age</p> -->
+<!-- <div text-center>
+  <strong>or</strong>
+</div>
+
+
+   
+
+   <button color="facebook" ion-button block (click)="facebookConnect()">Log in with Facebook</button>
+   <button color="google-plus" ion-button block (click)="googleLogin()">Log in with Google</button> -->
+
+
+  <!-- <button ion-button small full clear (click)="register()">Register Me</button> -->
+
+  
+ 
+
+</ion-content>

@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar color="yayasan">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      ARTIKEL
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-divider no-lines><div><h1>
+    Artikel
+  </h1></div></ion-item-divider>
+
+  <ion-card *ngFor="let article of articles">
+  <div (click)="details(article)">
+    <img src="{{article.header_image}}">
+    <!-- <img src="assets/img/health.jpg" /> -->
+    <ion-card-content >
+    
+      
+      
+      <strong>{{article.article_title}}</strong>
+      <p>{{article.article_date | date:'dd/MM/yyyy'}}</p>
+      <hr>
+      
+      <div>
+        <p>{{article.source}}</p>
+      </div>
+      
+  </ion-card-content>
+  </div>
+  <ion-row no-padding class="botBorder">
+      <ion-col text-left>
+        <button ion-button clear small color="danger" icon-start (click)=commentPress(article)>
+       <ion-icon class="icon-comment"></ion-icon>
+          Comment
+        </button>
+      </ion-col>
+      <ion-col text-left>
+        <button ion-button clear small color="danger" icon-start>
+        <ion-icon class="icon-thumbs-up"></ion-icon>
+        Like
+        </button>
+      </ion-col>
+      <ion-col text-left>
+        <button ion-button clear small color="danger" icon-start (click)="shareButton()">
+        <ion-icon class="icon-share"></ion-icon>
+          Share
+        </button>
+      </ion-col>
+    </ion-row>
+</ion-card>
+</ion-content>

@@ -1,0 +1,84 @@
+<!--
+  Generated template for the PaymentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="yayasan">
+ 	<ion-title>DERMA</ion-title>
+    <ion-buttons right>
+    	<button ion-button icon-only (click)="closeModal()"><ion-icon name="ios-close-circle-outline"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+
+
+</ion-header>
+
+<ion-content padding>
+
+<div>
+   <h1>Ahli MyPrihatin?</h1>
+    <p style="margin-top: 20px; margin-bottom: 20px; line-height: 150%" text-wrap>
+      Dengan menjad ahli berdaftar MyPrihatin, anda akan dapat melihat dan memuat turun transaksi anda untuk tujuan cukai dan sepertinya.
+    </p>
+
+    <ion-list no-padding>
+      <ion-item no-padding no-lines>
+        <ion-avatar item-start>
+          <img src="assets/user.png">
+        </ion-avatar>
+        <strong>Daftar Masuk</strong>
+      </ion-item>
+    </ion-list>
+</div>
+ 
+
+  <h1 style="padding-bottom: 10px; margin-top: 50px">Derma</h1>
+  <h4 style="padding-bottom: 10px">{{campaign.campaign_name}}</h4>
+
+<div style="padding-bottom: 20px">
+  
+  <p text-wrap style="line-height: 150%">By clicking Register me, you indicate that you have read and understand our Privacy Policy and Terms of Use and represent that you are at least 13 years of age</p>
+
+</div>
+  
+<div style="padding-bottom: 20px">
+  <ion-grid no-padding>
+  <ion-row>
+    <ion-col col-sm-6 style="bottom: 0">
+      <strong >Tetapkan nilai</strong>
+    </ion-col>
+    <ion-col style="text-align: right;">
+      <h3 style="margin: 0">RM {{value}}</h3>
+    </ion-col>
+  </ion-row>
+    <ion-row>
+      <ion-col no-padding>
+         <ion-range min="0" max="2000" [(ngModel)]="value" snaps="true" no-padding></ion-range>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col col-3 style="text-align: right;">
+        <p>RM 500</p>
+      </ion-col>
+      <ion-col col-3 style="text-align: right;">
+        <p>RM 1000</p>
+      </ion-col>
+      <ion-col col-3 style="text-align: right;">
+        <p>RM 1500</p>
+      </ion-col>
+      <ion-col col-3 style="text-align: right;">
+        <p>RM 2000</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+
+    <button ion-button color="yayasan" (click)="donate()">Derma</button>
+			
+</ion-content>

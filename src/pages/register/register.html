@@ -1,0 +1,60 @@
+<ion-header>
+
+  <ion-navbar color="yayasan">
+  <ion-title>REGISTER</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="closeModal()"><ion-icon name="ios-close-circle-outline"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <!-- <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && submitRegistration(registerForm.value)" novalidate> -->
+  <ion-list>
+
+  <form [formGroup]="registerForm" (submit)="register()" novalidate>
+
+      <ion-item class="form-group">
+        <ion-label floating for="name">Name</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+        <div class='form-text error' *ngIf="registerForm.controls.name.touched">
+          <div *ngIf="registerForm.controls.name.hasError('required')">Name is required.</div>
+        </div> 
+      </ion-item>
+      
+      <ion-item class="form-group">
+        <ion-label floating for="email">Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+        <div class="form-text error" *ngIf="registerForm.controls.email.touched">
+          <div *ngIf="registerForm.controls.email.hasError('required')">Email is required.</div>
+          <div *ngIf="registerForm.controls.email.hasError('invalidEmail')">Email is invalid.</div>
+        </div>
+      </ion-item>
+
+      <ion-item class="form-group">
+        <ion-label floating for="password">Password</ion-label>
+        <ion-input type="password" minlength='6' formControlName="password"></ion-input>
+        <div class='form-text error' *ngIf="registerForm.controls.password.touched">
+          <div *ngIf="registerForm.controls.password.hasError('required')">Password is required.</div>
+          <div *ngIf="registerForm.controls.password.hasError('minlength')">Password isn't long enough.</div>
+        </div>
+      </ion-item>
+  
+      <ion-item class="form-group">
+        <ion-label floating for="confirmPassword">Confirm Password</ion-label>
+        <ion-input type="password" formControlName="confirmPassword"></ion-input>
+        <div class='form-text error' *ngIf="registerForm.controls.confirmPassword.touched">
+          <div *ngIf="registerForm.hasError('mismatchedPasswords')">Passwords do not match.</div>
+        </div>
+      </ion-item>
+      
+      <button ion-button color="yayasan" type='submit' full style="margin-top: 10px; margin-bottom: 15px" [disabled]="!registerForm.valid" >Register</button>
+    </form>
+  </ion-list>
+
+  <p text-wrap text-center>
+    By clicking Register me, you indicate that you have read and understand our Privacy Policy and Terms of Use and represent that you are at least 13 years of age
+  </p>
+</ion-content>

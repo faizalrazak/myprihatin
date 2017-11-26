@@ -1,18 +1,102 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="yayasan">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-buttons end>
+          <button ion-button icon-only (click)="Authentication()">
+            <ion-icon name="contact"></ion-icon>
+          </button>
+      </ion-buttons>
+    <ion-title>MyDana</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content class="home">
+  <div *ngIf="latestcampaign">
+   <ion-slides pager autoplay="5000" loop="true" speed="3000" *ngIf="sliderImage && sliderImage.length" class="slideSize">
+  <!-- <ion-slides pager autoplay="5000" loop="true" speed="3000"> -->
+    <ion-slide *ngFor="let slide of sliderImage">
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+      
+        <img src="{{slide.banner_image}}"/>
+        <h1 class="card-titles" text-wrap>Bersama Membantu Mereka Yang Memerlukan</h1>
+        <p class="card-subtitle" text-wrap>Pasangan kembar antara 425 yang berjaya di bantu</p>
+  
+    </ion-slide>
+  </ion-slides>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <!-- <h1 text-center style="margin-bottom: 25px">
+    Kempen Terkini
+  </h1> -->
+
+  <ion-item-divider no-lines><div><h1>
+    Kempen Terkini
+  </h1></div></ion-item-divider>
+
+<ion-card *ngFor="let campaign of latestcampaign" >
+  <div (click)="moreDetail(campaign)">
+    <img src="{{campaign.campaign_image}}">
+    <!-- <img src="assets/img/health.jpg" /> -->
+    <ion-card-content >
+      <!-- <h6>{{campaign.category_id}}</h6> -->
+      <h6>{{campaign.category}}</h6>
+      <ion-card-title> 
+        <h1 text-wrap>{{campaign.campaign_name}}</h1>
+      </ion-card-title>
+     <!--  <ion-card-title>
+      <div padding-bottom=10px>
+        <p>Anjuran : {{campaign.organiser}}</p>
+        <p>Lokasi  : {{campaign.location}}</p>
+        <p>Tarikh  : {{campaign.campaign_start_date  | date:'dd/MM/yyyy'}} - {{campaign.campaign_end_date | date:'dd/MM/yyyy'}}</p>
+      </div>
+      </ion-card-title> -->
+        <p>{{campaign.short_desc}}</p>
+
+        <div class="process">
+          <div class="raised">
+            <span [ngStyle]="{'width':getWidth(campaign.campaign_id)}"></span>
+          </div>
+        </div>
+      
+      
+      <p style="margin-top: 40px"><strong>RM {{campaign.fund_amount}}</strong> terkumpul setakat ini</p>
+      <p><strong>{{(campaign.fund_amount/campaign.total_amount)*100}}%</strong> tepati sasaran</p>
+      <p><strong>{{getRemainingDays(campaign.campaign_id)}}</strong> lagi</p>
+      
+  </ion-card-content>
+  </div>
+  <!-- <ion-row padding-left=10px>
+    <p text-left>200 Likes 10 Comments</p>
+  </ion-row> -->
+  <ion-row no-padding class="botBorder">
+      <ion-col text-left>
+        <button ion-button clear small color="danger" icon-start (click)=commentPress(campaign)>
+        <!-- <ion-icon name='chatbubbles'></ion-icon> -->
+        <ion-icon class="icon-comment"></ion-icon>
+        {{getComment(campaign.campaign_id)}}
+        </button>
+      </ion-col>
+      <ion-col text-left>
+        <button ion-button clear small color="danger" icon-start>
+        <ion-icon class="icon-thumbs-up"></ion-icon>
+        {{getLike(campaign.campaign_id)}}
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button ion-button clear small color="danger" (click)="shareButton()">
+        <ion-icon class='icon-share'></ion-icon>
+          
+        </button>
+      </ion-col>
+    </ion-row>
+    
+  
+  
+</ion-card>
+
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+   <ion-infinite-scroll-content *ngIf="pagingEnabled"></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</div>
 </ion-content>
