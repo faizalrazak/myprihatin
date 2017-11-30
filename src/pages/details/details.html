@@ -6,18 +6,18 @@
 -->
 <ion-header>
 
-  <ion-navbar color="yayasan">
-  <ion-title>KEMPEN</ion-title>
-    <ion-buttons right>
+  <ion-navbar>
+  <ion-title>Lanjut</ion-title>
+    <!-- <ion-buttons right>
       <button ion-button icon-only (click)="closeModal()"><ion-icon name="ios-close-circle-outline"></ion-icon></button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-	
-  <div [innerHtml]="campaignDetails" style="line-height: 150%"></div>
+	<h1>{{campaignDetails.campaign_name}}</h1>
+  <div [innerHtml]="campaignDetails.description" style="line-height: 150%"></div>
 			
 </ion-content>

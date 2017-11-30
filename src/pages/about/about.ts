@@ -52,71 +52,32 @@ export class AboutPage {
   }
 
   ionViewDidLoad(){
+  }
 
-    //  let load = this.loading.create({
-    //   content: 'Please wait...'
-    //   });
+  imageTapped(image){
+    this.image = image;
 
-    //     load.present();
-    //     this.httpprovider.getCampaign(this.campaign.campaign_id).subscribe(
-    //         response => {
-    //           // console.log(response)
-    //           this.kempen = response.data;
-    //           // console.log(this.kempen)
-    //           this.commentBadge = response.data.campaign_comments.length;
-    //           this.newsBadge = response.data.campaign_news.length;
-    //           this.image = response.data.campaign_image;
-              // this.remainingDays = moment(campaign.campaign_end_date, "YYYYMMDD").lang("ms").fromNow();
-              // this.percentage = (campaign.fund_amount/campaign.total_amount)*100;
-              // this.progressbar = ((campaign.fund_amount/campaign.total_amount)*300)+"px";
-    //         },
-    //         err => {
-    //           console.log(err);
-    //           load.dismiss();
-    //         },
-    //         ()=>{
-    //           load.dismiss();
-    //         console.log('Latest is ok!')
-    //       }
-    // );
-}
-
-imageTapped(image){
-  this.image = image;
-
-}
+  }
 
 
   commentsTapped(campaign){
-    let myModal = this.modalCtrl.create(CommentPage, {campaign:this.campaign});
 
-    myModal.onDidDismiss(data => {
-       console.log(data);
-      if(data === true){
-       this.ionViewDidLoad();
-      }
-
-    });
-    myModal.present();
+    this.navCtrl.push(CommentPage, {campaign:this.campaign});
   }
 
   newsTapped(campaign){
-    let myModal = this.modalCtrl.create(UpdatePage, this.campaign);
-    myModal.present();
+    
+    this.navCtrl.push(UpdatePage, this.campaign);
   }
 
   details(campaign){
-    let myModal = this.modalCtrl.create(DetailsPage, this.campaign);
-    myModal.present();
-  }
-
-  closeModal(){
-    this.viewCtrl.dismiss();
+    
+    this.navCtrl.push(DetailsPage, {campaign:this.campaign});
   }
 
   donate(campaign){
-    let myModal = this.modalCtrl.create(PaymentPage, {campaign:this.campaign});
-    myModal.present();
+    
+    this.navCtrl.push(PaymentPage, {campaign:this.campaign});
   }
 
   sebar() {

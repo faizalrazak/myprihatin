@@ -1,8 +1,8 @@
 <ion-header>
-  <ion-navbar color="yayasan">
+  <ion-navbar>
   <ion-title>{{campaign.category}}</ion-title>
     <ion-buttons right>
-      <button ion-button icon-only (click)="closeModal()"><ion-icon name="ios-close-circle-outline"></ion-icon></button>
+      <button ion-button icon-only (click)="sebar()"><ion-icon name="md-share"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
 
@@ -15,64 +15,80 @@
         	<img src="{{image}}" >
         </div>  
     </ion-row>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col col-4 *ngFor="let im of moreImg" item-wrap no-padding style="padding-right: 3px">
         	<img src="{{im.image}}" (click)="imageTapped(im.image)">
       </ion-col>
-    </ion-row>
+    </ion-row> -->
 
 <ion-card-content>
   <!-- <h6 style="padding-bottom: 5px">{{kempen.category_id}}</h6> -->
-  <p style="margin-top: 15px">{{campaign.category}}</p>
-  <h1 text-wrap style="padding-bottom: 10px; margin: 0">{{campaign.campaign_name}}</h1>
+  <ion-row>
+      <ion-col col-1 style="font-size: 20px" no-padding>
+        <ion-icon name="ios-pin-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-6>
+            Kuala Lumpur
+      </ion-col>
+      <ion-col col-1 text-right>
+        <ion-icon name="ios-chatbubbles-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-1.5 style="padding-left: 0px">
+        <strong>100</strong>
+      </ion-col>
+      <ion-col col-1 text-center>
+        <ion-icon name="ios-heart-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-1.5 style="padding-left: 0px">
+        <strong>100</strong>
+      </ion-col>
+  </ion-row>
+
+  <!-- <p style="margin-top: 15px">{{campaign.category}}</p> -->
+  <h1 text-wrap style="margin-top: 10px">{{campaign.campaign_name}}</h1>
   	
-
-	<div text-wrap style="padding-bottom: 10px">
-    <p>{{campaign.short_desc}}</p>	
-	</div>
-
         <div class="process">
           <div class="raised">
             <span [ngStyle]="{'width':progressbar}"></span>
           </div>
         </div>
 
-  <div class="details">
+   <div class="details">
     <p><strong>RM{{campaign.fund_amount}}</strong> terkumpul setakat ini</p>
     <p><strong>{{percentage}}%</strong> tepati sasaran</p>
     <p><strong>{{remainingDays}}</strong> lagi</p>
   </div>
+
+  <hr>
+       
+	<div text-wrap style="padding-bottom: 10px; padding-top: 10px">
+    <p>{{campaign.short_desc}}</p>	
+	</div>
+
+      
+
+  
 </ion-card-content>
   
     <ion-list>
       <ion-item (click)="details(kempen)">
-        Maklumat 
-        <ion-badge color="yayasan" item-end></ion-badge>
-      </ion-item>
-      <ion-item (click)="commentsTapped(kempen)" >
-        Komen 
-        <ion-badge color="yayasan" item-end *ngIf="commentBadge">{{commentBadge}}</ion-badge>
+        Maklumat lebih lanjut
+        <ion-icon name="arrow-forward" item-end></ion-icon>
       </ion-item>
       <ion-item (click)="newsTapped(kempen)" >
         Terkini 
-        <ion-badge color="yayasan" item-end *ngIf="newsBadge">{{newsBadge}}</ion-badge>
+        <ion-badge style="background-color: #5CBFB9" item-end *ngIf="newsBadge">{{newsBadge}}</ion-badge>
       </ion-item>
-      <!-- <ion-item (click)="newsTapped(kempen)" *ngIf="newsBadge">
-        News 
-        <ion-badge color="yayasan" item-end></ion-badge>
-      </ion-item> -->
+      <ion-item (click)="commentsTapped(kempen)" >
+        Baca dan beri komen 
+        <ion-badge style="background-color: #5CBFB9" item-end *ngIf="commentBadge">{{commentBadge}}</ion-badge>
+      </ion-item>
     </ion-list>
 
-  <div style="padding: 10px">
-    <ion-row>
-      <ion-col col-6>
-        <button ion-button block color="yayasan" (click)="donate(kempen)">Derma</button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button block color="yayasan" (click)="sebar()">Sebar</button>
-      </ion-col>
-    </ion-row>
-  </div>
+
 
  </div>
 </ion-content>
+<ion-footer style="height: 50px;" (click)="donate(kempen)">
+  <div class="center-div">KLIK UNTUK BERI SUMBANGAN</div>
+</ion-footer>

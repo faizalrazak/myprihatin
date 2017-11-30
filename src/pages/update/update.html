@@ -1,32 +1,18 @@
-<!--
-  Generated template for the UpdatePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar color="yayasan">
-  <ion-title>TERKINI</ion-title>
-    <ion-buttons right>
-      <button ion-button icon-only (click)="closeModal()"><ion-icon name="ios-close-circle-outline"></ion-icon></button>
-    </ion-buttons>
+  <ion-navbar>
+  <ion-title>Terkini</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-	
-<ion-card *ngFor="let new of news" (click)="newsDetails(news)">
-  <!-- <img src="{{new.image}}"/> -->
-  <ion-card-content>
-    <ion-card-title>
-      {{new.title}}
-      </ion-card-title>
-    <p>
-     {{new.desc}}
-    </p>
-  </ion-card-content>
-</ion-card>
+
+  <ion-list>
+    <ion-item *ngFor="let new of news" (click)="newsDetails(news)">
+      <h2>#{{new.title}}</h2>
+      <p>{{new.desc}}</p>
+    </ion-item> 
+  </ion-list>
 
 </ion-content>

@@ -24,7 +24,8 @@ export class DetailsPage {
       });
 
         load.present();
-    		this.campaignDetails = navParams.get('description');
+    		this.campaignDetails = navParams.get('campaign');
+        console.log(this.campaignDetails);
     		load.dismiss();
   }
 

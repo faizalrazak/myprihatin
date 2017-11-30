@@ -1,18 +1,20 @@
   .card-titles {
     position: absolute;
-    top: 6%;
-    width: 100%;
-    padding: 10px;
-    // font-weight: bold;
+    top: 50%;
+    left:5%;
+    width: 70%;
+    font-weight: bold;
     color: #fff;
+    text-align: left;
   }
 
   .card-subtitle {
     position: absolute;
-    top: 60%;
+    top: 80%;
     width: 100%;
     color: #fff;
-    // padding: 40px;
+    left: 5%;
+    text-align: left;
   }
 
 .slideSize{
@@ -68,7 +70,7 @@ p {
 	bottom: 0;
 	border-radius: 25px;
 	width: 46%;
-	background-color: #F04868;
+	background-color: #40637B;
 	display: block;
 	-webkit-border-top-right-radius: 25px;
 	-webkit-border-bottom-right-radius: 25px;
@@ -82,7 +84,7 @@ p {
 	     -moz-border-radius-bottomleft: 25px;
 	            border-top-left-radius: 25px;
 	         border-bottom-left-radius: 25px;
-	background-color: #F04868;
+	background-color: #40637B;
 }
 .process .raised span:after {
 	content: "";

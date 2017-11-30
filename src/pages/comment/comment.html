@@ -6,25 +6,39 @@
 -->
 <ion-header>
 
-<ion-navbar color="yayasan">
-  <ion-title>KOMEN</ion-title>
-    <ion-buttons right>
-      <button ion-button icon-only (click)="closeModal()"><ion-icon name="ios-close-circle-outline"></ion-icon></button>
-    </ion-buttons>
+<ion-navbar>
+  <ion-title>Komen</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content style="padding-left: 0px;padding-top: 0px">
 
 <ion-list>
   <ion-item *ngFor="let comment of comments">
-    <ion-avatar item-start>
-      <img src="{{comment.image}}">
-    </ion-avatar>
-    <strong>{{comment.user}}</strong>
-    <p text-wrap>{{comment.comment}}</p>
+    <ion-row>
+      <ion-col col-3>
+        <ion-avatar item-start style="margin: 0px">
+          <img src="{{comment.image}}">
+        </ion-avatar>
+      </ion-col>
+      <ion-col col-9 no-padding>
+        <ion-row>
+          <strong>{{comment.user}}</strong>
+        </ion-row>
+        <ion-row>
+          <p>2 days ago</p>
+        </ion-row>
+      </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-3>
+    </ion-col>
+    <ion-col col-9 no-padding>
+      <p text-wrap style="">{{comment.comment}}</p>
+    </ion-col>
+  </ion-row>
   </ion-item>
 </ion-list>
 
@@ -32,7 +46,8 @@
 
 <ion-footer padding>
   <ion-item>
-    <ion-input type="text" placeholder="Comment" [(ngModel)]="userComment"></ion-input>
+    <ion-input type="text" placeholder="Tulis Komen" [(ngModel)]="userComment"></ion-input>
   </ion-item>
-  <button ion-button full color="yayasan" (click)="sendComment()">Submit</button>
+  <button ion-button full round color="yayasan" (click)="sendComment()">Komen</button>
+  <p text-center style="font-size: 8px">Perlu mendaftar masuk untuk memberi komen</p>
 </ion-footer>

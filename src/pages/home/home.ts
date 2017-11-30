@@ -75,8 +75,7 @@ Authentication(){
 }
 
   moreDetail(campaign){
-    let myModal = this.modalCtrl.create(AboutPage, {campaign:campaign});
-    myModal.present();
+    this.navCtrl.push(AboutPage, {campaign:campaign});
   }
 
   commentPress(campaign){
