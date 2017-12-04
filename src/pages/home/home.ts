@@ -70,8 +70,7 @@ export class HomePage {
 }
 
 Authentication(){
-    let myModal = this.modalCtrl.create(SignPage);
-    myModal.present();
+    this.navCtrl.push(SignPage);
 }
 
   moreDetail(campaign){
@@ -79,16 +78,18 @@ Authentication(){
   }
 
   commentPress(campaign){
-     let myModal = this.modalCtrl.create(CommentPage, {campaign:campaign});
 
-     myModal.onDidDismiss(data => {
-       console.log(data);
-       if(data === true){
-         this.ionViewDidLoad();
-       }
-     });
+    this.navCtrl.push(CommentPage, {campaign:campaign})
+     // let myModal = this.modalCtrl.create(CommentPage, {campaign:campaign});
+
+     // myModal.onDidDismiss(data => {
+     //   console.log(data);
+     //   if(data === true){
+     //     this.ionViewDidLoad();
+     //   }
+     // });
      
-     myModal.present();
+     // myModal.present();
   
   }
 

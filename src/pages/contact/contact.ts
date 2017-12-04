@@ -45,22 +45,14 @@ export class ContactPage {
   }
 
   details(article){
-    let myModal = this.modalCtrl.create(ArticleDetailsPage, {article:article});
-    myModal.present();
-  
+    
+   this.navCtrl.push(ArticleDetailsPage, {article:article});
   }
 
   commentPress(article){
-    let myModal = this.modalCtrl.create(ArticleCommentPage, {article:article});
+    console.log(article)
 
-    myModal.onDidDismiss(data => {
-       
-      if(data == true){
-       this.ionViewDidLoad();
-      }
-
-    });
-    myModal.present();
+    this.navCtrl.push(ArticleCommentPage, {article:article})
   }
 
   shareButton() {
@@ -145,6 +137,24 @@ export class ContactPage {
       ]
     });
     actionSheet.present();
+  }
+
+  getComment(id){
+    for (let article of this.articles){
+                if (id === article["article_id"]){
+               return (article.comments.length);
+             }
+          }
+    return null;
+  }
+
+  getLike(id){
+    for (let article of this.articles){
+                if (id === article["article_id"]){
+               return (article.number_of_like.length);
+             }
+          }
+    return null;
   }
 
 }

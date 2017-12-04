@@ -70,9 +70,6 @@ export class CommentPage {
       console.log(err);
       load.dismiss();
 
-    });
-
-
-    
+    });  
   }
 }

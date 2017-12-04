@@ -6,30 +6,66 @@
 -->
 <ion-header>
 
-<ion-navbar color="yayasan">
-  <ion-title>ARTIKEL</ion-title>
-    <ion-buttons right>
-      <button ion-button icon-only (click)="closeModal()"><ion-icon name="ios-close-circle-outline"></ion-icon></button>
+<ion-navbar>
+  <ion-title>Berita Penuh</ion-title>
+  <ion-buttons right>
+      <button ion-button icon-only (click)="shareButton()"><ion-icon name="md-share"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-	
-	<img src="{{details.header_image}}">
+<ion-content>
 
-	<div padding-top=5px>
-	    <strong>{{details.article_title}}</strong>
-	    <p padding-top=10px text-wrap>{{details.article_date}}</p>
-      <p>{{details.source}}</p>
-	</div>
+<div>
+    <ion-row>  
+        <div>
+          <img src="{{article.inline_image}}" >
+        </div>  
+    </ion-row>
 
-<ion-list padding-top=5px>
-  <ion-item (click)="commentsTapped(details)">Comments 
-        <ion-badge color="yayasan" item-end></ion-badge>
-  </ion-item>
-</ion-list>
+<ion-card-content>
+  <ion-row>
+      <ion-col col-1 style="font-size: 20px" no-padding text-center>
+        <ion-icon name="ios-pin-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-7 style="padding-left: 0px">
+            Kuala Lumpur
+      </ion-col>
+      <ion-col col-2 text-right no-padding>
+        <ion-icon name="ios-chatbubbles-outline"></ion-icon>
+        <strong>{{comments}}</strong>
+      </ion-col>
+      <ion-col col-2 text-right no-padding>
+        <ion-icon name="ios-heart-outline"></ion-icon>
+        <strong>{{likes}}</strong>
+      </ion-col>
+  </ion-row>
+
+  <!-- <h1 text-wrap style="margin-top: 10px; font-weight: bold;">{{details.article_title}}</h1> -->
+  <h1 text-wrap style="margin-top: 10px; font-weight: bold;">Korban Aidil Adha</h1>
+
+      <ion-item no-padding no-lines>
+        <ion-avatar item-start>
+          <img src="{{article.header_image}}">
+        </ion-avatar>
+        <h2>Facebook MyPrihatin</h2>
+      </ion-item>
+
+  <hr>
+       
+  <div text-wrap style="padding-bottom: 10px; padding-top: 10px">
+    <p [innerHtml]="article.description" style="line-height: 150%"></p>  
+  </div> 
+</ion-card-content>
+  
+    <ion-list>
+      <ion-item (click)="commentsTapped(kempen)" >
+        Baca dan beri komen 
+        <ion-badge style="background-color: #5CBFB9" item-end *ngIf="comments">{{comments}}</ion-badge>
+      </ion-item>
+    </ion-list>
+ </div>
 
 </ion-content>

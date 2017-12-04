@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, LoadingController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, LoadingController, ModalController, ActionSheetController, ToastController} from 'ionic-angular';
 import { ArticleCommentPage } from '../article-comment/article-comment';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
-/**
- * Generated class for the ArticleDetailsPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -16,41 +11,128 @@ import { ArticleCommentPage } from '../article-comment/article-comment';
 })
 export class ArticleDetailsPage {
 
-	details :any;
+	article :any;
+  comments:any;
+  likes:any;
 
-  constructor(public modalCtrl:ModalController, public loading:LoadingController, public viewCtrl:ViewController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public toast:ToastController, public actionSheet:ActionSheetController, public socialSharing:SocialSharing, public modalCtrl:ModalController, public loading:LoadingController, public viewCtrl:ViewController, public navCtrl: NavController, public navParams: NavParams) {
 
      let load = this.loading.create({
       content: 'Please wait...'
       });
 
      load.present();
-  	this.details = navParams.get('article');
-  	console.log(this.details);
+  	this.article = navParams.get('article');
+  	console.log(this.article);
+    this.comments = this.article.comments.length;
+    this.likes = this.article.number_of_like.length;
     load.dismiss();
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ArticleDetailsPage');
   }
 
-  commentsTapped(details){
+  commentsTapped(article){
 
-    let myModal = this.modalCtrl.create(ArticleCommentPage, details);
+    this.navCtrl.push(ArticleCommentPage, {article:this.article});
 
-    myModal.onDidDismiss(data => {
+    // let myModal = this.modalCtrl.create(ArticleCommentPage, details);
+
+    // myModal.onDidDismiss(data => {
        
-      if(data == true){
-       this.ionViewDidLoad();
-      }
+    //   if(data == true){
+    //    this.ionViewDidLoad();
+    //   }
 
-    });
-    myModal.present();
+    // });
+    // myModal.present();
 
   }
 
-  closeModal(){
-  	this.viewCtrl.dismiss();
+  shareButton() {
+
+    let actionSheet = this.actionSheet.create({
+      title: 'Select Social Sharing',
+      buttons: [
+        {
+          text: 'Facebook',
+          role: 'button',
+          handler: () => {
+             
+                  let load = this.loading.create({
+                  content: 'Please wait...'
+                  });
+
+                  load.present();
+                   this.socialSharing.shareViaFacebook(this.article)
+                   .then((data) =>
+                   {
+                     // const toast = this.toast.create({
+                     //    message: 'shared via fb',
+                     //    duration: 3000,
+                     //    position: 'middle'
+                     //  });
+                     //   toast.present();
+                      console.log('Shared via Facebook');
+                      load.dismiss();
+                   })
+                   .catch((err) =>
+                   {
+
+                     load.dismiss();
+                     const toast = this.toast.create({
+                        message: 'Not Shared via Fb',
+                        duration: 3000,
+                        position: 'middle'
+                      });
+                       toast.present();
+                      console.log('Was not shared via Facebook');
+                   });
+
+            console.log('Destructive clicked');
+          }
+        },{
+          text: 'Twitter',
+          role: 'button',
+          handler: () => {
+
+                  let load = this.loading.create({
+                  content: 'Please wait...'
+                  }); 
+
+                   load.present();
+                  this.socialSharing.shareViaTwitter(this.article)
+                  .then((data) =>
+                  {
+                     console.log('Shared via Twitter');
+                     load.dismiss();
+                  })
+                  .catch((err) =>
+                  {  
+                    load.dismiss();
+                    const toast = this.toast.create({
+                        message: 'cannot shared via twitter',
+                        duration: 3000,
+                        position: 'middle'
+                      });
+                       toast.present();
+                     console.log('Was not shared via Twitter');
+                  });
+
+                  console.log('Archive clicked');
+          }
+        },{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 
 }

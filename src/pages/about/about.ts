@@ -31,6 +31,7 @@ export class AboutPage {
   remainingDays:any;
   percentage:any;
   progressbar : any;
+  like : any;
 	moreImg = [{image: "assets/img/health.jpg"} , {image: "assets/img/qurban.jpg"} , {image: "assets/img/bantu.jpg"}];
 
   items = [];
@@ -46,6 +47,7 @@ export class AboutPage {
     this.percentage = (this.campaign.fund_amount/this.campaign.total_amount)*100;
     this.progressbar = ((this.campaign.fund_amount/this.campaign.total_amount)*300)+"px";
     console.log(this.remainingDays);
+    this.like = this.campaign.number_of_like.length;
     this.commentBadge = this.campaign.comments.length;
     this.newsBadge = this.campaign.news.length;
     this.image = this.campaign.campaign_image;
@@ -76,7 +78,7 @@ export class AboutPage {
   }
 
   donate(campaign){
-    
+
     this.navCtrl.push(PaymentPage, {campaign:this.campaign});
   }
 

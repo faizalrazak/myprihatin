@@ -4,53 +4,61 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      ARTIKEL
+      Ativiti Terkini
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-item-divider no-lines><div><h1>
-    Artikel
-  </h1></div></ion-item-divider>
+<ion-content >
 
-  <ion-card *ngFor="let article of articles">
-  <div (click)="details(article)">
-    <img src="{{article.header_image}}">
-    <!-- <img src="assets/img/health.jpg" /> -->
-    <ion-card-content >
-    
-      
-      
-      <strong>{{article.article_title}}</strong>
-      <p>{{article.article_date | date:'dd/MM/yyyy'}}</p>
-      <hr>
-      
-      <div>
-        <p>{{article.source}}</p>
+  <div style="padding-left: 10px; padding-right: 10px" *ngIf="articles">
+    <ion-card *ngFor="let article of articles">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="{{article.header_image}}">
+        </ion-avatar>
+        <h2>Facebook MyPrihatin</h2>
+      </ion-item>
+      <div (click)="details(article)">
+        <img src="{{article.inline_image}}">
+        <ion-card-content>
+          <h6>{{article.source}}</h6>
+          <ion-card-title> 
+            <!-- <h1 text-wrap style="font-weight: bold;">{{article.article_title}}</h1> -->
+            <h1 text-wrap style="font-weight: bold;">Korban Aidil Adha</h1>
+          </ion-card-title>
+            <!-- <p >{{article.short_desc}}</p> -->
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </ion-card-content>
       </div>
       
-  </ion-card-content>
+      <ion-row no-padding class="botBorder">
+          <ion-col text-left col-3>
+            <button ion-button clear small  icon-start color="dark" (click)=commentPress(article)>
+            <ion-icon name='ios-chatbubbles-outline'></ion-icon>
+            <!-- <ion-icon class="icon-comment" color="danger" ></ion-icon> -->
+            <strong>{{getComment(article.article_id)}}</strong>
+            </button>
+          </ion-col>
+          <ion-col text-left col-3>
+            <button ion-button clear small color="dark" icon-start>
+            <ion-icon name="ios-heart-outline"></ion-icon>
+            <strong>{{getLike(article.article_id)}}</strong>
+            </button>
+          </ion-col>
+          <ion-col text-right>
+            <button ion-button clear small color="dark" (click)="details(article)">
+              lebih lanjut  
+            <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+              
+            </button>
+          </ion-col>
+        </ion-row>
+    </ion-card>
   </div>
-  <ion-row no-padding class="botBorder">
-      <ion-col text-left>
-        <button ion-button clear small color="danger" icon-start (click)=commentPress(article)>
-       <ion-icon class="icon-comment"></ion-icon>
-          Comment
-        </button>
-      </ion-col>
-      <ion-col text-left>
-        <button ion-button clear small color="danger" icon-start>
-        <ion-icon class="icon-thumbs-up"></ion-icon>
-        Like
-        </button>
-      </ion-col>
-      <ion-col text-left>
-        <button ion-button clear small color="danger" icon-start (click)="shareButton()">
-        <ion-icon class="icon-share"></ion-icon>
-          Share
-        </button>
-      </ion-col>
-    </ion-row>
-</ion-card>
 </ion-content>

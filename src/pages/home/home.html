@@ -39,37 +39,22 @@
       <hr>
     </ion-col>
   </ion-row>
-<!-- 
-  <ion-item-divider no-lines><div><h1>
-    Kempen Terkini
-  </h1></div></ion-item-divider> -->
 
 <div style="padding-left: 10px; padding-right: 10px">
 <ion-card *ngFor="let campaign of latestcampaign" style="">
   <div (click)="moreDetail(campaign)">
     <img src="{{campaign.campaign_image}}">
-    <!-- <img src="assets/img/health.jpg" /> -->
-    <ion-card-content >
-      <!-- <h6>{{campaign.category_id}}</h6> -->
+    <ion-card-content>
       <h6>{{campaign.category}}</h6>
       <ion-card-title> 
-        <h1 text-wrap style="font-style: bold;">{{campaign.campaign_name}}</h1>
+        <h1 text-wrap style="font-weight: bold;">{{campaign.campaign_name}}</h1>
       </ion-card-title>
-     <!--  <ion-card-title>
-      <div padding-bottom=10px>
-        <p>Anjuran : {{campaign.organiser}}</p>
-        <p>Lokasi  : {{campaign.location}}</p>
-        <p>Tarikh  : {{campaign.campaign_start_date  | date:'dd/MM/yyyy'}} - {{campaign.campaign_end_date | date:'dd/MM/yyyy'}}</p>
-      </div>
-      </ion-card-title> -->
         <p >{{campaign.short_desc}}</p>
-
         <div class="process" style="padding-top: 10px">
           <div class="raised">
             <span [ngStyle]="{'width':getWidth(campaign.campaign_id)}"></span>
           </div>
         </div>
-      
       
       <p style="margin-top: 25px"><strong>RM {{campaign.fund_amount}}</strong> terkumpul setakat ini</p>
       <p><strong>{{(campaign.fund_amount/campaign.total_amount)*100}}%</strong> tepati sasaran</p>
@@ -95,7 +80,7 @@
         </button>
       </ion-col>
       <ion-col text-right>
-        <button ion-button clear small color="dark" (click)="shareButton()">
+        <button ion-button clear small color="dark" (click)="moreDetail(campaign)">
           lebih lanjut  
         <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
           

@@ -28,7 +28,7 @@ export class MyApp {
       { title: 'Senarai Kempen', component: HomePage, icon: 'ios-list-box-outline' },
       { title: 'Aktiviti Terkini', component: ContactPage, icon: 'ios-calendar-outline' },
       { title: 'Profil & Transaksi', component: ProfilePage, icon: 'md-finger-print' },
-      { title: 'Bantuan', component: SignPage, icon: 'ios-help-circle-outline' },
+      { title: 'Bantuan', component: AboutUsPage, icon: 'ios-help-circle-outline' },
       { title: 'Tentang Yayasan', component: AboutUsPage, icon: 'ios-briefcase-outline' }
     ];
 

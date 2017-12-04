@@ -33,8 +33,7 @@ profile:any;
   }
 
   editProfile(profile){
-    let myModal = this.modalCtrl.create(EditProfilePage, {profile:profile});
-    myModal.present();
+    this.navCtrl.push(EditProfilePage, {profile:profile});
   }
 
 }

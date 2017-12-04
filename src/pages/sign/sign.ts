@@ -76,8 +76,7 @@ export class SignPage {
   }
 
   register(){
-      let myModal = this.modalCtrl.create(RegisterPage);
-      myModal.present();
+      this.navCtrl.push(RegisterPage);
     }
 
 
@@ -118,10 +117,6 @@ export class SignPage {
   forgetPassword(){
     let myModal = this.modalCtrl.create(ForgetPasswordPage);
       myModal.present();
-  }
-
-  closeModal(){
-    this.viewCtrl.dismiss();
   }
 
 }

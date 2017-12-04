@@ -16,7 +16,7 @@
 </div>
 <div style="padding-top: 20px" text-center (click)="userDetails(profile)">
   <!-- <h1>{{profile.first_name}} {{profile.last_name}}</h1> -->
-  <h1>Abu Bin Ahmad</h1>
+  <h1 style="font-weight: bold;">Abu Bin Ahmad</h1>
 <!--   <p>{{profile.email}}</p> -->
 </div>
 <div padding>
@@ -25,7 +25,7 @@
 
 
 <div text-center style="margin-bottom: 20px">
-  <h1>RM 2,000</h1>
+  <h1 style="font-weight: bold;">RM 2,000</h1>
   <p style="margin-bottom: 20px">Jumlah Derma</p>
   <button color="yayasan" ion-button >Cetak Penyata</button>
 </div>
@@ -33,7 +33,7 @@
 <hr>
 
 <div text-center>
-  <h1>Aktiviti</h1>
+  <h1 style="font-weight: bold;">Aktiviti</h1>
 </div>
   <div class="timeline">
   <div class="container right" *ngFor="let activity of activities">
@@ -44,22 +44,6 @@
   </div>
 </div>
 
-
-  <!-- <ion-list no-lines *ngFor="let activity of activities">  
-    <ion-item no-lines>
-      <p><strong>{{activity.donation_date.date  | date:'dd/MM/yyyy'}}</strong></p>
-      <p><strong>10 Oktober 2017</strong></p>
-      <p text-wrap>Sumbangan bernilai RM{{activity.amount}} dalam {{activity.campaign_name}}</p>
-      <ion-icon name="arrow-round-down" *ngIf="activity > 1"></ion-icon>
-    </ion-item>
-  </ion-list> -->
-
-  <!-- <div class="main-cnt">
-    <img src="assets/img/photo.png" class="dp"> 
-  </div>
-  <ion-title>
-    Mohamad Faizal
-  </ion-title> -->
 </div>
 
 </ion-content>

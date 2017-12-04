@@ -84,8 +84,7 @@ export class ProfilePage {
   }
 
   userDetails(profile){
-    let myModal = this.modalCtrl.create(UserDetailsPage, {profile:profile});
-    myModal.present();
+    this.navCtrl.push(UserDetailsPage, {profile:profile});
   }
 
 

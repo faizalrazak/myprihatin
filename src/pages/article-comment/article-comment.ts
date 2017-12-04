@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
+import { HttpProvider } from '../../providers/http/http';
 
 /**
  * Generated class for the ArticleCommentPage page.
@@ -15,20 +16,46 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class ArticleCommentPage {
 
-	comment:any;
+	comments:any;
+  article:any;
+  userComment:any;
 
-  constructor(public viewCtrl:ViewController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public httpProvider:HttpProvider, public viewCtrl:ViewController, public navCtrl: NavController, public navParams: NavParams, public loading:LoadingController) {
 
-  	this.comment = this.navParams.get("article");
-  	console.log(this.comment);
+  	this.article = this.navParams.get("article");
+    this.comments = this.article.comments;
+  	console.log(this.comments);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ArticleCommentPage');
   }
 
-  closeModal(){
-  	this.viewCtrl.dismiss(false);
+  postComment(){
+    let details = {
+          article_id : this.article.article_id,
+          user_id : 1,
+          comment : this.userComment
+    }
+
+     let load = this.loading.create({
+      content: 'Posting...'
+      });
+
+     load.present();
+
+    this.httpProvider.articleComment(details).then((result) => {
+
+      load.dismiss();
+      this.viewCtrl.dismiss(true);
+
+    }, (err) => {
+
+      console.log(err);
+      load.dismiss();
+
+    });
+
   }
 
 }
