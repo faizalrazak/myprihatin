@@ -4,9 +4,9 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header no-border>
 
-  <ion-navbar>
+  <ion-navbar color="navbar">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -18,42 +18,30 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content style="padding-bottom: 16px">
 
-	<ion-list>
-		<ion-item text-center>
-			<!-- <h1 style="background: #40637B; font-weight: bold; color: white">IDEA</h1> -->
-			<h1 style="font-weight: bold">IDEA</h1>
-			<p text-wrap>Penubuhan Yayasan ini tercetus apabila aktiviti sindiket derma haram semakin berleluasa di Malaysia. Justeru, sistem pungutan derma menggunakan aplikasi ICT yang mudah, pantas dan telus telah diilhamkan bagi memastikan bantuan dari rakyat Malaysia yang prihatin dapat disalurkan kepada pihak yang berhak</p>
-		</ion-item>
-		<ion-item text-center>
-			<h1 style="font-weight: bold;">PENUBUHAN</h1>
-			<p text-wrap>Yayasan MyPrihatin (MYPRIHATIN), ialah sebuah organisasi bukan berorientasikan keuntungan dan telah diluluskan penubuhannya di bawah Akta Pemegang Amanah (Pemerbadanan) 1952 [Akta 258], Bahagian Hal Ehwal Undang-Undang, Jabatan Perdana Menteri (BHEUU, JPM) pada 4 April 2015.</p>
-		</ion-item>
-		<ion-item text-center>
-			<h1 style="font-weight: bold;">MISI & VISI</h1>
-			<p text-wrap>Visi Yayasan adalah untuk menjadi institusi dana yang cekap dan telus. Dan misi kami adalah uituk membantu golongan yang kurang bernasib baik menerusi penyediaan dana bagi menyelesaikan masalah serta keperluan yang berkaitan ke arah melahirkan masyarakat prihatin</p>
-		</ion-item>
-		<ion-item text-center>
-			<h1 style="font-weight: bold;">BANTUAN</h1>
-			<p text-wrap>Yayasan MyPrihatin mengalu-alukan sokongan daripada seluruh rakyat Malaysia dalam menjayakan misi kami. <strong>Bantuan kewangan boleh disalurkan melalui akaun bank (Maybank) 564801648485</strong> atau melalui borang atas talian di bawah.</p>
-		</ion-item>
-	</ion-list>
+	<img src="assets/img/white.jpg">
 
-	<ion-row text-center>
-		<ion-col>
-			<ion-icon name="logo-facebook">My Dana  </ion-icon>
-		</ion-col>
-		<ion-col>
-			<ion-icon name="logo-twitter">@myDana  </ion-icon>
-		</ion-col>
-		<ion-col>
-			<ion-icon name="logo-googleplus">mydana </ion-icon>
-		</ion-col>
-	</ion-row>
+	<h1 class="card-titles" text-wrap>Yayasan MyPrihatin</h1>
+    <p class="card-subtitle" text-wrap>Seringgit Sejuta Harapan</p>
+		<ion-list no-lines style="margin-bottom: 0px">
+			<ion-item text-wrap>
+				<p>Penubuhan Yayasan ini tercetus apabila aktiviti sindiket derma haram semakin berleluasa di Malaysia. Justeru, sistem pungutan derma menggunakan aplikasi ICT yang mudah, pantas dan telus telah diilhamkan bagi memastikan bantuan dari rakyat Malaysia yang prihatin dapat disalurkan kepada pihak yang berhak</p>
+			</ion-item>
+			<ion-item text-wrap>
+				<p>Yayasan MyPrihatin (MYPRIHATIN), ialah sebuah organisasi bukan berorientasikan keuntungan dan telah diluluskan penubuhannya di bawah Akta Pemegang Amanah (Pemerbadanan) 1952 [Akta 258], Bahagian Hal Ehwal Undang-Undang, Jabatan Perdana Menteri (BHEUU, JPM) pada 4 April 2015.</p>
+			</ion-item>
+			<ion-item text-wrap>
+				<p>Visi Yayasan adalah untuk menjadi institusi dana yang cekap dan telus. Dan misi kami adalah uituk membantu golongan yang kurang bernasib baik menerusi penyediaan dana bagi menyelesaikan masalah serta keperluan yang berkaitan ke arah melahirkan masyarakat prihatin</p>
+			</ion-item>
+			<ion-item text-wrap>
+				<p>Yayasan MyPrihatin mengalu-alukan sokongan daripada seluruh rakyat Malaysia dalam menjayakan misi kami. <strong>Bantuan kewangan boleh disalurkan melalui akaun bank (Maybank) 564801648485</strong> atau melalui borang atas talian di bawah.</p>
+			</ion-item>
+		</ion-list>
+	<div style="padding: 16px;">
+		<button ion-button round full color="yayasan" style="text-transform: lowercase;width: 90%; margin: 0 auto" (click)="web()">Laman Web Yayasan</button>
+	</div>
+	
+
 
 </ion-content>
-
-<ion-footer class="center-div">
-  <p style="color: white; font-weight: bold;">MyPrihatin</p>
-</ion-footer>

@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-navbar>
+<ion-header no-border>
+  <ion-navbar color="navbar">
   <ion-title>{{campaign.category}}</ion-title>
     <ion-buttons right>
       <button ion-button icon-only (click)="sebar()"><ion-icon name="md-share"></ion-icon></button>
@@ -30,22 +30,15 @@
             {{campaign.location}}
       </ion-col>
       <ion-col col-2 text-right no-padding>
-        <ion-icon name="ios-chatbubbles-outline"></ion-icon>
+        <ion-icon name="ios-chatboxes-outline"></ion-icon>
         <strong>{{commentBadge}}</strong>
       </ion-col>
-      <!-- <ion-col col-1.5 style="padding-left: 0px">
-        <strong>{{commentBadge}}</strong>
-      </ion-col> -->
       <ion-col col-2 text-right no-padding>
         <ion-icon name="ios-heart-outline"></ion-icon>
         <strong>{{like}}</strong>
       </ion-col>
-      <!-- <ion-col col-1.5 style="padding-left: 0px">
-        <strong>{{like}}</strong>
-      </ion-col> -->
   </ion-row>
 
-  <!-- <p style="margin-top: 15px">{{campaign.category}}</p> -->
   <h1 text-wrap style="margin-top: 10px; font-weight: bold;">{{campaign.campaign_name}}</h1>
   	
         <div class="process">
@@ -73,26 +66,33 @@
   
     <ion-list>
       <ion-item (click)="details(kempen)">
-        <strong>Maklumat lebih lanjut</strong>
+        <p><strong>Maklumat lebih lanjut</strong></p>
         <ion-icon name="arrow-forward" item-end></ion-icon>
       </ion-item>
       <ion-item (click)="newsTapped(kempen)" >
-        <strong>Terkini</strong> 
-        <ion-badge style="background-color: #5CBFB9" item-end *ngIf="newsBadge">{{newsBadge}}</ion-badge>
+        <p><strong>Terkini</strong></p>
+        <ion-badge style="background-color: #CB9B18" item-end *ngIf="newsBadge">{{newsBadge}}</ion-badge>
       </ion-item>
       <ion-item (click)="commentsTapped(kempen)" >
-        <strong>Baca dan beri komen</strong> 
-        <ion-badge style="background-color: #5CBFB9" item-end *ngIf="commentBadge">{{commentBadge}}</ion-badge>
+        <p><strong>Baca dan beri komen</strong></p>
+        <ion-badge style="background-color: #CB9B18" item-end *ngIf="commentBadge">{{commentBadge}}</ion-badge>
       </ion-item>
     </ion-list>
 
+      <!-- <ion-fab right bottom>
+        <button ion-fab color="yayasan" (click)="toggleIcon()">
+          <ion-icon [name]="buttonIcon"></ion-icon>
+        </button>
+      </ion-fab> -->
   
 
  </div>
 </ion-content>
 <ion-footer class="center-div" (click)="donate(kempen)">
   <ion-fab right top style="top: -25px">
-    <button ion-fab color="yayasan"><ion-icon name="ios-heart-outline"></ion-icon></button>
+    <button ion-fab color="emas" (click)="toggleIcon()">
+      <ion-icon [name]="buttonIcon"></ion-icon>
+    </button>
   </ion-fab>
   <p style="color: white; font-weight: bold;">KLIK UNTUK HULUR SUMBANGAN</p>
 </ion-footer>

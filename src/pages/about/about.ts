@@ -24,6 +24,7 @@ import * as moment from 'moment';
 })
 export class AboutPage {
 
+  buttonIcon : string = 'ios-heart-outline'
   campaign:any;
   kempen :any;
   commentBadge : any;
@@ -60,6 +61,16 @@ export class AboutPage {
     this.image = image;
 
   }
+
+  toggleIcon(getIcon: string) {
+
+      if (this.buttonIcon === 'heart') {
+        this.buttonIcon = "ios-heart-outline";
+      }
+      else if (this.buttonIcon === 'ios-heart-outline') {
+        this.buttonIcon = "heart";
+      }
+   }
 
 
   commentsTapped(campaign){

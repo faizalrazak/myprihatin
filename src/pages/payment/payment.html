@@ -4,9 +4,8 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
+<ion-header no-border>
+ <ion-navbar color="navbar">
  	  <ion-title>Sumbangan</ion-title>
   </ion-navbar>
 
@@ -14,40 +13,14 @@
 
 <ion-content padding>
 
-<div>
-   <h1>Ahli MyPrihatin?</h1>
-    <p style="margin-top: 20px; margin-bottom: 20px; line-height: 150%" text-wrap>
-      Dengan menjad ahli berdaftar MyPrihatin, anda akan dapat melihat dan memuat turun transaksi anda untuk tujuan cukai dan sepertinya.
-    </p>
-
-    <ion-list no-padding>
-      <ion-item no-padding no-lines>
-        <ion-avatar item-start>
-          <img src="assets/user.png">
-        </ion-avatar>
-        <strong>Daftar Masuk</strong>
-      </ion-item>
-    </ion-list>
-</div>
- 
-
-  <h1 style="padding-bottom: 10px; margin-top: 50px">Derma</h1>
-  <h4 style="padding-bottom: 10px">{{campaign.campaign_name}}</h4>
-
-<div style="padding-bottom: 20px">
-  
-  <p text-wrap style="line-height: 150%">By clicking Register me, you indicate that you have read and understand our Privacy Policy and Terms of Use and represent that you are at least 13 years of age</p>
-
-</div>
-  
-<div style="padding-bottom: 20px">
+  <div style="margin-bottom: 50px; margin-top: 25px">
   <ion-grid no-padding>
   <ion-row>
-    <ion-col col-sm-6 style="bottom: 0">
-      <strong >Tetapkan nilai</strong>
+    <ion-col col-8 style="bottom: 0">
+      <p><strong>Tetapkan nilai sumbangan</strong></p>
     </ion-col>
     <ion-col style="text-align: right;">
-      <h3 style="margin: 0">RM {{value}}</h3>
+      <h3 style="margin: 0;font-weight: bold;">RM {{value}}</h3>
     </ion-col>
   </ion-row>
     <ion-row>
@@ -56,25 +29,54 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <ion-grid no-padding>
-    <ion-row>
-      <ion-col col-3 style="text-align: right;">
-        <p>RM 500</p>
-      </ion-col>
-      <ion-col col-3 style="text-align: right;">
-        <p>RM 1000</p>
-      </ion-col>
-      <ion-col col-3 style="text-align: right;">
-        <p>RM 1500</p>
-      </ion-col>
-      <ion-col col-3 style="text-align: right;">
-        <p>RM 2000</p>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <button ion-button round full color="yayasan" style="width: 90%; margin: 0 auto; text-transform: lowercase;" (click)="donate()">Teruskan Pembayaran</button>
 </div>
 
-    <button ion-button color="yayasan" (click)="donate()">Derma</button>
+ 
+    <ion-row>
+      <ion-col col-4 center>
+        <hr>
+      </ion-col>
+      <ion-col col-4 text-center no-padding>
+        <p><strong>Daftar Masuk</strong></p>
+      </ion-col>
+      <ion-col col-4>
+        <hr>
+      </ion-col>
+    </ion-row>
+
+    <p style="margin-top: 10px; margin-bottom: 20px; line-height: 150%" text-wrap>
+      Dengan menjad ahli berdaftar MyPrihatin, anda akan dapat melihat dan memuat turun transaksi anda untuk tujuan cukai dan sepertinya.
+    </p>
+
+    <div style="margin-bottom: 15px">
+      <button color="facebook" ion-button round full icon-left (click)="facebookConnect()" style="text-transform: lowercase; margin: 0 auto; width: 90%"><ion-icon name="logo-facebook"></ion-icon> Log with Facebook</button>
+
+    </div>
+    
+    <button color="yayasan" ion-button round full (click)="login()" style="text-transform: lowercase; width: 90%; margin: 0 auto">Log masuk dengan emel</button>
+
+    <!-- <ion-list no-padding>
+      <ion-item no-padding no-lines>
+        <ion-avatar item-start>
+          <img src="assets/user.png">
+        </ion-avatar>
+        <strong>Daftar Masuk</strong>
+      </ion-item>
+    </ion-list> -->
+ 
+
+  <!--< h1 style="padding-bottom: 10px; margin-top: 50px">Derma</h1>
+  <h4 style="padding-bottom: 10px">{{campaign.campaign_name}}</h4>
+
+<div style="padding-bottom: 20px">
+  
+  <p text-wrap style="line-height: 150%">By clicking Register me, you indicate that you have read and understand our Privacy Policy and Terms of Use and represent that you are at least 13 years of age</p>
+
+</div>
+   -->
+
+
+   
 			
 </ion-content>

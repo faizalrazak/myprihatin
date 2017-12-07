@@ -29,12 +29,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from '@ionic-native/facebook';
 import { HttpProvider } from '../providers/http/http';
 import { SocialSharing } from '@ionic-native/social-sharing';
-import { GooglePlus } from '@ionic-native/google-plus';
 import { AuthProvider } from '../providers/auth/auth';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { Deeplinks } from '@ionic-native/deeplinks';
 
 @NgModule({
   declarations: [
@@ -96,10 +94,8 @@ import { Deeplinks } from '@ionic-native/deeplinks';
     Facebook,
     HttpProvider,
     SocialSharing,
-    GooglePlus,
     AuthProvider,
     InAppBrowser,
-    Deeplinks,
   ]
 })
 export class AppModule {}

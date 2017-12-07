@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, ModalController} from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
-import { MyDonationPage } from '../my-donation/my-donation';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { SignPage } from '../sign/sign';
 
 @IonicPage()
 @Component({
@@ -20,18 +19,11 @@ export class PaymentPage {
 
   value : number = 0;
   campaign : any;
-
-  // public donationForm:FormGroup;
   
-  constructor(public iab:InAppBrowser, public formBuilder:FormBuilder, public modalCtrl:ModalController, public toast:ToastController, public httpProvider:HttpProvider, public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController) {
+  constructor(public iab:InAppBrowser, public modalCtrl:ModalController, public toast:ToastController, public httpProvider:HttpProvider, public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController) {
       
       this.campaign = navParams.get('campaign');
       console.log(this.campaign);
-
-      // this.donationForm = formBuilder.group({
-      //       amount: ['', Validators.compose([Validators.required])],
-      //       campaign_id : this.campaign.campaign_id
-      //   });
   }
 
   ionViewDidLoad() {
@@ -40,16 +32,6 @@ export class PaymentPage {
 
  
   donate(){
-
-    // if(!this.donationForm.valid){
-    //     // console.log(this.registerForm.value);
-    // }
-    // else {
-    //       console.log("success!")
-    //       // console.log(this.registerForm.value);
-
-    //       let details = this.donationForm.value;
-    //       console.log(details);
 
           let details = {
               campaign_id : this.campaign.campaign_id,
@@ -65,10 +47,9 @@ export class PaymentPage {
           console.log(err);
       });
     }
-  // }
 
- closeModal(){
-    this.viewCtrl.dismiss();
+ login(){
+   this.navCtrl.push(SignPage);
  }
 
 }

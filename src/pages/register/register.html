@@ -1,7 +1,6 @@
-<ion-header>
-
-  <ion-navbar>
-  <ion-title>Daftar Pengguna</ion-title>
+<ion-header no-border>
+ <ion-navbar color="navbar">
+  <ion-title>Daftar Baru</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,7 +10,7 @@
   <!-- <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && submitRegistration(registerForm.value)" novalidate> -->
   <ion-list>
 
-  <form [formGroup]="registerForm" (submit)="register()" novalidate>
+  <form [formGroup]="registerForm" (submit)="register()" novalidate style="width: 90%; margin: 0 auto">
 
       <ion-item class="form-group">
         <ion-label floating for="name">Name</ion-label>
@@ -47,11 +46,11 @@
         </div>
       </ion-item>
       
-      <button ion-button color="yayasan" type='submit' full style="margin-top: 10px; margin-bottom: 15px" [disabled]="!registerForm.valid" >Register</button>
+      <button ion-button color="yayasan" type='submit' full round style="margin-top: 10px; margin-bottom: 15px; text-transform: lowercase;" [disabled]="!registerForm.valid" >Register</button>
     </form>
   </ion-list>
 
-  <p text-wrap text-center>
+  <!-- <p text-wrap text-center>
     By clicking Register me, you indicate that you have read and understand our Privacy Policy and Terms of Use and represent that you are at least 13 years of age
-  </p>
+  </p> -->
 </ion-content>

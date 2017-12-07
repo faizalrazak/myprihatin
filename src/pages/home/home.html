@@ -1,30 +1,31 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+<ion-header no-border>
+  <ion-navbar color="navbar">
+    <button ion-button menuToggle >
+      <ion-icon name="menu" style="font-weight: bold;"></ion-icon>
     </button>
+    <ion-title>MyDana</ion-title>
     <ion-buttons end>
           <button ion-button icon-only (click)="Authentication()">
-            <ion-icon name="md-finger-print"></ion-icon>
+            <ion-icon name="md-finger-print" style="font-weight: bold;"></ion-icon>
           </button>
-      </ion-buttons>
-    <ion-title>MyDana</ion-title>
+      </ion-buttons> 
   </ion-navbar>
 </ion-header>
 
 <ion-content class="home">
   <div *ngIf="latestcampaign">
-   <ion-slides pager autoplay="5000" loop="true" speed="3000" *ngIf="sliderImage && sliderImage.length" class="slideSize">
+   <!-- <ion-slides pager autoplay="5000" loop="true" speed="3000" *ngIf="sliderImage && sliderImage.length" class="slideSize"> -->
   <!-- <ion-slides pager autoplay="5000" loop="true" speed="3000"> -->
-    <ion-slide *ngFor="let slide of sliderImage">
+    <!-- <ion-slide *ngFor="let slide of sliderImage"> -->
 
-      
-        <img src="{{slide.banner_image}}"/>
+        <img src="assets/img/white.jpg" />
         <h1 class="card-titles" text-wrap>Seringgit Sejuta Harapan</h1>
         <p class="card-subtitle" text-wrap>Bersama Membantu Mereka Yang Memerlukan</p>
+      
+        
   
-    </ion-slide>
-  </ion-slides>
+    <!-- </ion-slide> -->
+  <!-- </ion-slides> -->
 
  
 
@@ -41,7 +42,7 @@
   </ion-row>
 
 <div style="padding-left: 10px; padding-right: 10px">
-<ion-card *ngFor="let campaign of latestcampaign" style="">
+<ion-card *ngFor="let campaign of latestcampaign" style="box-shadow: 0 0 0 #fff; border: 1px groove;">
   <div (click)="moreDetail(campaign)">
     <img src="{{campaign.campaign_image}}">
     <ion-card-content>
@@ -68,7 +69,7 @@
   <ion-row no-padding class="botBorder">
       <ion-col text-left col-3>
         <button ion-button clear small  icon-start color="dark" (click)=commentPress(campaign)>
-        <ion-icon name='ios-chatbubbles-outline'></ion-icon>
+        <ion-icon name='ios-chatboxes-outline'></ion-icon>
         <!-- <ion-icon class="icon-comment" color="danger" ></ion-icon> -->
         <strong>{{getComment(campaign.campaign_id)}}</strong>
         </button>
@@ -80,7 +81,7 @@
         </button>
       </ion-col>
       <ion-col text-right>
-        <button ion-button clear small color="dark" (click)="moreDetail(campaign)">
+        <button ion-button clear small color="dark" style="text-transform: lowercase;" (click)="moreDetail(campaign)">
           lebih lanjut  
         <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
           

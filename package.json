@@ -22,6 +22,7 @@
         "@angular/platform-browser-dynamic": "5.0.0",
         "@ionic-native/core": "4.3.2",
         "@ionic-native/facebook": "^4.4.2",
+        "@ionic-native/in-app-browser": "^4.4.2",
         "@ionic-native/social-sharing": "^4.4.2",
         "@ionic-native/splash-screen": "4.3.2",
         "@ionic-native/status-bar": "4.3.2",
@@ -31,18 +32,15 @@
         "cordova-plugin-customurlscheme": "git+https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin.git",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-facebook4": "^1.9.1",
-        "cordova-plugin-googleplus": "^5.1.1",
-        "cordova-plugin-inappbrowser": "^1.7.1",
-        "cordova-plugin-ionic-webview": "^1.1.11",
+        "cordova-plugin-inappbrowser": "^1.7.2",
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "^2.2.3",
         "cordova-plugin-whitelist": "^1.3.1",
-        "cordova-plugin-x-socialsharing": "^5.2.0",
+        "cordova-plugin-x-socialsharing": "^5.2.1",
+        "es6-promise-plugin": "^4.1.0",
         "ionic-angular": "3.9.2",
-        "ionic-plugin-deeplinks": "^1.0.15",
         "ionic-plugin-keyboard": "^2.2.1",
         "ionicons": "3.0.0",
-        "molpay-mobile-xdk-cordova": "^3.16.0",
         "rxjs": "5.5.2",
         "sw-toolbox": "3.6.0",
         "zone.js": "0.8.18"
@@ -58,7 +56,6 @@
     "cordova": {
         "plugins": {
             "cordova-plugin-device": {},
-            "cordova-plugin-ionic-webview": {},
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-whitelist": {},
             "ionic-plugin-keyboard": {},
@@ -69,35 +66,13 @@
                 "ANDROID_HOST": " ",
                 "ANDROID_PATHPREFIX": "/"
             },
+            "cordova-plugin-statusbar": {},
+            "cordova-plugin-inappbrowser": {},
             "cordova-plugin-facebook4": {
                 "APP_ID": "1850420635269383",
                 "APP_NAME": "My Dana"
             },
-            "cordova-plugin-googleplus": {
-                "REVERSED_CLIENT_ID": "449110707731-vi9ii4me0prbp33arimt2vbav0enj7hc.apps.googleusercontent.com"
-            },
-            "cordova-plugin-inappbrowser": {},
-            "cordova-plugin-statusbar": {},
-            "cordova-plugin-x-socialsharing": {},
-            "ionic-plugin-deeplinks": {
-                "URL_SCHEME": "MyDana",
-                "DEEPLINK_SCHEME": "https",
-                "DEEPLINK_HOST": "example.com",
-                "ANDROID_PATH_PREFIX": "/",
-                "ANDROID_2_PATH_PREFIX": "/",
-                "ANDROID_3_PATH_PREFIX": "/",
-                "ANDROID_4_PATH_PREFIX": "/",
-                "ANDROID_5_PATH_PREFIX": "/",
-                "DEEPLINK_2_SCHEME": " ",
-                "DEEPLINK_2_HOST": " ",
-                "DEEPLINK_3_SCHEME": " ",
-                "DEEPLINK_3_HOST": " ",
-                "DEEPLINK_4_SCHEME": " ",
-                "DEEPLINK_4_HOST": " ",
-                "DEEPLINK_5_SCHEME": " ",
-                "DEEPLINK_5_HOST": " "
-            },
-            "molpay-mobile-xdk-cordova": {}
+            "cordova-plugin-x-socialsharing": {}
         },
         "platforms": [
             "android"

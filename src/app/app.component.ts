@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
 import { ContactPage } from '../pages/contact/contact';
+import { ListPage } from '../pages/list/list';
 import { SignPage } from '../pages/sign/sign';
 import { AboutUsPage } from '../pages/about-us/about-us';
 
@@ -28,7 +29,7 @@ export class MyApp {
       { title: 'Senarai Kempen', component: HomePage, icon: 'ios-list-box-outline' },
       { title: 'Aktiviti Terkini', component: ContactPage, icon: 'ios-calendar-outline' },
       { title: 'Profil & Transaksi', component: ProfilePage, icon: 'md-finger-print' },
-      { title: 'Bantuan', component: AboutUsPage, icon: 'ios-help-circle-outline' },
+      { title: 'Bantuan', component: ListPage, icon: 'ios-help-circle-outline' },
       { title: 'Tentang Yayasan', component: AboutUsPage, icon: 'ios-briefcase-outline' }
     ];
 

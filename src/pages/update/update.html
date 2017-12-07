@@ -1,16 +1,16 @@
-<ion-header>
-  <ion-navbar>
+<ion-header no-border>
+ <ion-navbar color="navbar">
   <ion-title>Terkini</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
   <ion-list style="padding-top: 10px">
     <ion-item *ngFor="let new of news" (click)="newsDetails(news)" text-wrap>
-      <h2 style="line-height: 150%">#{{new.title}}</h2>
+      <h2 style="line-height: 150%; font-weight: bold; margin-bottom: 15px">#{{new.title}}</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
       quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo

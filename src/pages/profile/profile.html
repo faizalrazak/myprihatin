@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-navbar>
+<ion-header no-border>
+ <ion-navbar color="navbar">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -24,25 +24,44 @@
 </div>
 
 
-<div text-center style="margin-bottom: 20px">
-  <h1 style="font-weight: bold;">RM 2,000</h1>
-  <p style="margin-bottom: 20px">Jumlah Derma</p>
-  <button color="yayasan" ion-button >Cetak Penyata</button>
+<div text-center style="margin-bottom: 30px; margin-top: 10px">
+   <p style="margin-bottom: 15px">Sumbangan setakat ini:</p>
+  <h1 style="font-weight: bold; margin-top: 0px; margin-bottom: 15px">RM 2,000</h1>
+  <button color="yayasan" ion-button round style="width: 80%; margin: 0 auto" >Cetak Penyata</button>
 </div>
 
-<hr>
-
-<div text-center>
+<!-- <div text-center>
   <h1 style="font-weight: bold;">Aktiviti</h1>
-</div>
-  <div class="timeline">
+</div> -->
+
+<ion-row>
+    <ion-col col-4 center>
+      <hr>
+    </ion-col>
+    <ion-col col-4 text-center>
+      <p><strong>Terkini</strong></p>
+    </ion-col>
+    <ion-col col-4>
+      <hr>
+    </ion-col>
+  </ion-row>
+
+  <ion-list>
+    <ion-item *ngFor="let activity of activities" text-wrap>
+      <p><strong>10 Oktober 2017</strong></p>
+      <p>Sumbangan bernilai <strong>RM{{activity.amount}}</strong> untuk kempen <strong>{{activity.campaign_name}}</strong> dalam <strong>Prihatin Amal</strong></p>
+    </ion-item>
+  </ion-list>
+
+
+<!-- <div class="timeline">
   <div class="container right" *ngFor="let activity of activities">
     <div class="contents" style="line-height: 150%">
       <p><strong>10 Oktober 2017</strong></p>
       <p>Sumbangan bernilai RM{{activity.amount}} dalam {{activity.campaign_name}}</p>
     </div>
   </div>
-</div>
+</div> -->
 
 </div>
 

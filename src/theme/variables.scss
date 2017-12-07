@@ -6,15 +6,14 @@
 $font-path: "../assets/fonts";
 
 @font-face {
-  font-family: 'Rubik';
+  font-family: Rubik;
   font-style: bold !important;
   src: url('../assets/fonts/rub.woff2');
 }
 
-h1, h2 {
-font-family: "Rubik" !important;
+h1, h2, ion-title {
+font-family: 'Rubik' !important;
 }
-
 
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
@@ -49,9 +48,11 @@ $colors: (
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
+  navbar:     #ffffff,
   yayasan: 	  #40637B,
   facebook:   #385899,
-  google-plus:#D51F1F
+  google-plus:#D51F1F,
+  emas:       #CB9B18
 );
 
 

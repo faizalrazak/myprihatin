@@ -1,6 +1,6 @@
 <ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
+  <ion-header no-border>
+    <ion-toolbar color="navbar">
       <ion-buttons end>
           <button ion-button icon-only (click)="dissmiss()">
             <ion-icon name="ios-close-circle-outline"></ion-icon>
@@ -11,9 +11,9 @@
   </ion-header>
 
   <ion-content>
-    <ion-list>
+    <ion-list no-lines>
       <ion-item menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon name="{{p.icon}}" item-start></ion-icon>
+        <ion-icon name="{{p.icon}}" item-start style="margin-right: 5px; font-weight: bold;"></ion-icon>
         {{p.title}}
       </ion-item>
     </ion-list>

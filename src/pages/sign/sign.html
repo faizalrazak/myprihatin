@@ -4,8 +4,8 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-  <ion-navbar>
+<ion-header no-border>
+ <ion-navbar color="navbar">
   <ion-title>Daftar Masuk</ion-title>
     
   </ion-navbar>
@@ -13,14 +13,16 @@
 
 <ion-content padding>
 
-  <h1 style="margin-bottom: 20px; text-align: center;">Daftar Masuk</h1>
-  <button color="facebook" ion-button block (click)="facebookConnect()" style="margin-bottom: 20px">Log in with Facebook</button>
-  <p style="text-align: center;">Atau</p>
+  <p style="margin-top: 15px; margin-bottom: 20px">Dengan menjad ahli berdaftar MyPrihatin, anda akan dapat melihat dan memuat turun transaksi anda untuk tujuan cukai dan sepertinya.</p>
+
+  <!-- <h1 style="margin-bottom: 20px; text-align: center;">Daftar Masuk</h1> -->
+  <button color="facebook" ion-button round full icon-left (click)="facebookConnect()" style="text-transform: lowercase; width: 90%; margin: 0 auto"><ion-icon name="logo-facebook"></ion-icon> Log with Facebook</button>
+  <p style="text-align: center; margin-top: 20px">Atau</p>
   
 
-<ion-list>
+<ion-list style="margin-bottom: 10px">
 
-  <form [formGroup]="loginForm" (submit)="login()" novalidate>
+  <form [formGroup]="loginForm" (submit)="login()" novalidate style="width: 90%; margin: 0 auto">
 
     <ion-item>
       <ion-label floating>Email</ion-label>
@@ -44,8 +46,8 @@
       </p>
     </ion-item> -->
 
-    <button ion-button block type="submit" color="yayasan" [disabled]="!loginForm.valid">
-      Login
+    <button ion-button round full type="submit" color="yayasan" style="text-transform: lowercase;" [disabled]="!loginForm.valid">
+      Log Masuk
     </button>
    <!--  <ion-row>
       <ion-col no-padding>
@@ -56,11 +58,29 @@
     </ion-col>
     </ion-row> -->
   </form>
-
 </ion-list>
 
-<h1 text-center style="margin-top:70px; margin-bottom: 20px " (click)="register()" >Daftar Akaun Baru</h1>
-<button ion-button block color="facebook" style="margin-bottom: 15px">Continue with Facebook</button>
+<p text-center (click)="forgetPassword()">Terlupa kata laluan?</p>
+
+<ion-row style="margin-top: 30px; margin-bottom: 15px">
+    <ion-col col-4 center>
+      <hr>
+    </ion-col>
+    <ion-col col-4 text-center>
+      <p><strong>Daftar Baru</strong></p>
+    </ion-col>
+    <ion-col col-4>
+      <hr>
+    </ion-col>
+  </ion-row>
+
+  <p text-center style="margin-bottom: 15px">Klik di sini untuk mendaftar sebagai pengguna baru menggunkan emel</p>
+
+<!-- <h1 text-center style="margin-top:70px; margin-bottom: 20px " (click)="register()" >Daftar Akaun Baru</h1> -->
+<button ion-button round full color="yayasan" style="text-transform: lowercase; width: 90%; margin: 0 auto" (click)="register()">Daftar Baru</button>
+
+<!-- <button ion-button block color="facebook" style="margin-bottom: 15px">Continue with Facebook</button> -->
+
 <!-- <p text-wrap style="text-align: center;">By clicking Register me, you indicate that you have read and understand our Privacy Policy and Terms of Use and represent that you are at least 13 years of age</p> -->
 <!-- <div text-center>
   <strong>or</strong>

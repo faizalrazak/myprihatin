@@ -14,6 +14,7 @@ export class ArticleDetailsPage {
 	article :any;
   comments:any;
   likes:any;
+  buttonIcon : string = 'ios-heart-outline';
 
   constructor(public toast:ToastController, public actionSheet:ActionSheetController, public socialSharing:SocialSharing, public modalCtrl:ModalController, public loading:LoadingController, public viewCtrl:ViewController, public navCtrl: NavController, public navParams: NavParams) {
 
@@ -33,6 +34,16 @@ export class ArticleDetailsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ArticleDetailsPage');
   }
+
+  toggleIcon(getIcon: string) {
+
+      if (this.buttonIcon === 'heart') {
+        this.buttonIcon = "ios-heart-outline";
+      }
+      else if (this.buttonIcon === 'ios-heart-outline') {
+        this.buttonIcon = "heart";
+      }
+   }
 
   commentsTapped(article){
 
