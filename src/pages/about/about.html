@@ -66,15 +66,15 @@
   
     <ion-list>
       <ion-item (click)="details(kempen)">
-        <p><strong>Maklumat lebih lanjut</strong></p>
+        <p><strong style="color: black">Maklumat lebih lanjut</strong></p>
         <ion-icon name="arrow-forward" item-end></ion-icon>
       </ion-item>
       <ion-item (click)="newsTapped(kempen)" >
-        <p><strong>Terkini</strong></p>
+        <p><strong style="color: black">Terkini</strong></p>
         <ion-badge style="background-color: #CB9B18" item-end *ngIf="newsBadge">{{newsBadge}}</ion-badge>
       </ion-item>
       <ion-item (click)="commentsTapped(kempen)" >
-        <p><strong>Baca dan beri komen</strong></p>
+        <p><strong style="color: black">Baca dan beri komen</strong></p>
         <ion-badge style="background-color: #CB9B18" item-end *ngIf="commentBadge">{{commentBadge}}</ion-badge>
       </ion-item>
     </ion-list>
