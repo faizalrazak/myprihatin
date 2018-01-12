@@ -8,4 +8,30 @@ page-about-us {
 	  background-color: #5CBFB9;
 	}
 
+	.card-titles {
+    // position: absolute;
+    // top: 30%;
+    // left:5%;
+    width: 70%;
+    font-weight: bold;
+    color: #fff;
+    text-align: left;
+  }
+
+  .card-subtitle {
+    // position: absolute;
+    // top: 47%;
+    width: 80%;
+    font-size: 12px;
+    color: #fff;
+    // left: 5%;
+    text-align: left;
+  }
+  .card-text{
+  	width: 100%;
+  	position: absolute;
+  	top: 40%;
+    left:5%;
+  }
+
 }

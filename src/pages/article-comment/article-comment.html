@@ -39,8 +39,9 @@
 </ion-content>
 
 <ion-footer padding>
-  <ion-item>
-    <ion-input type="text" placeholder="Comment" [(ngModel)]="userComment"></ion-input>
+  <ion-item style="margin-bottom: 5px">
+    <ion-input type="text" placeholder="Tulis Komen" [(ngModel)]="userComment"></ion-input>
   </ion-item>
-  <button ion-button full round color="yayasan" (click)="postComment()">Submit</button>
+  <button ion-button full round color="yayasan" (click)="postComment()" style="text-transform: lowercase; width: 90%; margin: 0 auto">Hanter Komen</button>
+  <p text-center style="font-size: 8px; margin-top: 8px;">Perlu mendaftar masuk untuk memberi komen</p>
 </ion-footer>

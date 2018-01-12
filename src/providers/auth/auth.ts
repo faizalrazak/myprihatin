@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http , Headers} from '@angular/http';
+import { Http , Headers, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/Storage';
 
 /*
   Generated class for the AuthProvider provider.
@@ -12,10 +12,50 @@ import { Storage } from '@ionic/storage';
 export class AuthProvider {
 
 	public token : any;
+  baseUrl:string = "https://mydana.herokuapp.com/api/";
 
 
-  constructor(public http: Http, public storage:Storage) {
+  constructor(public http: Http, private storage:Storage) {
     console.log('Hello AuthProvider Provider');
+  }
+
+  createAuthorizationHeader(headers:Headers){
+    headers.append('Authorization', window.localStorage.getItem('token'));
+
+  }
+
+  private(){
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.baseUrl+'private',{
+      headers:headers
+    }).map(res => res.json());
+  }
+
+  logins(details){
+    return this.http.post(this.baseUrl+'login', details)
+    .map(this.extractData);
+  }
+
+  isLogged(){
+    if(window.localStorage.getItem('token')){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  logout(){
+    window.localStorage.removeItem('token');
+    return true;
+  }
+
+  private extractData(res:Response){
+    let body = res.json();
+    if(body.success === true){
+      window.localStorage.setItem('token', body.token);
+    };
+    return body || {};
   }
 
   login(details){
@@ -25,13 +65,13 @@ export class AuthProvider {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
  
- 		console.log(details);
-        this.http.post("https://mydana.herokuapp.com/api/login", JSON.stringify(details), {headers: headers})
+        this.http.post(this.baseUrl + "login", JSON.stringify(details), {headers: headers})
           .subscribe(res => {
  
             let data = res.json();
             this.token = data.token;
             this.storage.set('token', data.token);
+            console.log(this.storage);
             resolve(data);
  
             resolve(res.json());

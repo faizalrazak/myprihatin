@@ -1,7 +1,7 @@
 <ion-header no-border>
  <ion-navbar color="navbar">
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu" style="font-weight: bold;"></ion-icon>
     </button>
     <ion-title>
       Ativiti Terkini
@@ -11,8 +11,8 @@
 
 <ion-content >
 
-  <div style="padding-left: 10px; padding-right: 10px" *ngIf="articles">
-    <ion-card *ngFor="let article of articles" style="box-shadow: 0 0 0 #fff; border: 1px groove;">
+  <div style="padding: 20px" *ngIf="articles">
+    <div *ngFor="let article of articles" style=" border: 1px groove; margin-bottom: 10px">
       <ion-item>
         <ion-avatar item-start>
           <img src="{{article.header_image}}">
@@ -22,10 +22,10 @@
       <div (click)="details(article)">
         <img src="{{article.inline_image}}">
         <ion-card-content>
-          <h6>{{article.source}}</h6>
+          <h6 no-margin>{{article.source}}</h6>
           <ion-card-title> 
             <!-- <h1 text-wrap style="font-weight: bold;">{{article.article_title}}</h1> -->
-            <h1 text-wrap style="font-weight: bold;">Korban Aidil Adha</h1>
+            <h1 no-margin text-wrap style="font-weight: bold;">Korban Aidil Adha</h1>
           </ion-card-title>
             <!-- <p >{{article.short_desc}}</p> -->
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -46,7 +46,7 @@
             </button>
           </ion-col>
           <ion-col text-left col-3>
-            <button ion-button clear small color="dark" icon-start>
+            <button ion-button clear small color="dark" icon-start (click)=like(article)>
             <ion-icon name="ios-heart-outline"></ion-icon>
             <strong>{{getLike(article.article_id)}}</strong>
             </button>
@@ -54,11 +54,11 @@
           <ion-col text-right>
             <button ion-button clear small color="dark" style="text-transform: lowercase;" (click)="details(article)">
               lebih lanjut  
-            <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+            <ion-icon ios="ios-arrow-forward" md="md-arrow-forward" style="margin-left: 5px"></ion-icon>
               
             </button>
           </ion-col>
         </ion-row>
-    </ion-card>
+    </div>
   </div>
 </ion-content>

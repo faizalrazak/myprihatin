@@ -8,7 +8,7 @@
 
   <ion-navbar color="navbar">
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu" style="font-weight: bold;"></ion-icon>
     </button>
     <ion-title>
       Tentang Yayasan
@@ -21,9 +21,11 @@
 <ion-content style="padding-bottom: 16px">
 
 	<img src="assets/img/white.jpg">
-
-	<h1 class="card-titles" text-wrap>Yayasan MyPrihatin</h1>
-    <p class="card-subtitle" text-wrap>Seringgit Sejuta Harapan</p>
+	<div class="card-text">
+		<h1 class="card-titles" text-wrap>Yayasan MyPrihatin</h1>
+    	<p class="card-subtitle" text-wrap>Seringgit Sejuta Harapan</p>
+	</div>
+	
 		<ion-list no-lines style="margin-bottom: 0px">
 			<ion-item text-wrap>
 				<p>Penubuhan Yayasan ini tercetus apabila aktiviti sindiket derma haram semakin berleluasa di Malaysia. Justeru, sistem pungutan derma menggunakan aplikasi ICT yang mudah, pantas dan telus telah diilhamkan bagi memastikan bantuan dari rakyat Malaysia yang prihatin dapat disalurkan kepada pihak yang berhak</p>
@@ -39,7 +41,14 @@
 			</ion-item>
 		</ion-list>
 	<div style="padding: 16px;">
-		<button ion-button round full color="yayasan" style="text-transform: lowercase;width: 90%; margin: 0 auto" (click)="web()">Laman Web Yayasan</button>
+		<ion-row>
+			<ion-col col-6>
+				<button ion-button round full color="yayasan" style="text-transform: lowercase; margin: 0 auto" (click)="web()">Laman Web Yayasan</button>
+			</ion-col>
+			<ion-col col-6>
+				<button ion-button round full color="facebook" style="text-transform: lowercase; margin: 0 auto" (click)="fb()">Laman FB Yayasan</button>
+			</ion-col>
+		</ion-row>
 	</div>
 	
 

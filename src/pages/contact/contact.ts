@@ -44,6 +44,22 @@ export class ContactPage {
     );
   }
 
+  like(article){
+    console.log(article.article_id)
+      let details = {
+          article_id : article.article_id,
+          user_id : 1,
+      }
+
+    this.httpprovider.postLike(details).then((result) => {
+
+      // this.likeIcon = 'danger';
+
+    }, (err) => {
+      console.log(err);
+    }); 
+  }
+
   details(article){
     
    this.navCtrl.push(ArticleDetailsPage, {article:article});

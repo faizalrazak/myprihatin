@@ -1,7 +1,21 @@
-  .card-titles {
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+
+.video-container iframe, .video-container object, .video-container embed {
     position: absolute;
-    top: 30%;
-    left:5%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+  .card-titles {
+    // position: absolute;
+    // top: 30%;
+    // left:5%;
     width: 70%;
     font-weight: bold;
     color: #fff;
@@ -9,14 +23,22 @@
   }
 
   .card-subtitle {
-    position: absolute;
-    top: 47%;
+    // position: absolute;
+    // top: 47%;
     width: 80%;
     font-size: 12px;
     color: #fff;
-    left: 5%;
+    // left: 5%;
     text-align: left;
   }
+  .card-text{
+  	width: 100%;
+  	position: absolute;
+  	top: 40%;
+  	// top: 12%;
+    left:5%;
+  }
+
 
 .slideSize{
 	height : 60%;

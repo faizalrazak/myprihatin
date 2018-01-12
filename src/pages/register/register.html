@@ -13,7 +13,7 @@
   <form [formGroup]="registerForm" (submit)="register()" novalidate style="width: 90%; margin: 0 auto">
 
       <ion-item class="form-group">
-        <ion-label floating for="name">Name</ion-label>
+        <ion-label floating for="name">Nama</ion-label>
         <ion-input type="text" formControlName="name"></ion-input>
         <div class='form-text error' *ngIf="registerForm.controls.name.touched">
           <div *ngIf="registerForm.controls.name.hasError('required')">Name is required.</div>
@@ -21,7 +21,7 @@
       </ion-item>
       
       <ion-item class="form-group">
-        <ion-label floating for="email">Email</ion-label>
+        <ion-label floating for="email">Emel</ion-label>
         <ion-input type="email" formControlName="email"></ion-input>
         <div class="form-text error" *ngIf="registerForm.controls.email.touched">
           <div *ngIf="registerForm.controls.email.hasError('required')">Email is required.</div>
@@ -30,7 +30,7 @@
       </ion-item>
 
       <ion-item class="form-group">
-        <ion-label floating for="password">Password</ion-label>
+        <ion-label floating for="password">Kata Laluan</ion-label>
         <ion-input type="password" minlength='6' formControlName="password"></ion-input>
         <div class='form-text error' *ngIf="registerForm.controls.password.touched">
           <div *ngIf="registerForm.controls.password.hasError('required')">Password is required.</div>
@@ -39,14 +39,14 @@
       </ion-item>
   
       <ion-item class="form-group">
-        <ion-label floating for="confirmPassword">Confirm Password</ion-label>
+        <ion-label floating for="confirmPassword">Sahkan Kata Laluan</ion-label>
         <ion-input type="password" formControlName="confirmPassword"></ion-input>
         <div class='form-text error' *ngIf="registerForm.controls.confirmPassword.touched">
           <div *ngIf="registerForm.hasError('mismatchedPasswords')">Passwords do not match.</div>
         </div>
       </ion-item>
       
-      <button ion-button color="yayasan" type='submit' full round style="margin-top: 10px; margin-bottom: 15px; text-transform: lowercase;" [disabled]="!registerForm.valid" >Register</button>
+      <button ion-button color="yayasan" type='submit' full round style="margin-top: 10px; margin-bottom: 15px; text-transform: capitalize;" [disabled]="!registerForm.valid" >Daftar</button>
     </form>
   </ion-list>
 

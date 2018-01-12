@@ -6,7 +6,7 @@
     <ion-title>MyDana</ion-title>
     <ion-buttons end>
           <button ion-button icon-only (click)="Authentication()">
-            <ion-icon name="md-finger-print" style="font-weight: bold;"></ion-icon>
+            <ion-icon name="md-finger-print"></ion-icon>
           </button>
       </ion-buttons> 
   </ion-navbar>
@@ -18,18 +18,18 @@
   <!-- <ion-slides pager autoplay="5000" loop="true" speed="3000"> -->
     <!-- <ion-slide *ngFor="let slide of sliderImage"> -->
 
+      <!-- <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/wyVM1evRxNw" frameborder="0" width="560" height="500" allowfullscreen></iframe>
+          <video src="https://www.youtube.com/embed/wyVM1evRxNw" frameborder="0" width="560" height="500" allowfullscreen></video>
+      </div> -->
+
         <img src="assets/img/white.jpg" />
-        <h1 class="card-titles" text-wrap>Seringgit Sejuta Harapan</h1>
-        <p class="card-subtitle" text-wrap>Bersama Membantu Mereka Yang Memerlukan</p>
-      
-        
-  
-    <!-- </ion-slide> -->
-  <!-- </ion-slides> -->
-
+        <div class="card-text">
+          <h1 class="card-titles" text-wrap>Seringgit Sejuta Harapan</h1>
+          <p class="card-subtitle" text-wrap>Bersama Membantu Mereka Yang Memerlukan</p>
+        </div>
  
-
-  <ion-row>
+  <ion-row style="padding-top: 10px">
     <ion-col col-4 center>
       <hr>
     </ion-col>
@@ -41,14 +41,14 @@
     </ion-col>
   </ion-row>
 
-<div style="padding-left: 10px; padding-right: 10px">
-<ion-card *ngFor="let campaign of latestcampaign" style="box-shadow: 0 0 0 #fff; border: 1px groove;">
+<div style="padding: 20px; padding-top: 0px" >
+<div *ngFor="let campaign of latestcampaign" style="border: 1px groove; margin-bottom: 10px">
   <div (click)="moreDetail(campaign)">
     <img src="{{campaign.campaign_image}}">
     <ion-card-content>
-      <h6>{{campaign.category}}</h6>
+      <h6 no-margin>{{campaign.category}}</h6>
       <ion-card-title> 
-        <h1 text-wrap style="font-weight: bold;">{{campaign.campaign_name}}</h1>
+        <h1 text-wrap no-margin style="font-weight: bold;">{{campaign.campaign_name}}</h1>
       </ion-card-title>
         <p >{{campaign.short_desc}}</p>
         <div class="process" style="padding-top: 10px">
@@ -75,7 +75,7 @@
         </button>
       </ion-col>
       <ion-col text-left col-3>
-        <button ion-button clear small color="dark" icon-start>
+        <button ion-button clear small color="dark" icon-start (click)=like(campaign)>
         <ion-icon name="ios-heart-outline"></ion-icon>
         <strong>{{getLike(campaign.campaign_id)}}</strong>
         </button>
@@ -83,12 +83,12 @@
       <ion-col text-right>
         <button ion-button clear small color="dark" style="text-transform: lowercase;" (click)="moreDetail(campaign)">
           lebih lanjut  
-        <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+        <ion-icon ios="ios-arrow-forward" md="md-arrow-forward" style="margin-left: 5px"></ion-icon>
           
         </button>
       </ion-col>
     </ion-row>
-</ion-card>
+</div>
 </div>
 
 <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

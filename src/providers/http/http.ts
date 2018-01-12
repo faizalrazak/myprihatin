@@ -47,6 +47,26 @@ export class HttpProvider {
     // .map(res => res.json())
   }
 
+  postLike(details){
+   
+    return new Promise((resolve, reject) => {
+
+      let headers = new Headers();
+      headers.append('Content-Type','application/json');
+       console.log(details);
+      this.http.post('https://mydana.herokuapp.com/api/like', JSON.stringify(details), {headers:headers})
+      .subscribe(res => {
+       
+        let data = res.json();
+        console.log(data);
+        resolve(data);
+      
+      }, (err) => {
+        reject(err);
+      });
+    });
+  }
+
   postComment(details){
    
     return new Promise((resolve, reject) => {

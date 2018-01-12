@@ -30,7 +30,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { HttpProvider } from '../providers/http/http';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AuthProvider } from '../providers/auth/auth';
-import { IonicStorageModule } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/Storage';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 

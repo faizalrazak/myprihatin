@@ -16,7 +16,7 @@
   <p style="margin-top: 15px; margin-bottom: 20px">Dengan menjad ahli berdaftar MyPrihatin, anda akan dapat melihat dan memuat turun transaksi anda untuk tujuan cukai dan sepertinya.</p>
 
   <!-- <h1 style="margin-bottom: 20px; text-align: center;">Daftar Masuk</h1> -->
-  <button color="facebook" ion-button round full icon-left (click)="facebookConnect()" style="text-transform: lowercase; width: 90%; margin: 0 auto"><ion-icon name="logo-facebook"></ion-icon> Log with Facebook</button>
+  <button color="facebook" ion-button round full icon-left (click)="facebookConnect()" style="text-transform: capitalize; width: 90%; margin: 0 auto"><ion-icon name="logo-facebook"></ion-icon> Log with Facebook</button>
   <p style="text-align: center; margin-top: 20px">Atau</p>
   
 
@@ -25,7 +25,7 @@
   <form [formGroup]="loginForm" (submit)="login()" novalidate style="width: 90%; margin: 0 auto">
 
     <ion-item>
-      <ion-label floating>Email</ion-label>
+      <ion-label floating>Emel</ion-label>
       <ion-input formControlName="email" type="email" [class.invalid]="!loginForm.controls.email.valid && blur"></ion-input>
     </ion-item>
     <!-- <ion-item class="error-message" 
@@ -36,7 +36,7 @@
     </ion-item> -->
 
     <ion-item style="margin-bottom: 20px">
-      <ion-label floating>Password</ion-label>
+      <ion-label floating>Kata Laluan</ion-label>
       <ion-input formControlName="password" type="password" [class.invalid]="!loginForm.controls.password.valid && blur"></ion-input>
     </ion-item>
     <!-- <ion-item class="error-message" 
@@ -46,7 +46,7 @@
       </p>
     </ion-item> -->
 
-    <button ion-button round full type="submit" color="yayasan" style="text-transform: lowercase;" [disabled]="!loginForm.valid">
+    <button ion-button round full type="submit" color="yayasan" style="text-transform: capitalize;" [disabled]="!loginForm.valid">
       Log Masuk
     </button>
    <!--  <ion-row>
@@ -77,7 +77,7 @@
   <p text-center style="margin-bottom: 15px">Klik di sini untuk mendaftar sebagai pengguna baru menggunkan emel</p>
 
 <!-- <h1 text-center style="margin-top:70px; margin-bottom: 20px " (click)="register()" >Daftar Akaun Baru</h1> -->
-<button ion-button round full color="yayasan" style="text-transform: lowercase; width: 90%; margin: 0 auto" (click)="register()">Daftar Baru</button>
+<button ion-button round full color="yayasan" style="text-transform: capitalize; width: 90%; margin: 0 auto" (click)="register()">Daftar Baru</button>
 
 <!-- <button ion-button block color="facebook" style="margin-bottom: 15px">Continue with Facebook</button> -->
 
@@ -94,7 +94,12 @@
 
 
   <!-- <button ion-button small full clear (click)="register()">Register Me</button> -->
-
+<ion-card *ngIf="response">
+  <ion-card-header>{{response.username}}</ion-card-header>
+  <img src="response.picture">
+  <p>Email : {{response.email}}</p>
+  <p>First Name : {{response.first_name}}</p>
+</ion-card>
   
  
 

@@ -64,12 +64,29 @@ export class AboutPage {
 
   toggleIcon(getIcon: string) {
 
+    let details = {
+          campaign_id : this.campaign.campaign_id,
+          user_id : 1,
+    }
+
+    this.httpprovider.postLike(details).then((result) => {
+
       if (this.buttonIcon === 'heart') {
-        this.buttonIcon = "ios-heart-outline";
+
+       this.buttonIcon = "ios-heart-outline";
+        
       }
       else if (this.buttonIcon === 'ios-heart-outline') {
+        
         this.buttonIcon = "heart";
       }
+          
+    },
+    (err) => {
+        console.log(err);
+    });
+
+      
    }
 
 
@@ -107,7 +124,7 @@ export class AboutPage {
                       content: 'Please wait...'
                       });
                     load.present();
-                   this.socialSharing.shareViaFacebook(this.campaign)
+                   this.socialSharing.shareViaFacebook('http://www.myprihatin.org.my/')
                    .then((data) =>
                    {
                       console.log('Shared via Facebook');
@@ -138,7 +155,7 @@ export class AboutPage {
 
                    load.present();
 
-                  this.socialSharing.shareViaTwitter(this.campaign)
+                  this.socialSharing.shareViaTwitter('http://www.myprihatin.org.my/')
                   .then((data) =>
                   {
                     load.dismiss();

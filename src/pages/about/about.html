@@ -27,7 +27,7 @@
         <ion-icon name="ios-pin-outline"></ion-icon>
       </ion-col>
       <ion-col col-7 style="padding-left: 0px">
-            {{campaign.location}}
+            <strong>{{campaign.location}}</strong>
       </ion-col>
       <ion-col col-2 text-right no-padding>
         <ion-icon name="ios-chatboxes-outline"></ion-icon>
@@ -79,8 +79,8 @@
       </ion-item>
     </ion-list>
 
-      <!-- <ion-fab right bottom>
-        <button ion-fab color="yayasan" (click)="toggleIcon()">
+      <!-- <ion-fab right bottom style="margin-bottom: 45px; position: fixed;">
+        <button ion-fab color="emas" (click)="toggleIcon()">
           <ion-icon [name]="buttonIcon"></ion-icon>
         </button>
       </ion-fab> -->
@@ -88,11 +88,11 @@
 
  </div>
 </ion-content>
-<ion-footer class="center-div" (click)="donate(kempen)">
-  <ion-fab right top style="top: -25px">
-    <button ion-fab color="emas" (click)="toggleIcon()">
+<ion-footer class="center-div" >
+  <ion-fab right top style="top: -25px" (click)="toggleIcon()">
+    <button ion-fab color="emas" >
       <ion-icon [name]="buttonIcon"></ion-icon>
     </button>
   </ion-fab>
-  <p style="color: white; font-weight: bold;">KLIK UNTUK HULUR SUMBANGAN</p>
+  <p style="color: white; font-weight: bold;" (click)="donate(kempen)">KLIK UNTUK HULUR SUMBANGAN</p>
 </ion-footer>

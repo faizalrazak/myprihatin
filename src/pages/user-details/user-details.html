@@ -7,6 +7,11 @@
 <ion-header no-border>
  <ion-navbar color="navbar">
   <ion-title>{{profile.name}}</ion-title>
+   <ion-buttons end>
+          <button ion-button icon-only (click)="editProfile(profile)">
+            <ion-icon name="settings" style="font-weight: bold;"></ion-icon>
+          </button>
+      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -28,47 +33,47 @@
 
 
 
-	<ion-list style="margin-top: 35px">
+	<ion-list style="margin-top: 35px" no-lines>
 	  <ion-item>
-	    <ion-icon name="person" item-start></ion-icon>
+	    <ion-icon name="ios-person-outline" item-start style="font-weight: bold;"></ion-icon>
 	    	{{profile.name}}
 	  </ion-item>
 
 	  <ion-item>
-	    <ion-icon name="mail" item-start></ion-icon>
+	    <ion-icon name="ios-mail-outline" item-start style="font-weight: bold;"></ion-icon>
 	     {{profile.email}}
 	  </ion-item>
 
 	  <ion-item>
-	    <ion-icon name="home" item-start></ion-icon>
+	    <ion-icon name="ios-home-outline" item-start style="font-weight: bold;"></ion-icon>
 	      {{profile.address}}
 	  </ion-item>
 
 	  <ion-item>
-	    <ion-icon name="call" item-start></ion-icon>
+	    <ion-icon name="ios-call-outline" item-start style="font-weight: bold;"></ion-icon>
 	      {{profile.phone_number}}
 	  </ion-item>
 
 	  <ion-item>
-	    <ion-icon name="calendar" item-start></ion-icon>
+	    <ion-icon name="ios-calendar-outline" item-start style="font-weight: bold;"></ion-icon>
 	      {{profile.birthdate}}
 	  </ion-item>
 
 	  <ion-item>
-	    <ion-icon name="male" item-start></ion-icon>
+	    <ion-icon name="ios-male-outline" item-start style="font-weight: bold;"></ion-icon>
 	      {{profile.gender}}
 	  </ion-item>
 
 	  <ion-item>
-	    <ion-icon name="flag" item-start></ion-icon>
+	    <ion-icon name="ios-flag-outline" item-start style="font-weight: bold;"></ion-icon>
 	      {{profile.locale}}
 	  </ion-item>
 	</ion-list>
 
-<div padding>
+<<!-- div padding>
 	<button ion-button block color='yayasan' (click)="editProfile(profile)">Edit Profile</button>
 	
-</div>
+</div> -->
 	
 
 </ion-content>

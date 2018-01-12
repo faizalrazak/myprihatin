@@ -1,7 +1,7 @@
 <ion-header no-border>
   <ion-navbar color="navbar">
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu" style="font-weight: bold;"></ion-icon>
     </button>
     <ion-title>Bantuan</ion-title>
   </ion-navbar>
@@ -9,34 +9,12 @@
 
 <ion-content>
 
-  <ion-list style="padding-top: 10px" no-lines>
-    <ion-item text-wrap>
-      <h2 style="line-height: 150%; font-weight: bold; margin-bottom: 15px">Soalan 1</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </ion-item> 
-    <ion-item text-wrap>
-      <h2 style="line-height: 150%; font-weight: bold; margin-bottom: 15px">Soalan 2</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </ion-item> 
-    <ion-item text-wrap>
-      <h2 style="line-height: 150%; font-weight: bold; margin-bottom: 15px">Soalan 3</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </ion-item> 
+  <ion-list>
+    <ion-item  no-margin *ngFor = "let s of soalan ; let i=index " text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
+      <h2 style="line-height: 150%; font-weight: bold; margin: 0px">{{s.title}}<!-- 
+        <ion-icon color="success" item-right [name]="isGroupShown(i) ? 'arrow-up' : 'arrow-dropright'"></ion-icon> -->
+      </h2>
+      <p *ngIf="isGroupShown(i)">{{s.description}}</p>
+    </ion-item>
   </ion-list>
-  
 </ion-content>

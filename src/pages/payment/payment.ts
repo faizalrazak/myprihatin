@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController, ToastController, M
 import { HttpProvider } from '../../providers/http/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SignPage } from '../sign/sign';
+import { Storage } from '@ionic/Storage';
 
 @IonicPage()
 @Component({
@@ -20,8 +21,12 @@ export class PaymentPage {
   value : number = 0;
   campaign : any;
   
-  constructor(public iab:InAppBrowser, public modalCtrl:ModalController, public toast:ToastController, public httpProvider:HttpProvider, public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController) {
+  constructor(private storage:Storage, public iab:InAppBrowser, public modalCtrl:ModalController, public toast:ToastController, public httpProvider:HttpProvider, public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController) {
       
+      storage.get('token').then((val) => {
+      console.log('my token : ', val);
+    });
+
       this.campaign = navParams.get('campaign');
       console.log(this.campaign);
   }

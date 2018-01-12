@@ -27,5 +27,8 @@ export class AboutUsPage {
     const browser = this.iab.create('http://www.myprihatin.org.my/');
   }
 
+  fb(){
+    const browser = this.iab.create('https://www.facebook.com/YayasanMyPrihatin/');
+  }
 
 }

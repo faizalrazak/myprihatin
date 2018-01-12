@@ -15,6 +15,7 @@ import * as moment from 'moment';
 })
 export class HomePage {
 
+  likeIcon:string = 'dark';
   latestcampaign : any;
   progressBar:any;
   sliderImage : any;
@@ -39,6 +40,7 @@ export class HomePage {
         data => {
           console.log(data)
           this.latestcampaign = data.data;
+          console.log(this.latestcampaign)
           this.remainingDays = moment(data.data.campaign_end_date, "YYYYMMDD").lang("ms").fromNow();
           this.percentage = (data.data.fund_amount/data.data.total_amount)*100;
           this.comments = this.latestcampaign[0].number_of_like.length;
@@ -69,9 +71,25 @@ export class HomePage {
       );
 }
 
-Authentication(){
-    this.navCtrl.push(SignPage);
-}
+  Authentication(){
+      this.navCtrl.push(SignPage);
+  }
+
+  like(campaign){
+    console.log(campaign.campaign_id)
+      let details = {
+          campaign_id : campaign.campaign_id,
+          user_id : 1,
+      }
+
+    this.httpprovider.postLike(details).then((result) => {
+
+      this.likeIcon = 'danger';
+
+    }, (err) => {
+      console.log(err);
+    }); 
+  }
 
   moreDetail(campaign){
     this.navCtrl.push(AboutPage, {campaign:campaign});
