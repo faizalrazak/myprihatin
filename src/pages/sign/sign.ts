@@ -28,9 +28,10 @@ export class SignPage {
   response: any;
 
   constructor(public alertCtrl :AlertController, public toast:ToastController, public authprovider:AuthProvider, public loading:LoadingController, public viewCtrl:ViewController, public modalCtrl:ModalController, public navCtrl: NavController, public navParams: NavParams, private fb:Facebook, public formBuilder:FormBuilder) {
-    // if(this.authprovider.isLogged() === true){
-    //   this.navCtrl.push(ProfilePage);
-    // }
+    
+    if(this.authprovider.isLogged() === true){
+      this.navCtrl.setRoot(ProfilePage);
+    }
 
     this.loginForm = formBuilder.group({
       email : ['', Validators.compose([Validators.required, EmailValidator.isValid])],
@@ -64,7 +65,7 @@ export class SignPage {
                          password : profile['id'],
                          first_name: profile['first_name'],
                          picture: profile['picture']['data']['url'],
-                         username: profile['name']
+                         name: profile['name']
                        }
 
         // this.navCtrl.setRoot(HomePage);

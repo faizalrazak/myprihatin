@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
-
+import * as moment from 'moment'; 
 /**
  * Generated class for the ArticleCommentPage page.
  *
@@ -29,6 +29,15 @@ export class ArticleCommentPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ArticleCommentPage');
+  }
+
+  getCommentTime(id){
+    for (let comment of this.comments){
+                if (id === comment["comment_id"]){
+               return (moment(comment.created_at.date).startOf('day').lang("ms").fromNow());
+             }
+          }
+    return null;
   }
 
   postComment(){

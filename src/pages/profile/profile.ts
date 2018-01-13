@@ -3,7 +3,9 @@ import { IonicPage, NavController, NavParams, ModalController, LoadingController
 import { AboutUsPage } from '../about-us/about-us';
 import { UserDetailsPage} from '../user-details/user-details';
 import { HttpProvider } from '../../providers/http/http';
+import { AuthProvider } from '../../providers/auth/auth';
 import * as moment from 'moment';
+import { SignPage } from '../sign/sign';
 
 /**
  * Generated class for the ProfilePage page.
@@ -22,7 +24,7 @@ export class ProfilePage {
   profile : any;
   activities:any;
 
-  constructor(public loading:LoadingController, public httpprovider:HttpProvider, public navCtrl: NavController, public navParams: NavParams, public modalCtrl:ModalController) {
+  constructor(private auth:AuthProvider, public loading:LoadingController, public httpprovider:HttpProvider, public navCtrl: NavController, public navParams: NavParams, public modalCtrl:ModalController) {
   }
 
   ionViewDidLoad(){
@@ -87,6 +89,11 @@ export class ProfilePage {
     this.navCtrl.push(UserDetailsPage, {profile:profile});
   }
 
+
+  logout(){
+    this.auth.logout();
+    this.navCtrl.push(SignPage);
+  }
 
 
 }

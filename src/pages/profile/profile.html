@@ -15,7 +15,7 @@
 </ion-header>
 
 <ion-content>
-<div *ngIf="profile">
+<div *ngIf="profile" style="padding-bottom: 10px">
 <div class="bg">
   <img src="{{profile.image}}" class="user">
 </div>
@@ -67,6 +67,8 @@
     </div>
   </div>
 </div> -->
+
+<button color="yayasan" ion-button round full icon-left (click)="logout()" style="text-transform: capitalize; width: 90%; margin: 0 auto"><ion-icon name="md-log-out"></ion-icon> Logout</button>
 
 </div>
 

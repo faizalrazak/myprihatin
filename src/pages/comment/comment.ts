@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/Storage';
+import * as moment from 'moment'; 
 
 /**
  * Generated class for the CommentPage page.
@@ -17,14 +18,16 @@ import { Storage } from '@ionic/storage';
 })
 export class CommentPage {
 
-	comments : any;
+  comments : any;
+  commentTime : any;
   userComment = '';
   campaign:any;
   user:any;
   token:any;
 
+
   constructor(private storage:Storage, public loading:LoadingController, public navCtrl: NavController, public navParams: NavParams, public httpprovider:HttpProvider, public viewCtrl:ViewController) {
-  
+    
     this.token = this.storage.get('token');
     console.log(this.token)
 
@@ -36,13 +39,18 @@ export class CommentPage {
         this.campaign = navParams.get('campaign');
         this.comments = this.campaign.comments;
         load.dismiss();
-
-        console.log(this.comments);
-
   }
 
-  closeModal(){
-    this.viewCtrl.dismiss(false);
+  getCommentTime(id){
+    for (let comment of this.comments){
+                if (id === comment["id"]){
+                  this.commentTime = (moment(comment.created_at.date).startOf('day').lang("ms").fromNow())
+                  this.commentTime = this.commentTime.replace('yang ','');
+                  console.log(this.commentTime)
+               return this.commentTime;
+             }
+          }
+    return null;
   }
 
    sendComment(){

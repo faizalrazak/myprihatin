@@ -70,8 +70,9 @@ export class AuthProvider {
  
             let data = res.json();
             this.token = data.token;
-            this.storage.set('token', data.token);
-            console.log(this.storage);
+            console.log(this.token)
+            window.localStorage.setItem('token', this.token);
+            console.log(window.localStorage);
             resolve(data);
  
             resolve(res.json());

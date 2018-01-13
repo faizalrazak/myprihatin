@@ -41,9 +41,6 @@ export class HomePage {
           console.log(data)
           this.latestcampaign = data.data;
           console.log(this.latestcampaign)
-          this.remainingDays = moment(data.data.campaign_end_date, "YYYYMMDD").lang("ms").fromNow();
-          this.percentage = (data.data.fund_amount/data.data.total_amount)*100;
-          this.comments = this.latestcampaign[0].number_of_like.length;
         },
         err => {
           load.dismiss();
@@ -189,7 +186,9 @@ export class HomePage {
 getRemainingDays(id){
   for (let campaign of this.latestcampaign){
               if (id === campaign["campaign_id"]){
-             return (moment(campaign.campaign_end_date, "YYYYMMDD").lang("ms").fromNow());
+                this.remainingDays = (moment(campaign.campaign_end_date, "YYYYMMDD").lang("ms").fromNow())
+                this.remainingDays = this.remainingDays.replace('dalam ','');
+             return this.remainingDays;
            }
         }
   return null;
