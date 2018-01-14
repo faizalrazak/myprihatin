@@ -15,8 +15,8 @@ export class HttpProvider {
     console.log('Hello HttpProvider Provider');
   }
 
-   getLatest(){
-    return this.http.get("https://mydana.herokuapp.com/api/latest")
+   getLatest(page){
+    return this.http.get("https://mydana.herokuapp.com/api/latest?page="+page)
     .map(res => res.json())  
   }
 

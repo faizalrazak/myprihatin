@@ -21,8 +21,12 @@ export class HomePage {
   sliderImage : any;
   remainingDays : any;
   percentage : any;
+  page = 1;
 	slideLength : boolean = false;
   comments : any;
+  perPage = 0;
+  totalData = 0;
+  totalPage = 0;
 
   constructor(public toast:ToastController, public loading:LoadingController, public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public modalCtrl:ModalController, public httpprovider:HttpProvider, public navParams:NavParams, public socialSharing:SocialSharing) {
      
@@ -30,16 +34,61 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-    let load = this.loading.create({
+    this.getCampaigns();
+    this.httpprovider.getSliderImage().subscribe(
+        response => {
+          console.log(response)
+          this.sliderImage = response.data;
+          console.log(this.sliderImage)
+        },
+        err => {
+         // load.dismiss();
+          console.log(err);
+        },
+        ()=>{
+        console.log('Slider is ok!')
+      }
+      );
+}
+doInfinite(infiniteScroll){
+  console.log("here");
+  this.page = this.page+1;
+  setTimeout(() => {
+    this.httpprovider.getLatest(this.page)
+       .subscribe(
+         res => {
+
+           this.perPage = res.per_page;
+           this.totalData = res.total;
+           this.totalPage = res.total/3;
+           for(let i=0; i<res.data.length; i++) {
+             this.latestcampaign.push(res.data[i]);
+           }
+         },
+         error =>console.log("error"));
+
+    console.log('Async operation has ended');
+    infiniteScroll.complete();
+  }, 1000);
+
+}
+
+getCampaigns(){
+  let load = this.loading.create({
       content: 'Please wait...'
       });
 
         load.present();
 
-        this.httpprovider.getLatest().subscribe(
+        this.httpprovider.getLatest(this.page).subscribe(
         data => {
           console.log(data)
+
           this.latestcampaign = data.data;
+    
+         this.perPage = 3;
+         this.totalData = data.total;
+         this.totalPage = data.total/3;
           console.log(this.latestcampaign)
         },
         err => {
@@ -52,22 +101,7 @@ export class HomePage {
       }
       );
 
-    this.httpprovider.getSliderImage().subscribe(
-        response => {
-          console.log(response)
-          this.sliderImage = response.data;
-          console.log(this.sliderImage)
-        },
-        err => {
-          load.dismiss();
-          console.log(err);
-        },
-        ()=>{
-        console.log('Slider is ok!')
-      }
-      );
 }
-
   Authentication(){
       this.navCtrl.push(SignPage);
   }
