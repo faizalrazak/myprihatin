@@ -40,7 +40,7 @@
       <hr>
     </ion-col>
   </ion-row>
-
+<ion-list>
 <div style="padding: 20px; padding-top: 0px" >
 <div *ngFor="let campaign of latestcampaign" style="border: 1px groove; margin-bottom: 10px">
   <div (click)="moreDetail(campaign)">
@@ -90,9 +90,9 @@
     </ion-row>
 </div>
 </div>
-
-<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-   <ion-infinite-scroll-content *ngIf="pagingEnabled"></ion-infinite-scroll-content>
-</ion-infinite-scroll>
+</ion-list>
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < totalPage">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </div>
 </ion-content>
