@@ -57,7 +57,7 @@
           </div>
         </div>
       
-      <p style="margin-top: 25px"><strong>RM {{campaign.fund_amount}}</strong> terkumpul setakat ini</p>
+      <p style="margin-top: 25px"><strong>RM {{campaign.fund_amount | number:0}}</strong> terkumpul setakat ini</p>
       <p><strong>{{(campaign.fund_amount/campaign.total_amount)*100}}%</strong> tepati sasaran</p>
       <p><strong>{{getRemainingDays(campaign.campaign_id)}}</strong> lagi</p>
       

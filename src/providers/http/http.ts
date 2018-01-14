@@ -49,7 +49,7 @@ export class HttpProvider {
           res => res.json())
         .subscribe(
           data => {
-            resolve(data);
+            resolve(data.data);
             console.log('data')
         }, (err) => {
           reject(err);

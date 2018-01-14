@@ -96,7 +96,7 @@
   <!-- <button ion-button small full clear (click)="register()">Register Me</button> -->
 <ion-card *ngIf="response">
   <ion-card-header>{{response.username}}</ion-card-header>
-  <img src="response.picture">
+  <img src="{{response.picture}}">
   <p>Email : {{response.email}}</p>
   <p>First Name : {{response.first_name}}</p>
 </ion-card>

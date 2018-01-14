@@ -19,6 +19,30 @@ export class AuthProvider {
     console.log('Hello AuthProvider Provider');
   }
 
+  forgetPassword(email){
+
+    return new Promise((resolve, reject) => {
+ 
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+ 
+        this.http.post(this.baseUrl + "login", JSON.stringify(email), {headers: headers})
+          .subscribe(res => {
+ 
+            let data = res.json();
+            this.token = data.token;
+            console.log(this.token)
+            resolve(data);
+ 
+            resolve(res.json());
+          }, (err) => {
+            reject(err);
+          });
+ 
+    });
+
+  }
+
 
   isLogged(){
     if(window.localStorage.getItem('token')){

@@ -29,7 +29,9 @@ export class SignPage {
 
   constructor(public alertCtrl :AlertController, public toast:ToastController, public authprovider:AuthProvider, public loading:LoadingController, public viewCtrl:ViewController, public modalCtrl:ModalController, public navCtrl: NavController, public navParams: NavParams, private fb:Facebook, public formBuilder:FormBuilder) {
     
-    if(this.authprovider.isLogged() === true){
+    if(this.authprovider.isLogged() === false){
+      
+    }else{
       this.navCtrl.setRoot(ProfilePage);
     }
 
@@ -83,7 +85,7 @@ export class SignPage {
 
               let alert = this.alertCtrl.create({
                 title : "Login Facebook Failed",
-                subTitle : err._body,
+                subTitle : err,
                 buttons : ['OK']
               })
               alert.present();
@@ -159,8 +161,7 @@ export class SignPage {
   }
 
   forgetPassword(){
-    let myModal = this.modalCtrl.create(ForgetPasswordPage);
-      myModal.present();
+    this.navCtrl.push(ForgetPasswordPage);    
   }
 
 }

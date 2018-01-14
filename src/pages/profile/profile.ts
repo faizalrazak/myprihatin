@@ -23,6 +23,7 @@ export class ProfilePage {
 
   profile : any;
   activities:any;
+  fund : number;
   token:any;
 
   constructor(private auth:AuthProvider, public loading:LoadingController, public httpprovider:HttpProvider, public navCtrl: NavController, public navParams: NavParams, public modalCtrl:ModalController) {
@@ -40,73 +41,37 @@ export class ProfilePage {
 
     this.httpprovider.getUser().then((data) => {
           this.profile = data;
+          this.activities = this.profile.fund
           console.log(this.profile)
+
+          this.fund = 0;
+          
+          for (let i = 0; i < this.activities.length; i++){
+            this.fund += this.activities[i].amount
+          }
+
           load.dismiss()
+
+
     }, (err) => {
         console.log("not allowed");
         load.dismiss();
     });
+  }
 
-    // let load = this.loading.create({
-    //   content: 'Please wait...'
-    //   });
+  totalFund(fund){
+    console.log(fund.length)
 
-    //     load.present();
+    if(fund.length > 1){
+      for(let i of fund.length){
+        this.fund += fund[i].amount;
+        console.log(this.fund);
+      }
+      return this.fund;
+    }
 
-    //     this.httpprovider.getUser().then((data)=>{
-    //       this.profile = data;
-    //       console.log('here');
-    //       console.log(this.profile);
-    //     },
-    //     (err) => {
-    //        console.log("not allowed");
-    //     });
-
-
-      //   this.httpprovider.getUserProfile().subscribe(
-      //       response => {
-      //        console.log(response);
-      //         this.profile = response.data;
-      //         this.activities = response.data.fund;
-      //         console.log(this.activities)
-      //       },
-      //       err => {
-      //         console.log(err);
-      //         load.dismiss();
-      //       },
-      //       ()=>{
-      //         load.dismiss()
-      //       console.log('user profile revealed!')
-      //     }
-      // );
-
-    //      let load = this.loading.create({
-    //   content: 'Please wait...'
-    //   });
-
-    //     load.present();
-
-    // this.storage.get('token').then((token)=>{
-
-    //   console.log(token);
-      
-    //   this.httpprovider.getUserProfile(token).subscribe(
-    //         response => {
-    //          console.log(response);
-    //           this.profile = response.data;
-    //           this.activities = response.data.fund;
-    //           console.log(this.activities)
-    //         },
-    //         err => {
-    //           console.log(err);
-    //           load.dismiss();
-    //         },
-    //         ()=>{
-    //           load.dismiss()
-    //         console.log('user profile revealed!')
-    //       }
-    //   );
-    // });
+    return 0;
+    
   }
   
   aboutUs(){

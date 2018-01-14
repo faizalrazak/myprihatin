@@ -50,6 +50,7 @@ export class HomePage {
       }
       );
 }
+
 doInfinite(infiniteScroll){
   console.log("here");
   this.page = this.page+1;
