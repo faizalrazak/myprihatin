@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, LoadingController, AlertController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 import { Storage } from '@ionic/Storage';
-import * as moment from 'moment'; 
+import * as moment from 'moment';
+import { AuthProvider } from '../../providers/auth/auth';
+import { SignPage } from '../sign/sign';
+
 
 /**
  * Generated class for the CommentPage page.
@@ -26,10 +29,7 @@ export class CommentPage {
   token:any;
 
 
-  constructor(private storage:Storage, public loading:LoadingController, public navCtrl: NavController, public navParams: NavParams, public httpprovider:HttpProvider, public viewCtrl:ViewController) {
-    
-    this.token = this.storage.get('token');
-    console.log(this.token)
+  constructor(private alert:AlertController, private auth:AuthProvider, private storage:Storage, public loading:LoadingController, public navCtrl: NavController, public navParams: NavParams, public httpprovider:HttpProvider, public viewCtrl:ViewController) {
 
     let load = this.loading.create({
       content: 'Please wait...'
@@ -46,7 +46,6 @@ export class CommentPage {
                 if (id === comment["id"]){
                   this.commentTime = (moment(comment.created_at.date).startOf('day').lang("ms").fromNow())
                   this.commentTime = this.commentTime.replace('yang ','');
-                  console.log(this.commentTime)
                return this.commentTime;
              }
           }
@@ -62,22 +61,46 @@ export class CommentPage {
           desc : this.userComment
     }
 
-     let load = this.loading.create({
-      content: 'Posting...'
-      });
+    if(this.auth.isLogged() === true){
 
-     load.present();
+    let load = this.loading.create({
+    content: 'Posting...'
+    });
 
-    this.httpprovider.postComment(details).then((result) => {
+    load.present();
 
-      load.dismiss();
-      this.viewCtrl.dismiss(true);
+      this.httpprovider.postComment(details).then((result) => {
 
-    }, (err) => {
+        load.dismiss();
+        this.viewCtrl.dismiss(true);
 
-      console.log(err);
-      load.dismiss();
+      }, (err) => {
 
-    });  
+        console.log(err);
+        load.dismiss();
+
+      });  
+    }else{
+      let alert = this.alert.create({
+              title : "Comment Failed",
+              message : "You must login first",
+              buttons : [
+                {
+                  text: 'Ok',
+                  handler: () => {
+                    this.navCtrl.push(SignPage);
+                  }
+                },
+                {
+                  text: 'Cancel',
+                  handler: () => {
+                    console.log('cancel clicked')
+                  }
+                }
+              ]
+        });
+
+      alert.present();
+    } 
   }
 }

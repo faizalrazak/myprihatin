@@ -55,6 +55,10 @@ export class SignPage {
 
   facebookConnect(){
 
+    let load = this.loading.create({
+          content: 'Please wait...'
+          });
+
   	this.fb.login(['public_profile', 'user_friends', 'email'])
     .then((res: FacebookLoginResponse ) => {
       this.fb.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture)', [])
@@ -67,8 +71,23 @@ export class SignPage {
                          picture: profile['picture']['data']['url'],
                          name: profile['name']
                        }
+         load.present()
+      this.authprovider.loginFacebook(this.response).then(result => {
 
-        // this.navCtrl.setRoot(HomePage);
+          this.navCtrl.setRoot(HomePage);
+          load.dismiss()
+          }, 
+          (err) => {
+              console.log(err);
+              load.dismiss();
+
+              let alert = this.alertCtrl.create({
+                title : "Login Facebook Failed",
+                subTitle : err._body,
+                buttons : ['OK']
+              })
+              alert.present();
+        });
 
       });
     })

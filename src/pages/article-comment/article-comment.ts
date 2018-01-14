@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, LoadingController, AlertController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
-import * as moment from 'moment'; 
+import * as moment from 'moment';
+import { AuthProvider } from '../../providers/auth/auth';
+import { SignPage } from '../sign/sign'
 /**
  * Generated class for the ArticleCommentPage page.
  *
@@ -20,7 +22,7 @@ export class ArticleCommentPage {
   article:any;
   userComment:any;
 
-  constructor(public httpProvider:HttpProvider, public viewCtrl:ViewController, public navCtrl: NavController, public navParams: NavParams, public loading:LoadingController) {
+  constructor(public alert:AlertController, public auth:AuthProvider, public httpProvider:HttpProvider, public viewCtrl:ViewController, public navCtrl: NavController, public navParams: NavParams, public loading:LoadingController) {
 
   	this.article = this.navParams.get("article");
     this.comments = this.article.comments;
@@ -47,23 +49,65 @@ export class ArticleCommentPage {
           comment : this.userComment
     }
 
-     let load = this.loading.create({
-      content: 'Posting...'
-      });
+    if(this.auth.isLogged() === true){
 
-     load.present();
-
-    this.httpProvider.articleComment(details).then((result) => {
-
-      load.dismiss();
-      this.viewCtrl.dismiss(true);
-
-    }, (err) => {
-
-      console.log(err);
-      load.dismiss();
-
+    let load = this.loading.create({
+    content: 'Posting...'
     });
+
+    load.present();
+
+      this.httpProvider.articleComment(details).then((result) => {
+
+        load.dismiss();
+        this.viewCtrl.dismiss(true);
+
+      }, (err) => {
+
+        console.log(err);
+        load.dismiss();
+
+      });  
+    }else{
+      let alert = this.alert.create({
+              title : "Comment Failed",
+              message : "You must login first",
+              buttons : [
+                {
+                  text: 'Ok',
+                  handler: () => {
+                    this.navCtrl.push(SignPage);
+                  }
+                },
+                {
+                  text: 'Cancel',
+                  handler: () => {
+                    console.log('cancel clicked')
+                  }
+                }
+              ]
+        });
+
+      alert.present();
+    } 
+
+    //  let load = this.loading.create({
+    //   content: 'Posting...'
+    //   });
+
+    //  load.present();
+
+    // this.httpProvider.articleComment(details).then((result) => {
+
+    //   load.dismiss();
+    //   this.viewCtrl.dismiss(true);
+
+    // }, (err) => {
+
+    //   console.log(err);
+    //   load.dismiss();
+
+    // });
 
   }
 

@@ -34,8 +34,8 @@
 
 
 	<ion-list style="margin-top: 35px" no-lines>
-	  <ion-item>
-	    <ion-icon name="ios-person-outline" item-start></ion-icon>
+	  <ion-item> 
+	    <ion-icon name="ios-person-outline" item-start style="margin-right: 5px"></ion-icon>
 	    	{{profile.name}}
 	  </ion-item>
 
@@ -56,7 +56,7 @@
 
 	  <ion-item>
 	    <ion-icon name="ios-calendar-outline" item-start></ion-icon>
-	      {{profile.birthdate}}
+	      {{profile.birthdate | date:'dd/MM/yyyy'}}
 	  </ion-item>
 
 	  <ion-item>
@@ -70,7 +70,7 @@
 	  </ion-item>
 	</ion-list>
 
-<<!-- div padding>
+<!-- div padding>
 	<button ion-button block color='yayasan' (click)="editProfile(profile)">Edit Profile</button>
 	
 </div> -->

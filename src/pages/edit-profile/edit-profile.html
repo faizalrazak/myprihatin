@@ -12,7 +12,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
 	<ion-list *ngIf="profile">
 
@@ -59,7 +59,7 @@
 
       <ion-item>
         <ion-label stacked>Birthdate</ion-label>
-        <ion-input formControlName="birthdate" type="text" [class.invalid]="!editForm.controls.birthdate.valid && blur" value="{{profile.birthdate}}"></ion-input>
+        <ion-input formControlName="birthdate" type="date" [class.invalid]="!editForm.controls.birthdate.valid && blur" value="{{profile.birthdate}}"></ion-input>
       </ion-item>
 
       <ion-item>

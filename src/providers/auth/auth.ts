@@ -19,23 +19,6 @@ export class AuthProvider {
     console.log('Hello AuthProvider Provider');
   }
 
-  createAuthorizationHeader(headers:Headers){
-    headers.append('Authorization', window.localStorage.getItem('token'));
-
-  }
-
-  private(){
-    let headers = new Headers();
-    this.createAuthorizationHeader(headers);
-    return this.http.get(this.baseUrl+'private',{
-      headers:headers
-    }).map(res => res.json());
-  }
-
-  logins(details){
-    return this.http.post(this.baseUrl+'login', details)
-    .map(this.extractData);
-  }
 
   isLogged(){
     if(window.localStorage.getItem('token')){
@@ -50,14 +33,6 @@ export class AuthProvider {
     return true;
   }
 
-  private extractData(res:Response){
-    let body = res.json();
-    if(body.success === true){
-      window.localStorage.setItem('token', body.token);
-    };
-    return body || {};
-  }
-
   login(details){
  
     return new Promise((resolve, reject) => {
@@ -66,6 +41,32 @@ export class AuthProvider {
         headers.append('Content-Type', 'application/json');
  
         this.http.post(this.baseUrl + "login", JSON.stringify(details), {headers: headers})
+          .subscribe(res => {
+ 
+            let data = res.json();
+            this.token = data.token;
+            console.log(this.token)
+            window.localStorage.setItem('token', this.token);
+            console.log(window.localStorage);
+            resolve(data);
+ 
+            resolve(res.json());
+          }, (err) => {
+            reject(err);
+          });
+ 
+    });
+ 
+  }
+
+  loginFacebook(details){
+ 
+    return new Promise((resolve, reject) => {
+ 
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+ 
+        this.http.post(this.baseUrl + "fb", JSON.stringify(details), {headers: headers})
           .subscribe(res => {
  
             let data = res.json();
