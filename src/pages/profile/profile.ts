@@ -23,33 +23,62 @@ export class ProfilePage {
 
   profile : any;
   activities:any;
+  token:any;
 
   constructor(private auth:AuthProvider, public loading:LoadingController, public httpprovider:HttpProvider, public navCtrl: NavController, public navParams: NavParams, public modalCtrl:ModalController) {
+    this.token = window.localStorage.getItem('token');
+    console.log(this.token);
   }
 
   ionViewDidLoad(){
+
     let load = this.loading.create({
-      content: 'Please wait...'
-      });
+       content: 'Please wait...'
+    });
 
-        load.present();
+    load.present();
 
-        this.httpprovider.getUserProfile().subscribe(
-            response => {
-             console.log(response);
-              this.profile = response.data;
-              this.activities = response.data.fund;
-              console.log(this.activities)
-            },
-            err => {
-              console.log(err);
-              load.dismiss();
-            },
-            ()=>{
-              load.dismiss()
-            console.log('user profile revealed!')
-          }
-      );
+    this.httpprovider.getUser().then((data) => {
+          this.profile = data;
+          console.log(this.profile)
+          load.dismiss()
+    }, (err) => {
+        console.log("not allowed");
+        load.dismiss();
+    });
+
+    // let load = this.loading.create({
+    //   content: 'Please wait...'
+    //   });
+
+    //     load.present();
+
+    //     this.httpprovider.getUser().then((data)=>{
+    //       this.profile = data;
+    //       console.log('here');
+    //       console.log(this.profile);
+    //     },
+    //     (err) => {
+    //        console.log("not allowed");
+    //     });
+
+
+      //   this.httpprovider.getUserProfile().subscribe(
+      //       response => {
+      //        console.log(response);
+      //         this.profile = response.data;
+      //         this.activities = response.data.fund;
+      //         console.log(this.activities)
+      //       },
+      //       err => {
+      //         console.log(err);
+      //         load.dismiss();
+      //       },
+      //       ()=>{
+      //         load.dismiss()
+      //       console.log('user profile revealed!')
+      //     }
+      // );
 
     //      let load = this.loading.create({
     //   content: 'Please wait...'

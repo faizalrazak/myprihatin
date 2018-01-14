@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, LoadingController, ToastController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EmailValidator } from '../../validators/email'
+import { EmailValidator } from '../../validators/email';
+import { ProfilePage } from '../profile/profile'
 
 /**
  * Generated class for the EditProfilePage page.
@@ -36,10 +37,11 @@ export class EditProfilePage {
       birthdate : [''],
       phone_number : [''],
       address : [''],
-      password : [''],
+      // password : [''],
       // password : ['', Validators.compose([ Validators.minLength(8), Validators.required])],
       race : [''],
       gender : [''],
+      user_id : this.profile.user_id
     });
 
   }
@@ -88,6 +90,8 @@ save(){
 
           this.httpprovider.updateUser(details).then((result) => {
             load.dismiss();
+
+            this.navCtrl.push(ProfilePage);
                const toast = this.toast.create({
                 message: 'Profile Updated successfully',
                 duration: 3000,

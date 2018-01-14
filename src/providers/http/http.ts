@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { AuthProvider } from '../auth/auth';
 
 /*
   Generated class for the HttpProvider provider.
@@ -11,7 +12,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class HttpProvider {
 
-  constructor(public http: Http) {
+  constructor(public http: Http, public auth:AuthProvider) {
     console.log('Hello HttpProvider Provider');
   }
 
@@ -35,9 +36,47 @@ export class HttpProvider {
     .map(res => res.json())
   }
 
-  getUserProfile(){
-    return this.http.get("https://mydana.herokuapp.com/api/user/1")
-    .map(res => res.json())
+    getUser(){
+    return new Promise((resolve, reject) => {
+ 
+      let headers = new Headers();
+      headers.append('Authorization', 'Bearer ' + window.localStorage.getItem('token'));
+      console.log( window.localStorage.getItem('token'))
+      console.log(headers)
+ 
+      this.http.get('https://mydana.herokuapp.com/api/users', {headers: headers})
+        .map(
+          res => res.json())
+        .subscribe(
+          data => {
+            resolve(data);
+            console.log('data')
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  // getUserProfile(){
+
+  //   return new Promise((resolve, reject) => {
+
+  //   let headers = new Headers();
+  //     headers.append('Authorization', 'Bearer ' + window.localStorage.getItem('token'));
+  //     console.log('here')
+  //     console.log(headers);
+ 
+  //     this.http.get('https://mydana.herokuapp.com/api/users', {headers: headers})
+  //       .map(res => res.json())
+  //       .subscribe(data => {
+  //         resolve(data);
+  //       }, (err) => {
+  //         reject(err);
+  //       });
+        
+  //   });
+    // return this.http.get("https://mydana.herokuapp.com/api/user/1")
+    // .map(res => res.json())
 
     // let headers = new Headers();
     // headers.append('Authorization','Bearer ' + token);
@@ -45,7 +84,7 @@ export class HttpProvider {
     // var options = new RequestOptions({headers:headers})
     // return this.http.get("https://mydana.herokuapp.com/api/user/", options)
     // .map(res => res.json())
-  }
+  // }
 
   postLike(details){
    
@@ -175,8 +214,8 @@ export class HttpProvider {
 
       let headers = new Headers();
       headers.append('Content-Type','application/json');
-       console.log(details);
-      this.http.post('https://mydana.herokuapp.com/api/user/1', JSON.stringify(details), {headers:headers})
+
+      this.http.post('https://mydana.herokuapp.com/api/user/' + details.user_id, JSON.stringify(details), {headers:headers})
       .subscribe(res => {
        
         let data = res.json();
