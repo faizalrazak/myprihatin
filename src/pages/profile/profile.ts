@@ -5,14 +5,8 @@ import { UserDetailsPage} from '../user-details/user-details';
 import { HttpProvider } from '../../providers/http/http';
 import { AuthProvider } from '../../providers/auth/auth';
 import * as moment from 'moment';
+import { HomePage } from '../home/home';
 import { SignPage } from '../sign/sign';
-
-/**
- * Generated class for the ProfilePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -26,8 +20,21 @@ export class ProfilePage {
   fund : number;
   token:any;
 
-  constructor(private auth:AuthProvider, public loading:LoadingController, public httpprovider:HttpProvider, public navCtrl: NavController, public navParams: NavParams, public modalCtrl:ModalController) {
+  constructor(
+    private auth:AuthProvider, 
+    public loading:LoadingController, 
+    public httpprovider:HttpProvider, 
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public modalCtrl:ModalController)
+  {
+
     this.token = window.localStorage.getItem('token');
+
+    if(this.auth.isLogged() === false){
+      this.navCtrl.setRoot(SignPage);
+    }
+
     console.log(this.token);
   }
 
@@ -86,7 +93,7 @@ export class ProfilePage {
 
   logout(){
     this.auth.logout();
-    this.navCtrl.push(SignPage);
+    this.navCtrl.setRoot(HomePage);
   }
 
 

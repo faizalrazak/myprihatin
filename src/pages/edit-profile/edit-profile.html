@@ -1,9 +1,3 @@
-<!--
-  Generated template for the EditProfilePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header no-border>
  <ion-navbar color="navbar">
  	<ion-title>Edit Profil</ion-title>
@@ -12,70 +6,80 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content padding>
 
 	<ion-list *ngIf="profile">
 
-		<form [formGroup]="editForm" (submit)="save()" novalidate style="width: 90%; margin: 0 auto">
-			<ion-item>
-		    <ion-label stacked>Name</ion-label>
-		    <ion-input value="{{profile.name}}" formControlName="name" type="text" [class.invalid]="!editForm.controls.name.valid && blur"></ion-input>
-		  </ion-item>
+	   <form class="form" [formGroup]="editForm"  (submit)="save(editForm.value)">
+
+        <ion-item>
+          <ion-label floating>Name</ion-label>
+          <ion-input type="text" value="{{profile.name}}" formControlName="name" class="form-control" required></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.name">
+            <div class="error-message" *ngIf="editForm.get('name').hasError(validation.type) && (editForm.get('name').dirty || editForm.get('name').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
 
       <ion-item>
         <ion-label stacked>First Name</ion-label>
-        <ion-input formControlName="first_name" type="text" [class.invalid]="!editForm.controls.first_name.valid && blur" value="{{profile.first_name}}"></ion-input>
+        <ion-input formControlName="first_name" type="text" class="form-control" value="{{profile.first_name}}"></ion-input>
       </ion-item>
 
 		  <ion-item>
 		    <ion-label stacked>Last Name</ion-label>
-		    <ion-input formControlName="last_name" type="text" [class.invalid]="!editForm.controls.last_name.valid && blur" value="{{profile.last_name}}"></ion-input>
+		    <ion-input formControlName="last_name" type="text" class="form-control" value="{{profile.last_name}}"></ion-input>
 		  </ion-item>
 
       <ion-item>
-        <ion-label stacked>Nationality</ion-label>
-        <ion-input formControlName="locale" type="text" [class.invalid]="!editForm.controls.locale.valid && blur" value="{{profile.locale}}"></ion-input>
+        <ion-label floating>Email</ion-label>
+        <ion-input  type="email" formControlName="email" value={{profile.email}}></ion-input>
       </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.email">
+          <div class="error-message" *ngIf="editForm.get('email').hasError(validation.type) && (editForm.get('email').dirty || editForm.get('email').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
 
       <ion-item>
-        <ion-label stacked>Email</ion-label>
-        <ion-input formControlName="email" type="email" [class.invalid]="!editForm.controls.email.valid && blur" value="{{profile.email}}"></ion-input>
+        <ion-label stacked>Nationality</ion-label>
+        <ion-input formControlName="locale" type="text" class="form-control" value="{{profile.locale}}"></ion-input>
       </ion-item>
+
 
       <ion-item>
         <ion-label stacked>Address</ion-label>
-        <ion-input formControlName="address" type="text" [class.invalid]="!editForm.controls.address.valid && blur" value="{{profile.address}}"></ion-input>
+        <ion-input formControlName="address" type="text" class="form-control" value="{{profile.address}}"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>Race</ion-label>
-        <ion-input formControlName="race" type="text" [class.invalid]="!editForm.controls.race.valid && blur" value="{{profile.race}}"></ion-input>
+        <ion-input formControlName="race" type="text" class="form-control" value="{{profile.race}}"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label stacked>Gender</ion-label>
-        <ion-input formControlName="gender" type="text" [class.invalid]="!editForm.controls.gender.valid && blur" value="{{profile.gender}}"></ion-input>
+        <ion-label floating>Gender</ion-label>
+        <ion-select formControlName="gender" cancelText="Cancel" okText="OK">
+          <ion-option *ngFor="let gender of genders" [value]="gender" >{{ gender }}</ion-option>
+        </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>Birthdate</ion-label>
-        <ion-input formControlName="birthdate" type="date" [class.invalid]="!editForm.controls.birthdate.valid && blur" value="{{profile.birthdate}}"></ion-input>
+        <ion-input formControlName="birthdate" type="date" class="form-control" value="{{profile.birthdate}}"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>Phone Number</ion-label>
-        <ion-input formControlName="phone_number" type="text" [class.invalid]="!editForm.controls.phone_number.valid && blur" value="{{profile.phone_number}}"></ion-input>
+        <ion-input formControlName="phone_number" type="text" class="form-control" value="{{profile.phone_number}}"></ion-input>
       </ion-item>
-		  <!-- <ion-item>
-		    <ion-label floating>Password</ion-label>
-		     <ion-input formControlName="password" type="password" [class.invalid]="!editForm.controls.password.valid && blur" value="{{profile.password}}"></ion-input>
-		  </ion-item> -->
 
-		  <!-- <ion-item>
-		    <ion-label floating>Confirm Password</ion-label>
-		    <ion-input type="password"></ion-input>
-		  </ion-item> -->
-		  <button ion-button round full type="submit" style="text-transform: capitalize; margin: 0 auto; width: 90%; margin-top: 10px" color="yayasan" [disabled]="!editForm.valid">Save Change</button>
+		  <button ion-button round full type="submit" style="text-transform: capitalize; margin: 0 auto; width: 90%; margin-top: 10px" color="yayasan" [disabled]="!editForm.valid">Simpan</button>
 		</form>
 		  
 	</ion-list>

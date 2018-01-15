@@ -1,16 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { EmailValidator } from '../../validators/email'
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { SignPage } from '../sign/sign';
-
-/**
- * Generated class for the ForgetPasswordPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { PasswordValidator } from '../../validators/password-validator';
 
 @IonicPage()
 @Component({
@@ -20,17 +13,39 @@ import { SignPage } from '../sign/sign';
 export class ForgetPasswordPage {
 
   emailForm : FormGroup
+  matching_passwords_group: FormGroup;
+  validation_messages: any;
 
-  constructor(public alertCtrl:AlertController, private loading:LoadingController, private auth:AuthProvider, public navCtrl: NavController, public navParams: NavParams, public formBuilder:FormBuilder) {
-  
-    this.emailForm = formBuilder.group({
-      email : ['', Validators.compose([Validators.required, EmailValidator.isValid])]
-    });
+  constructor(
+    public alertCtrl:AlertController,
+    private loading:LoadingController,
+    private auth:AuthProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public formBuilder:FormBuilder
+    ){
 
   }
 
-  ionViewDidLoad() {
-     
+  ionViewWillLoad() {
+
+    this.emailForm = this.formBuilder.group({
+
+      email: new FormControl('', 
+      Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])
+      ),
+    });
+
+    this.validation_messages = {
+      
+      'email': [
+        { type: 'required', message: 'Email is required.' },
+        { type: 'pattern', message: 'Enter a valid email.' }
+      ]
+    };
   }
 
   sendEmail(){
@@ -65,7 +80,5 @@ export class ForgetPasswordPage {
         });
     }
   }
-
-  
 
 }

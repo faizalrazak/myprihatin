@@ -9,6 +9,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { ListPage } from '../pages/list/list';
 import { SignPage } from '../pages/sign/sign';
 import { AboutUsPage } from '../pages/about-us/about-us';
+// import { AuthProvider } from '../providers/auth/auth'
 
 @Component({
   templateUrl: 'app.html'
@@ -17,22 +18,49 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
-
   pages: Array<{title: string, component: any, icon:any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public menuCtrl:MenuController) {
+  constructor(
+    public platform: Platform, 
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen, 
+    public menuCtrl:MenuController,
+    // public auth:AuthProvider
+    )
+  {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Laman Utama', component: HomePage, icon: 'ios-home-outline' },
-      { title: 'Senarai Kempen', component: HomePage, icon: 'ios-list-box-outline' },
-      { title: 'Aktiviti Terkini', component: ContactPage, icon: 'ios-calendar-outline' },
-      { title: 'Profil & Transaksi', component: ProfilePage, icon: 'md-finger-print' },
-      { title: 'Bantuan', component: ListPage, icon: 'ios-help-circle-outline' },
-      { title: 'Tentang Yayasan', component: AboutUsPage, icon: 'ios-briefcase-outline' }
-    ];
+        { title: 'Laman Utama', component: HomePage, icon: 'ios-home-outline' },
+        { title: 'Senarai Kempen', component: HomePage, icon: 'ios-list-box-outline' },
+        { title: 'Aktiviti Terkini', component: ContactPage, icon: 'ios-calendar-outline' },
+        { title: 'Profil & Transaksi', component: ProfilePage, icon: 'md-finger-print' },
+        { title: 'Bantuan', component: ListPage, icon: 'ios-help-circle-outline' },
+        { title: 'Tentang Yayasan', component: AboutUsPage, icon: 'ios-briefcase-outline' }
+      ];
 
+    // if(this.auth.isLogged() === true){
+
+    //     this.pages = [
+    //     { title: 'Laman Utama', component: HomePage, icon: 'ios-home-outline' },
+    //     { title: 'Senarai Kempen', component: HomePage, icon: 'ios-list-box-outline' },
+    //     { title: 'Aktiviti Terkini', component: ContactPage, icon: 'ios-calendar-outline' },
+    //     { title: 'Profil & Transaksi', component: ProfilePage, icon: 'md-finger-print' },
+    //     { title: 'Bantuan', component: ListPage, icon: 'ios-help-circle-outline' },
+    //     { title: 'Tentang Yayasan', component: AboutUsPage, icon: 'ios-briefcase-outline' }
+    //   ];
+
+    // }else{
+
+    //     this.pages = [
+    //     { title: 'Laman Utama', component: HomePage, icon: 'ios-home-outline' },
+    //     { title: 'Senarai Kempen', component: HomePage, icon: 'ios-list-box-outline' },
+    //     { title: 'Aktiviti Terkini', component: ContactPage, icon: 'ios-calendar-outline' },
+    //     { title: 'Bantuan', component: ListPage, icon: 'ios-help-circle-outline' },
+    //     { title: 'Tentang Yayasan', component: AboutUsPage, icon: 'ios-briefcase-outline' }
+    //   ];
+
+    // }   
   }
 
   initializeApp() {

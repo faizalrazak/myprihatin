@@ -7,8 +7,73 @@
 
 <ion-content padding>
 
+  <form class="form" [formGroup]="registerForm"  (submit)="register(registerForm.value)">
+    
+        <ion-item>
+          <ion-label floating>Name</ion-label>
+          <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.name">
+            <div class="error-message" *ngIf="registerForm.get('name').hasError(validation.type) && (registerForm.get('name').dirty || registerForm.get('name').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+    
+    
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input type="email" formControlName="email"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.email">
+            <div class="error-message" *ngIf="registerForm.get('email').hasError(validation.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+    
+        <div formGroupName="matching_passwords">
+          <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.password">
+              <div class="error-message" *ngIf="registerForm.get('matching_passwords').get('password').hasError(validation.type) && (registerForm.get('matching_passwords').get('password').dirty || registerForm.get('matching_passwords').get('password').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+    
+          <ion-item>
+            <ion-label floating>Confirm Password</ion-label>
+            <ion-input type="password" formControlName="confirm_password"></ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.confirm_password">
+              <div class="error-message" *ngIf="registerForm.get('matching_passwords').get('confirm_password').hasError(validation.type) && (registerForm.get('matching_passwords').get('confirm_password').dirty || registerForm.get('matching_passwords').get('confirm_password').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <!-- These validations are for the form group -->
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.matching_passwords">
+            <div class="error-message" *ngIf="registerForm.get('matching_passwords').hasError(validation.type) && (registerForm.get('matching_passwords').get('confirm_password').dirty || registerForm.get('matching_passwords').get('confirm_password').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+
+        <button ion-button color="yayasan" type='submit' full round style="margin-top: 10px; margin-bottom: 15px; text-transform: capitalize;" [disabled]="!registerForm.valid" >Daftar</button>
+   
+      </form>
+
   <!-- <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && submitRegistration(registerForm.value)" novalidate> -->
-  <ion-list>
+ <!--  <ion-list>
 
   <form [formGroup]="registerForm" (submit)="register()" novalidate style="width: 90%; margin: 0 auto">
 
@@ -23,7 +88,10 @@
       <ion-item class="form-group">
         <ion-label floating for="email">Emel</ion-label>
         <ion-input type="email" formControlName="email"></ion-input>
-        <div class="form-text error" *ngIf="registerForm.controls.email.touched">
+
+        <p *ngIf="registerForm.controls.email.errors && registerForm.controls.email.dirty" class="danger" padding>Email is not valid.</p>
+
+        <div class="form-text error" *ngIf="registerForm.controls.email.errors">
           <div *ngIf="registerForm.controls.email.hasError('required')">Email is required.</div>
           <div *ngIf="registerForm.controls.email.hasError('invalidEmail')">Email is invalid.</div>
         </div>
@@ -48,7 +116,7 @@
       
       <button ion-button color="yayasan" type='submit' full round style="margin-top: 10px; margin-bottom: 15px; text-transform: capitalize;" [disabled]="!registerForm.valid" >Daftar</button>
     </form>
-  </ion-list>
+  </ion-list> -->
 
   <!-- <p text-wrap text-center>
     By clicking Register me, you indicate that you have read and understand our Privacy Policy and Terms of Use and represent that you are at least 13 years of age

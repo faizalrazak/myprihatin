@@ -4,7 +4,7 @@
       <ion-icon name="menu" style="font-weight: bold;"></ion-icon>
     </button>
     <ion-title>MyDana</ion-title>
-    <ion-buttons end>
+    <ion-buttons end *ngIf="!token">
           <button ion-button icon-only (click)="Authentication()">
             <ion-icon name="md-finger-print"></ion-icon>
           </button>

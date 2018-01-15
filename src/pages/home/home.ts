@@ -28,8 +28,19 @@ export class HomePage {
   totalData = 0;
   totalPage = 0;
 
-  constructor(public toast:ToastController, public loading:LoadingController, public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public modalCtrl:ModalController, public httpprovider:HttpProvider, public navParams:NavParams, public socialSharing:SocialSharing) {
-     
+  token: any;
+
+  constructor(
+    public toast:ToastController, 
+    public loading:LoadingController, 
+    public actionSheetCtrl: ActionSheetController, 
+    public navCtrl: NavController, 
+    public modalCtrl:ModalController, 
+    public httpprovider:HttpProvider, 
+    public navParams:NavParams, 
+    public socialSharing:SocialSharing) 
+  {
+    this.token = window.localStorage.getItem('token'); 
     
   }
 

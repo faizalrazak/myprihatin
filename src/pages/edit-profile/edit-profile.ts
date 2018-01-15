@@ -1,16 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, LoadingController, ToastController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
 import { ProfilePage } from '../profile/profile'
-
-/**
- * Generated class for the EditProfilePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -20,105 +13,131 @@ import { ProfilePage } from '../profile/profile'
 export class EditProfilePage {
 
   profile : any;
-
+  genders: any
   editForm : FormGroup;
 
-  constructor(public toast:ToastController, public formBuilder:FormBuilder, public httpprovider:HttpProvider, public loading:LoadingController, public navCtrl: NavController, public navParams: NavParams, public viewCtrl:ViewController) {
+  constructor(
+    public toast:ToastController, 
+    public formBuilder:FormBuilder, 
+    public httpprovider:HttpProvider, 
+    public loading:LoadingController, 
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public viewCtrl:ViewController
+    )
+  {
       
       this.profile = navParams.get('profile');
       console.log(this.profile)
 
-      this.editForm = formBuilder.group({
-      name : ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      first_name : ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      last_name : ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      locale : ['', Validators.compose([ Validators.required])],
-      email : ['', EmailValidator.isValid],
-      birthdate : [''],
-      phone_number : [''],
-      address : [''],
-      // password : [''],
-      // password : ['', Validators.compose([ Validators.minLength(8), Validators.required])],
-      race : [''],
-      gender : [''],
+      this.genders = [
+        "Male",
+        "Female"
+      ];
+  }
+
+  ionViewWillLoad(){
+
+    this.editForm = this.formBuilder.group({
+      name: new FormControl('',
+        Validators.compose([
+          Validators.maxLength(25),
+          Validators.minLength(5),
+          Validators.required
+      ])),
+
+      first_name: new FormControl(''),
+
+      last_name: new FormControl(''),
+
+      race : new FormControl(''),
+
+      birthdate: new FormControl(''),
+
+      locale: new FormControl(''),
+
+      address: new FormControl('',
+        Validators.compose([
+          Validators.maxLength(200),
+      ])),
+
+      email: new FormControl('',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+
+      phone_number: new FormControl('',
+        Validators.compose([
+          Validators.pattern('^(0|[1-9][0-9]*)$'),
+          Validators.minLength(5),
+          Validators.maxLength(20)
+      ])),
+
+      gender: new FormControl(''),
+
       user_id : this.profile.user_id
+
     });
-
   }
 
-  ionViewDidLoad(){
-    // let load = this.loading.create({
-    //   content: 'Please wait...'
-    //   });
+  validation_messages = {
+    'name': [
+      { type: 'required', message: 'Username is required.' },
+      { type: 'minlength', message: 'Username must be at least 5 characters long.' },
+      { type: 'maxlength', message: 'Username cannot be more than 25 characters long.' },
+      { type: 'pattern', message: 'Your username must contain only numbers and letters.' },
+      { type: 'validUsername', message: 'Your username has already been taken.' }
+    ],
 
-    //     load.present();
-
-    //     this.httpprovider.getUserProfile().subscribe(
-    //         response => {
-    //          console.log(response);
-    //           this.profile = response.data[0];
-    //           console.log(this.profile)
-    //         },
-    //         err => {
-    //           console.log(err);
-    //           load.dismiss();
-    //         },
-    //         ()=>{
-    //           load.dismiss()
-    //         console.log('user profile revealed!')
-    //       }
-    //   );
+    'email': [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'pattern', message: 'Enter a valid email.' }
+    ],
   }
 
-save(){
+  save(){
 
-  if(!this.editForm.valid){
-        // console.log(this.registerForm.value);
-    }
-    else {
-          console.log("success!")
+    if(!this.editForm.valid){
           // console.log(this.registerForm.value);
+      }
+      else {
+            console.log("success!")
+            // console.log(this.registerForm.value);
 
-          let details = this.editForm.value;
-          console.log(details);
+            let details = this.editForm.value;
+            console.log(details);
 
-          let load = this.loading.create({
-          content: 'Please wait...'
-          });
+            let load = this.loading.create({
+            content: 'Please wait...'
+            });
 
-          load.present();
+            load.present();
 
-          this.httpprovider.updateUser(details).then((result) => {
-            load.dismiss();
+            this.httpprovider.updateUser(details).then((result) => {
+              load.dismiss();
 
-            this.navCtrl.push(ProfilePage);
+              this.navCtrl.push(ProfilePage);
+                 const toast = this.toast.create({
+                  message: 'Profile Updated successfully',
+                  duration: 3000,
+                  position: 'middle'
+                });
+                 toast.present();
+          },
+            (err) => {
+
                const toast = this.toast.create({
-                message: 'Profile Updated successfully',
-                duration: 3000,
-                position: 'middle'
-              });
+                  message: 'Profile Not Updated',
+                  duration: 3000,
+                  position: 'middle'
+                });
+
                toast.present();
-            // console.log('register success');
-        },
-          (err) => {
 
-             const toast = this.toast.create({
-                message: 'Profile Not Updated',
-                duration: 3000,
-                position: 'middle'
-              });
-
-             toast.present();
-
-            load.dismiss();
-          console.log(err);
-      });
-    }
-}
-
-  
-  close(){
-    this.viewCtrl.dismiss();
+              load.dismiss();
+            console.log(err);
+        });
+      }
   }
-
 }

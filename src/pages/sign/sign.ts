@@ -45,16 +45,6 @@ export class SignPage {
     console.log('ionViewDidLoad SignPage');
   }
 
-  // login(){
-
-  //   let details = this.loginForm.value;
-
-  //   this.authprovider.logins(details).subscribe(data => {
-  //           this.navCtrl.setRoot(HomePage);
-   
-  //   })
-  // }
-
   facebookConnect(){
 
     let load = this.loading.create({
@@ -76,7 +66,7 @@ export class SignPage {
          load.present()
       this.authprovider.loginFacebook(this.response).then(result => {
 
-          this.navCtrl.setRoot(HomePage);
+          this.navCtrl.setRoot(ProfilePage);
           load.dismiss()
           }, 
           (err) => {
@@ -99,23 +89,6 @@ export class SignPage {
 
   }
 
-  // googleLogin(){
-
-  //   this.google.login({'webClientId': '449110707731-vi9ii4me0prbp33arimt2vbav0enj7hc.apps.googleusercontent.com'
-  //       }).then((res) => {
-  //           console.log(res);
-  //       }, (err) => {
-  //           console.log(err);
-  //       });
-
-//     this.google.login({})
-//   .then(res => {
-// this.response = res;
-//   })
-//   .catch(err => console.error(err));
-
-  // }
-
   register(){
       this.navCtrl.push(RegisterPage);
     }
@@ -137,7 +110,7 @@ export class SignPage {
             load.present();
 
             this.authprovider.login(details).then(result => {
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(ProfilePage);
             load.dismiss();
         }, 
           (err) => {
