@@ -14,17 +14,24 @@ export class ContactPage {
 
 	articles :any;
 
-  constructor(public loading:LoadingController, public toast:ToastController, public platform:Platform, public actionSheet:ActionSheetController, public socialSharing:SocialSharing, public navCtrl: NavController, public modalCtrl:ModalController, public httpprovider:HttpProvider) {
-
+  constructor(
+    public loading:LoadingController,
+    public toast:ToastController,
+    public platform:Platform,
+    public actionSheet:ActionSheetController,
+    public socialSharing:SocialSharing,
+    public navCtrl: NavController,
+    public modalCtrl:ModalController,
+    public httpprovider:HttpProvider) {
   }
 
   ionViewDidLoad(){
 
-     let load = this.loading.create({
+    let load = this.loading.create({
       content: 'Please wait...'
-      });
+    });
 
-     load.present();
+    load.present();
 
   	this.httpprovider.getArticle().subscribe(
       response => {
@@ -45,7 +52,7 @@ export class ContactPage {
   }
 
   like(article){
-    console.log(article.article_id)
+
       let details = {
           article_id : article.article_id,
           user_id : 1,
@@ -53,21 +60,16 @@ export class ContactPage {
 
     this.httpprovider.postLike(details).then((result) => {
 
-      // this.likeIcon = 'danger';
-
     }, (err) => {
       console.log(err);
     }); 
   }
 
   details(article){
-    
    this.navCtrl.push(ArticleDetailsPage, {article:article});
   }
 
   commentPress(article){
-    console.log(article)
-
     this.navCtrl.push(ArticleCommentPage, {article:article})
   }
 
@@ -89,12 +91,6 @@ export class ContactPage {
                    this.socialSharing.shareViaFacebook(this.articles)
                    .then((data) =>
                    {
-                     // const toast = this.toast.create({
-                     //    message: 'shared via fb',
-                     //    duration: 3000,
-                     //    position: 'middle'
-                     //  });
-                     //   toast.present();
                       console.log('Shared via Facebook');
                       load.dismiss();
                    })

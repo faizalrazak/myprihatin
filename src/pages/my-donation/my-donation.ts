@@ -2,13 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http'
 
-/**
- * Generated class for the MyDonationPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-my-donation',
@@ -18,14 +11,16 @@ export class MyDonationPage {
 
   donate:any;
 
-  constructor(public toast:ToastController, private httpprovider:HttpProvider, public navCtrl: NavController, public navParams: NavParams, public viewCtrl:ViewController) {
-
+  constructor(
+    public toast:ToastController,
+    private httpprovider:HttpProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public viewCtrl:ViewController
+    )
+  {
     this.donate = navParams.get('value');
     console.log(this.donate);
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MyDonationPage');
   }
 
   confirmButton(){
@@ -77,11 +72,5 @@ export class MyDonationPage {
       }, (err) => {
         console.log(err);
       });
-
   }
-
-  closeModal(){
-  	this.viewCtrl.dismiss();
-  }
-
 }

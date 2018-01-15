@@ -28,7 +28,8 @@
 		<img src="{{profile.image}}">
 	</ion-card> -->
 	<div class="bg" >
-	  <img src="{{profile.image}}" class="user">
+  		<img *ngIf="!profile.image" src="{{image}}" class="user">
+		<img *ngIf="profile.image" src="{{profile.image}}" class="user">
 	</div>
 
 

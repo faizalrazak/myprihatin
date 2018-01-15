@@ -4,12 +4,6 @@ import { HttpProvider } from '../../providers/http/http';
 import * as moment from 'moment';
 import { AuthProvider } from '../../providers/auth/auth';
 import { SignPage } from '../sign/sign'
-/**
- * Generated class for the ArticleCommentPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -22,15 +16,19 @@ export class ArticleCommentPage {
   article:any;
   userComment:any;
 
-  constructor(public alert:AlertController, public auth:AuthProvider, public httpProvider:HttpProvider, public viewCtrl:ViewController, public navCtrl: NavController, public navParams: NavParams, public loading:LoadingController) {
-
+  constructor(
+    public alert:AlertController, 
+    public auth:AuthProvider, 
+    public httpProvider:HttpProvider, 
+    public viewCtrl:ViewController, 
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public loading:LoadingController
+    )
+  {
   	this.article = this.navParams.get("article");
     this.comments = this.article.comments;
   	console.log(this.comments);
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ArticleCommentPage');
   }
 
   getCommentTime(id){
@@ -87,28 +85,7 @@ export class ArticleCommentPage {
                 }
               ]
         });
-
       alert.present();
-    } 
-
-    //  let load = this.loading.create({
-    //   content: 'Posting...'
-    //   });
-
-    //  load.present();
-
-    // this.httpProvider.articleComment(details).then((result) => {
-
-    //   load.dismiss();
-    //   this.viewCtrl.dismiss(true);
-
-    // }, (err) => {
-
-    //   console.log(err);
-    //   load.dismiss();
-
-    // });
-
+    }
   }
-
 }

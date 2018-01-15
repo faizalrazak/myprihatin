@@ -28,22 +28,16 @@ export class ListPage {
 
   deviceObj = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage:Storage) {
-  	
-  	storage.get('token').then((val) => {
-    console.log('my token : ', val);
-  });
+  constructor(
+  	public navCtrl: NavController,
+  	public navParams: NavParams,
+  	private storage:Storage
+  	)
+  {	
+	  	storage.get('token').then((val) => {
+	    console.log('my token : ', val);
+	  });
   }
-
-  // getData(){
-  // 	let that = this;
-	 //  this.storage.get('token').then((resp) => {
-	 //      if(resp !== null){
-	 //        console.log(resp);
-	 //        that.deviceObj.push(resp);
-	 //      }
-	 //  });
-  // }
 
   toggleGroup(group) {
     if (this.isGroupShown(group)) {
@@ -56,5 +50,4 @@ export class ListPage {
 	isGroupShown(group) {
 	    return this.shownGroup === group;
 	};
-
 }

@@ -6,14 +6,6 @@ import * as moment from 'moment';
 import { AuthProvider } from '../../providers/auth/auth';
 import { SignPage } from '../sign/sign';
 
-
-/**
- * Generated class for the CommentPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-comment',
@@ -29,11 +21,21 @@ export class CommentPage {
   token:any;
 
 
-  constructor(private alert:AlertController, private auth:AuthProvider, private storage:Storage, public loading:LoadingController, public navCtrl: NavController, public navParams: NavParams, public httpprovider:HttpProvider, public viewCtrl:ViewController) {
+  constructor(
+    private alert:AlertController,
+    private auth:AuthProvider,
+    private storage:Storage,
+    public loading:LoadingController,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public httpprovider:HttpProvider,
+    public viewCtrl:ViewController
+    )
+  {
 
     let load = this.loading.create({
       content: 'Please wait...'
-      });
+    });
 
         load.present();
         this.campaign = navParams.get('campaign');
@@ -52,7 +54,7 @@ export class CommentPage {
     return null;
   }
 
-   sendComment(){
+  sendComment(){
 
     let details = {
           campaign_id : this.campaign.campaign_id,

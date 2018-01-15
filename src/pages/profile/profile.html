@@ -17,7 +17,8 @@
 <ion-content>
 <div *ngIf="profile" style="padding-bottom: 16px">
 <div class="bg">
-  <img src="{{profile.image}}" class="user">
+  <img *ngIf="!profile.image" src="{{image}}" class="user">
+  <img *ngIf="profile.image" src="{{profile.image}}" class="user">
 </div>
 <div style="padding-top: 20px" text-center (click)="userDetails(profile)">
   <!-- <h1>{{profile.first_name}} {{profile.last_name}}</h1> -->

@@ -88,25 +88,26 @@ export class RegisterPage {
     }
     else {
 
-          let details = this.registerForm.value;
+      let details = this.registerForm.value;
 
-          let load = this.loading.create({
-          content: 'Please wait...'
-          });
+      let load = this.loading.create({
+        content: 'Please wait...'
+      });
+      
+        load.present();
 
-          load.present();
-
-          this.httpprovider.register(details).then((result) => {
-            load.dismiss();
-               const toast = this.toast.create({
-                message: 'Account created successfully',
-                duration: 3000,
-                position: 'middle'
-              });
-              
-              toast.present();
-              
-              this.viewCtrl.dismiss();
+      this.httpprovider.register(details).then((result) => {
+      
+        load.dismiss();
+               
+        const toast = this.toast.create({
+          message: 'Account created successfully',
+          duration: 3000,
+          position: 'middle'
+        });      
+        
+        toast.present();    
+          this.viewCtrl.dismiss();
         },
           (err) => {
           console.log(err);

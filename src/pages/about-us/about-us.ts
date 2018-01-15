@@ -2,13 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
-/**
- * Generated class for the AboutUsPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-about-us',
@@ -16,11 +9,14 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 })
 export class AboutUsPage {
 
-  constructor(public iab:InAppBrowser, public navCtrl: NavController, public navParams: NavParams, public viewCtrl:ViewController) {
-  }
+  constructor(
+    public iab:InAppBrowser, 
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public viewCtrl:ViewController
+    )
+  {
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AboutUsPage');
   }
 
   web(){

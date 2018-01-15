@@ -19,6 +19,7 @@ export class ProfilePage {
   activities:any;
   fund : number;
   token:any;
+  image: any;
 
   constructor(
     private auth:AuthProvider, 
@@ -28,6 +29,8 @@ export class ProfilePage {
     public navParams: NavParams, 
     public modalCtrl:ModalController)
   {
+
+    this.image = "assets/user.png"
 
     this.token = window.localStorage.getItem('token');
 
@@ -47,22 +50,20 @@ export class ProfilePage {
     load.present();
 
     this.httpprovider.getUser().then((data) => {
-          this.profile = data;
-          this.activities = this.profile.fund
-          console.log(this.profile)
+      this.profile = data;
+      this.activities = this.profile.fund
+      console.log(this.profile)
 
-          this.fund = 0;
+      this.fund = 0;
           
-          for (let i = 0; i < this.activities.length; i++){
-            this.fund += this.activities[i].amount
-          }
+      for (let i = 0; i < this.activities.length; i++){
+        this.fund += this.activities[i].amount
+      }
 
           load.dismiss()
-
-
-    }, (err) => {
-        console.log("not allowed");
-        load.dismiss();
+    },(err) => {
+      console.log("not allowed");
+      load.dismiss();
     });
   }
 
@@ -76,9 +77,7 @@ export class ProfilePage {
       }
       return this.fund;
     }
-
     return 0;
-    
   }
   
   aboutUs(){
@@ -95,6 +94,5 @@ export class ProfilePage {
     this.auth.logout();
     this.navCtrl.setRoot(HomePage);
   }
-
-
+  
 }

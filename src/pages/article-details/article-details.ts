@@ -16,23 +16,29 @@ export class ArticleDetailsPage {
   likes:any;
   buttonIcon : string = 'ios-heart-outline';
 
-  constructor(public toast:ToastController, public actionSheet:ActionSheetController, public socialSharing:SocialSharing, public modalCtrl:ModalController, public loading:LoadingController, public viewCtrl:ViewController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public toast:ToastController, 
+    public actionSheet:ActionSheetController, 
+    public socialSharing:SocialSharing, 
+    public modalCtrl:ModalController, 
+    public loading:LoadingController, 
+    public viewCtrl:ViewController, 
+    public navCtrl: NavController, 
+    public navParams: NavParams
+    )
+  {
 
-     let load = this.loading.create({
+    let load = this.loading.create({
       content: 'Please wait...'
-      });
+    });
 
-     load.present();
+    load.present();
   	this.article = navParams.get('article');
   	console.log(this.article);
     this.comments = this.article.comments.length;
     this.likes = this.article.number_of_like.length;
     load.dismiss();
 
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ArticleDetailsPage');
   }
 
   toggleIcon(getIcon: string) {
@@ -46,20 +52,7 @@ export class ArticleDetailsPage {
    }
 
   commentsTapped(article){
-
     this.navCtrl.push(ArticleCommentPage, {article:this.article});
-
-    // let myModal = this.modalCtrl.create(ArticleCommentPage, details);
-
-    // myModal.onDidDismiss(data => {
-       
-    //   if(data == true){
-    //    this.ionViewDidLoad();
-    //   }
-
-    // });
-    // myModal.present();
-
   }
 
   shareButton() {
@@ -80,12 +73,6 @@ export class ArticleDetailsPage {
                    this.socialSharing.shareViaFacebook(this.article)
                    .then((data) =>
                    {
-                     // const toast = this.toast.create({
-                     //    message: 'shared via fb',
-                     //    duration: 3000,
-                     //    position: 'middle'
-                     //  });
-                     //   toast.present();
                       console.log('Shared via Facebook');
                       load.dismiss();
                    })
@@ -145,5 +132,4 @@ export class ArticleDetailsPage {
     });
     actionSheet.present();
   }
-
 }
