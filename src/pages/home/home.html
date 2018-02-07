@@ -58,14 +58,12 @@
         </div>
       
       <p style="margin-top: 25px"><strong>RM {{campaign.fund_amount | number:0}}</strong> terkumpul setakat ini</p>
-      <p><strong>{{(campaign.fund_amount/campaign.total_amount)*100}}%</strong> tepati sasaran</p>
+      <p><strong>{{getPercentage(campaign.campaign_id)}}%</strong> tepati sasaran</p>
       <p><strong>{{getRemainingDays(campaign.campaign_id)}}</strong> lagi</p>
       
   </ion-card-content>
   </div>
-  <!-- <ion-row padding-left=10px>
-    <p text-left>200 Likes 10 Comments</p>
-  </ion-row> -->
+
   <ion-row no-padding class="botBorder">
       <ion-col text-left col-3>
         <button ion-button clear small  icon-start color="dark" (click)=commentPress(campaign)>

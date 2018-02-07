@@ -28,7 +28,7 @@
           <strong>{{comment.user}}</strong>
         </ion-row>
         <ion-row>
-          <p>{{getCommentTime(comment.id)}}</p>
+          <p style="font-size: 50%">{{getCommentTime(comment.id)}}</p>
         </ion-row>
       </ion-col>
   </ion-row>
@@ -48,6 +48,6 @@
   <ion-item style="margin-bottom: 5px">
     <ion-input no-margin type="text" placeholder="Tulis Komen" [(ngModel)]="userComment"></ion-input>
   </ion-item>
-  <button ion-button full round color="yayasan" (click)="sendComment()" style="text-transform: lowercase; width: 90%; margin: 0 auto">Hantar Komen</button>
+  <button ion-button full round color="yayasan" (click)="sendComment()" style="text-transform: capitalize; width: 90%; margin: 0 auto">Hantar Komen</button>
   <p text-center style="font-size: 8px; margin-top: 8px;">Perlu mendaftar masuk untuk memberi komen</p>
 </ion-footer>

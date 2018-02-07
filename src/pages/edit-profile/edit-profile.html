@@ -63,21 +63,26 @@
       </ion-item>
 
       <ion-item>
+        <ion-label stacked>Gender</ion-label>
+        <ion-input formControlName="gender" type="text" class="form-control" value="{{profile.gender}}"></ion-input>
+      </ion-item>
+
+      <!-- <ion-item>
         <ion-label floating>Gender</ion-label>
         <ion-select formControlName="gender" cancelText="Cancel" okText="OK">
           <ion-option *ngFor="let gender of genders" [value]="gender" >{{ gender }}</ion-option>
         </ion-select>
-      </ion-item>
+      </ion-item> -->
 
       <ion-item>
         <ion-label stacked>Birthdate</ion-label>
         <ion-input formControlName="birthdate" type="date" class="form-control" value="{{profile.birthdate}}"></ion-input>
       </ion-item>
 
-      <ion-item>
+      <!-- <ion-item>
         <ion-label stacked>Phone Number</ion-label>
         <ion-input formControlName="phone_number" type="text" class="form-control" value="{{profile.phone_number}}"></ion-input>
-      </ion-item>
+      </ion-item> -->
 
 		  <button ion-button round full type="submit" style="text-transform: capitalize; margin: 0 auto; width: 90%; margin-top: 10px" color="yayasan" [disabled]="!editForm.valid">Simpan</button>
 		</form>

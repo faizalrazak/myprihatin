@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams , ViewController, ModalController, LoadingController, ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams , ViewController, ModalController, AlertController, LoadingController, ToastController} from 'ionic-angular';
 import { CommentPage } from '../comment/comment';
 import { UpdatePage } from '../update/update';
 import { DetailsPage } from '../details/details';
@@ -8,6 +8,8 @@ import { HttpProvider } from '../../providers/http/http';
 import { ImageViewerController } from 'ionic-img-viewer';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { ActionSheetController } from 'ionic-angular';
+import { AuthProvider } from '../../providers/auth/auth';
+import { SignPage } from '../sign/sign';
 import * as moment from 'moment';
 
 @IonicPage()
@@ -44,7 +46,9 @@ export class AboutPage {
     public navCtrl: NavController,
     public viewCtrl: ViewController,
     public httpprovider:HttpProvider,
-    public socialSharing:SocialSharing
+    public socialSharing:SocialSharing,
+    public alert:AlertController,
+    private auth:AuthProvider
     )
   {
 
@@ -52,7 +56,7 @@ export class AboutPage {
     console.log(this.campaign)
     this.remainingDays = moment(this.campaign.campaign_end_date, "YYYYMMDD").lang("ms").fromNow();
     this.totalDay = this.remainingDays.replace('dalam ','');
-    this.percentage = (this.campaign.fund_amount/this.campaign.total_amount)*100;
+    this.percentage = Math.round((this.campaign.fund_amount/this.campaign.total_amount)*100);
     this.progressbar = ((this.campaign.fund_amount/this.campaign.total_amount)*300)+"px";
     this.like = this.campaign.number_of_like.length;
     this.commentBadge = this.campaign.comments.length;
@@ -67,19 +71,41 @@ export class AboutPage {
 
   toggleIcon(getIcon: string) {
 
-    let details = {
-          campaign_id : this.campaign.campaign_id,
-          user_id : 1,
-    }
+    if(this.auth.isLogged() === true){
+      let details = {
+            campaign_id : this.campaign.campaign_id,
+            user_id : window.localStorage.getItem('user_id'),
+      }
 
-    this.httpprovider.postLike(details).then((result) => {
-      if (this.buttonIcon === 'heart'){
-       this.buttonIcon = "ios-heart-outline"; 
-      }else if (this.buttonIcon === 'ios-heart-outline'){
-        this.buttonIcon = "heart";
-      }     
-    },
-    (err) => {console.log(err)});
+      this.httpprovider.postLike(details).then((result) => {
+        if (this.buttonIcon === 'heart'){
+         this.buttonIcon = "ios-heart-outline"; 
+        }else if (this.buttonIcon === 'ios-heart-outline'){
+          this.buttonIcon = "heart";
+        }     
+      },
+      (err) => {console.log(err)});
+    }else{
+      let alert = this.alert.create({
+              title : "Need to login",
+              buttons : [
+                {
+                  text: 'Ok',
+                  handler: () => {
+                    this.navCtrl.push(SignPage);
+                  }
+                },
+                {
+                  text: 'Cancel',
+                  handler: () => {
+                    console.log('cancel clicked')
+                  }
+                }
+              ]
+        });
+
+      alert.present();
+    }
   }
 
 

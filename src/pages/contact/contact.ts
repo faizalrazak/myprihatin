@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, Platform, ToastController, LoadingController } from 'ionic-angular';
+import { NavController, ModalController, Platform, ToastController, LoadingController, AlertController } from 'ionic-angular';
 import { ArticleDetailsPage } from '../article-details/article-details';
 import { ArticleCommentPage } from '../article-comment/article-comment';
 import { HttpProvider } from '../../providers/http/http'
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { ActionSheetController } from 'ionic-angular';
+import { AuthProvider } from '../../providers/auth/auth';
+import { SignPage} from '../sign/sign'
 
 @Component({
   selector: 'page-contact',
@@ -22,7 +24,10 @@ export class ContactPage {
     public socialSharing:SocialSharing,
     public navCtrl: NavController,
     public modalCtrl:ModalController,
-    public httpprovider:HttpProvider) {
+    public httpprovider:HttpProvider,
+    public alert:AlertController,
+    private auth:AuthProvider
+    ) {
   }
 
   ionViewDidLoad(){
@@ -53,16 +58,41 @@ export class ContactPage {
 
   like(article){
 
+    if(this.auth.isLogged() === true){
       let details = {
-          article_id : article.article_id,
-          user_id : 1,
-      }
+            article_id : article.article_id,
+            user_id : window.localStorage.getItem('user_id'),
+        }
 
-    this.httpprovider.postLike(details).then((result) => {
+      this.httpprovider.postLike(details).then((result) => {
 
-    }, (err) => {
-      console.log(err);
-    }); 
+        this.navCtrl.setRoot(this.navCtrl.getActive().component);
+
+      }, (err) => {
+        console.log(err);
+      });  
+    }else{
+      let alert = this.alert.create({
+              title : "Need to login",
+              buttons : [
+                {
+                  text: 'Ok',
+                  handler: () => {
+                    this.navCtrl.push(SignPage);
+                  }
+                },
+                {
+                  text: 'Cancel',
+                  handler: () => {
+                    console.log('cancel clicked')
+                  }
+                }
+              ]
+        });
+
+      alert.present();
+    }
+       
   }
 
   details(article){

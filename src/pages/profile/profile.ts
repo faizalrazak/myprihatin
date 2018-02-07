@@ -51,6 +51,7 @@ export class ProfilePage {
 
     this.httpprovider.getUser().then((data) => {
       this.profile = data;
+      window.localStorage.setItem('user_id', this.profile.user_id);
       this.activities = this.profile.fund
       console.log(this.profile)
 

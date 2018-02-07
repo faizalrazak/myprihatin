@@ -32,7 +32,7 @@
   <button ion-button round full color="yayasan" style="width: 90%; margin: 0 auto; text-transform: capitalize;" (click)="donate()">Teruskan Pembayaran</button>
 </div>
 
- 
+  <div *ngIf = "!token">
     <ion-row>
       <ion-col col-4 center>
         <hr>
@@ -51,32 +51,9 @@
 
     <div style="margin-bottom: 15px">
       <button color="facebook" ion-button round full icon-left (click)="facebookConnect()" style="text-transform: capitalize; margin: 0 auto; width: 90%"><ion-icon name="logo-facebook"></ion-icon> Login with Facebook</button>
-
     </div>
     
     <button color="yayasan" ion-button round full (click)="login()" style="text-transform: capitalize; width: 90%; margin: 0 auto">Log masuk dengan emel</button>
+  </div>
 
-    <!-- <ion-list no-padding>
-      <ion-item no-padding no-lines>
-        <ion-avatar item-start>
-          <img src="assets/user.png">
-        </ion-avatar>
-        <strong>Daftar Masuk</strong>
-      </ion-item>
-    </ion-list> -->
- 
-
-  <!--< h1 style="padding-bottom: 10px; margin-top: 50px">Derma</h1>
-  <h4 style="padding-bottom: 10px">{{campaign.campaign_name}}</h4>
-
-<div style="padding-bottom: 20px">
-  
-  <p text-wrap style="line-height: 150%">By clicking Register me, you indicate that you have read and understand our Privacy Policy and Terms of Use and represent that you are at least 13 years of age</p>
-
-</div>
-   -->
-
-
-   
-			
 </ion-content>

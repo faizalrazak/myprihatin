@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, LoadingController, ModalController, ActionSheetController, ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ViewController, LoadingController, ModalController, ActionSheetController, ToastController} from 'ionic-angular';
 import { ArticleCommentPage } from '../article-comment/article-comment';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { HttpProvider } from '../../providers/http/http';
+import { AuthProvider } from '../../providers/auth/auth';
+import { SignPage } from '../sign/sign'
 
 
 @IonicPage()
@@ -24,7 +27,10 @@ export class ArticleDetailsPage {
     public loading:LoadingController, 
     public viewCtrl:ViewController, 
     public navCtrl: NavController, 
-    public navParams: NavParams
+    public navParams: NavParams,
+    public http:HttpProvider,
+    public alert:AlertController,
+    private auth:AuthProvider
     )
   {
 
@@ -41,15 +47,46 @@ export class ArticleDetailsPage {
 
   }
 
-  toggleIcon(getIcon: string) {
+   toggleIcon(getIcon: string) {
 
-      if (this.buttonIcon === 'heart') {
-        this.buttonIcon = "ios-heart-outline";
-      }
-      else if (this.buttonIcon === 'ios-heart-outline') {
-        this.buttonIcon = "heart";
-      }
-   }
+     if(this.auth.isLogged() === true){
+        let details = {
+          article_id : this.article.article_id,
+          user_id : window.localStorage.getItem('user_id'),
+        }
+
+        this.http.postLike(details).then((result) => {
+          if (this.buttonIcon === 'heart'){
+           this.buttonIcon = "ios-heart-outline"; 
+          }else if (this.buttonIcon === 'ios-heart-outline'){
+            this.buttonIcon = "heart";
+          }     
+        },
+        (err) => {console.log(err)});  
+     }else{
+       let alert = this.alert.create({
+              title : "Need to login",
+              buttons : [
+                {
+                  text: 'Ok',
+                  handler: () => {
+                    this.navCtrl.push(SignPage);
+                  }
+                },
+                {
+                  text: 'Cancel',
+                  handler: () => {
+                    console.log('cancel clicked')
+                  }
+                }
+              ]
+        });
+
+      alert.present();
+     }
+
+    
+  }
 
   commentsTapped(article){
     this.navCtrl.push(ArticleCommentPage, {article:this.article});
@@ -118,8 +155,6 @@ export class ArticleDetailsPage {
                        toast.present();
                      console.log('Was not shared via Twitter');
                   });
-
-                  console.log('Archive clicked');
           }
         },{
           text: 'Cancel',

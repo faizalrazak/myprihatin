@@ -19,6 +19,7 @@ export class CommentPage {
   campaign:any;
   user:any;
   token:any;
+  user_id: any;
 
 
   constructor(
@@ -32,6 +33,7 @@ export class CommentPage {
     public viewCtrl:ViewController
     )
   {
+    this.user_id = window.localStorage.getItem('user_id');
 
     let load = this.loading.create({
       content: 'Please wait...'
@@ -46,7 +48,7 @@ export class CommentPage {
   getCommentTime(id){
     for (let comment of this.comments){
                 if (id === comment["id"]){
-                  this.commentTime = (moment(comment.created_at.date).startOf('day').lang("ms").fromNow())
+                  this.commentTime = (moment(comment.created_at.date).startOf('second').lang("ms").fromNow())
                   this.commentTime = this.commentTime.replace('yang ','');
                return this.commentTime;
              }
@@ -58,9 +60,9 @@ export class CommentPage {
 
     let details = {
           campaign_id : this.campaign.campaign_id,
-          user_id : 1,
+          user_id : this.user_id,
           title : 'this is my comment',
-          desc : this.userComment
+          desc : this.userComment,
     }
 
     if(this.auth.isLogged() === true){
@@ -72,9 +74,8 @@ export class CommentPage {
     load.present();
 
       this.httpprovider.postComment(details).then((result) => {
-
+        
         load.dismiss();
-        this.viewCtrl.dismiss(true);
 
       }, (err) => {
 

@@ -32,7 +32,7 @@ export class RegisterPage {
 
     this.matching_passwords_group = new FormGroup({
       password: new FormControl('', Validators.compose([
-        Validators.minLength(5),
+        Validators.minLength(8),
         Validators.required,
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
       ])),
@@ -56,6 +56,7 @@ export class RegisterPage {
       ])),
 
       matching_passwords: this.matching_passwords_group,
+
     });
 
     this.validation_messages = {
@@ -70,7 +71,7 @@ export class RegisterPage {
       ],
       'password': [
         { type: 'required', message: 'Password is required.' },
-        { type: 'minlength', message: 'Password must be at least 5 characters long.' },
+        { type: 'minlength', message: 'Password must be at least 8 characters long.' },
         { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' }
       ],
       'confirm_password': [
@@ -88,7 +89,11 @@ export class RegisterPage {
     }
     else {
 
-      let details = this.registerForm.value;
+      let details = {
+        email: this.registerForm.value.email,
+        name: this.registerForm.value.name,
+        password: this.registerForm.value.matching_passwords.password
+      }
 
       let load = this.loading.create({
         content: 'Please wait...'
@@ -96,6 +101,7 @@ export class RegisterPage {
       
         load.present();
 
+        console.log(details);
       this.httpprovider.register(details).then((result) => {
       
         load.dismiss();
