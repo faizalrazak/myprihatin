@@ -116,12 +116,13 @@ export class SignPage {
               console.log(err);
               load.dismiss();
 
-              let alert = this.alertCtrl.create({
-                title : "Login Failed",
-                subTitle : err._body,
-                buttons : ['OK']
-              })
-              alert.present();
+              const toast = this.toast.create({
+                message: 'Salah email atau kata laluan',
+                duration: 3000,
+                position: 'middle'
+              });      
+              
+              toast.present();
         });
     }
   }

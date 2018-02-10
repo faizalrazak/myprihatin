@@ -36,38 +36,38 @@
 	<div padding style="padding-left: 0px">
 		<ion-list style="margin-top: 35px" >
 		  <ion-item>
-		    <ion-icon name="ios-person-outline" item-start></ion-icon>
-		    	{{profile.name}}
+		    <ion-icon name="ios-person-outline" item-start value="not assign"></ion-icon>
+		    	{{name}}<p *ngIf="!name" style="font-style: italic">not assign</p>
 		  </ion-item>
 
 		  <ion-item>
 		    <ion-icon name="ios-mail-outline" item-start></ion-icon>
-		     {{profile.email}}
+		     {{email}}<p *ngIf="!email" style="font-style: italic">not assign</p>
 		  </ion-item>
 
 		  <ion-item>
 		    <ion-icon name="ios-home-outline" item-start></ion-icon>
-		      {{profile.address}}
+		      {{address}}<p *ngIf="!address" style="font-style: italic">not assign</p>
 		  </ion-item>
 
 		  <ion-item>
 		    <ion-icon name="ios-call-outline" item-start></ion-icon>
-		      {{profile.phone_number}}
+		      {{phone_number}}<p *ngIf="!phone_number" style="font-style: italic">not assign</p>
 		  </ion-item>
 
 		  <ion-item>
 		    <ion-icon name="ios-calendar-outline" item-start></ion-icon>
-		      {{profile.birthdate | date:'dd/MM/yyyy'}}
+		      {{birthday | date:'dd/MM/yyyy'}}<p *ngIf="!birthday" style="font-style: italic">not assign</p>
 		  </ion-item>
 
 		  <ion-item>
 		    <ion-icon name="ios-male-outline" item-start></ion-icon>
-		      {{profile.gender}}
+		      {{gender}}<p *ngIf="!gender" style="font-style: italic">not assign</p>
 		  </ion-item>
 
 		  <ion-item>
 		    <ion-icon name="ios-flag-outline" item-start></ion-icon>
-		      {{profile.locale}}
+		      {{locale}}<p *ngIf="!locale" style="font-style: italic">not assign</p>
 		  </ion-item>
 		</ion-list>
 		

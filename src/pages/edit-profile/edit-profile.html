@@ -36,7 +36,7 @@
 
       <ion-item>
         <ion-label floating>Email</ion-label>
-        <ion-input  type="email" formControlName="email" value={{profile.email}}></ion-input>
+        <ion-input  disabled="true" type="email" formControlName="email" value={{profile.email}}></ion-input>
       </ion-item>
       <div class="validation-errors">
         <ng-container *ngFor="let validation of validation_messages.email">

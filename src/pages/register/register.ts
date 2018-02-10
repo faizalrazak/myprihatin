@@ -34,7 +34,7 @@ export class RegisterPage {
       password: new FormControl('', Validators.compose([
         Validators.minLength(8),
         Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])[a-zA-Z0-9!@#\$%\^&\*]+$')
       ])),
       confirm_password: new FormControl('', Validators.required)
     }, (formGroup: FormGroup) => {
@@ -52,7 +52,8 @@ export class RegisterPage {
       email: new FormControl('', 
       Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-z]+.[a-z]+$')
+        // Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+?\.[a-z]{2,3}$')
       ])),
 
       matching_passwords: this.matching_passwords_group,
@@ -72,7 +73,7 @@ export class RegisterPage {
       'password': [
         { type: 'required', message: 'Password is required.' },
         { type: 'minlength', message: 'Password must be at least 8 characters long.' },
-        { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' }
+        { type: 'pattern', message: 'Must contain at least one uppercase, lowercase, number and symbol' }
       ],
       'confirm_password': [
         { type: 'required', message: 'Confirm password is required' }

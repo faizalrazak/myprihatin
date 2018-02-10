@@ -11,6 +11,13 @@ export class UserDetailsPage {
 
   profile:any;
   image: any;
+  gender: any;
+  phone_number: any;
+  birthday:any;
+  locale:any;
+  name:any;
+  email:any;
+  address:any;
 
   constructor(
     public modalCtrl:ModalController, 
@@ -21,7 +28,13 @@ export class UserDetailsPage {
     this.image = "assets/user.png"
 
   	this.profile = navParams.get('profile');
-    console.log(this.profile)
+    this.gender = this.profile.gender
+    this.phone_number = this.profile.phone_number
+    this.birthday = this.profile.birthdate
+    this.locale = this.profile.locale
+    this.name = this.profile.name
+    this.email = this.profile.email
+    this.address = this.profile.address
 
   }
 
