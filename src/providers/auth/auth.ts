@@ -19,14 +19,14 @@ export class AuthProvider {
     console.log('Hello AuthProvider Provider');
   }
 
-  forgetPassword(email){
+  forgotPassword(email){
 
     return new Promise((resolve, reject) => {
  
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
  
-        this.http.post(this.baseUrl + "login", JSON.stringify(email), {headers: headers})
+        this.http.post(this.baseUrl + "forgotpassword", JSON.stringify(email), {headers: headers})
           .subscribe(res => {
  
             let data = res.json();
@@ -79,9 +79,7 @@ export class AuthProvider {
           }, (err) => {
             reject(err);
           });
- 
     });
- 
   }
 
   loginFacebook(details){

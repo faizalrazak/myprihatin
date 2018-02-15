@@ -14,9 +14,10 @@ import { SignPage } from '../sign/sign'
 })
 export class ArticleDetailsPage {
 
-	article :any;
+	article_id :any;
   comments:any;
   likes:any;
+  article:any;
   buttonIcon : string = 'ios-heart-outline';
 
   constructor(
@@ -28,7 +29,7 @@ export class ArticleDetailsPage {
     public viewCtrl:ViewController, 
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public http:HttpProvider,
+    public httpprovider:HttpProvider,
     public alert:AlertController,
     private auth:AuthProvider
     )
@@ -38,24 +39,38 @@ export class ArticleDetailsPage {
       content: 'Please wait...'
     });
 
-    load.present();
-  	this.article = navParams.get('article');
-  	console.log(this.article);
-    this.comments = this.article.comments.length;
-    this.likes = this.article.number_of_like.length;
-    load.dismiss();
+  	this.article_id = navParams.get('id');
+  	console.log(this.article_id);
 
+    load.present();
+    this.httpprovider.getArticle(this.article_id).subscribe(
+          data => {
+            this.article = data.data;
+            console.log(this.article)
+            this.comments = this.article.comments.length;
+            console.log(this.comments)
+            this.likes = this.article.number_of_like.length;
+          },
+          err => {
+            load.dismiss();
+            console.log(err);
+          },
+          ()=>{
+            load.dismiss();
+          console.log('Article is ok!')
+        }
+    );
   }
 
    toggleIcon(getIcon: string) {
 
      if(this.auth.isLogged() === true){
         let details = {
-          article_id : this.article.article_id,
+          article_id : this.article_id,
           user_id : window.localStorage.getItem('user_id'),
         }
 
-        this.http.postLike(details).then((result) => {
+        this.httpprovider.postLike(details).then((result) => {
           if (this.buttonIcon === 'heart'){
            this.buttonIcon = "ios-heart-outline"; 
           }else if (this.buttonIcon === 'ios-heart-outline'){
@@ -88,8 +103,8 @@ export class ArticleDetailsPage {
     
   }
 
-  commentsTapped(article){
-    this.navCtrl.push(ArticleCommentPage, {article:this.article});
+  commentsTapped(id){
+    this.navCtrl.push(ArticleCommentPage, {id});
   }
 
   shareButton() {

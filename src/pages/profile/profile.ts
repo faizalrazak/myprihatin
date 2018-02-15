@@ -53,7 +53,7 @@ export class ProfilePage {
       this.profile = data;
       window.localStorage.setItem('user_id', this.profile.user_id);
       this.activities = this.profile.fund
-      console.log(this.profile)
+      console.log(this.activities)
 
       this.fund = 0;
           

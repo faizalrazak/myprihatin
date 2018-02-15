@@ -43,7 +43,7 @@
 <ion-list>
 <div style="padding: 20px; padding-top: 0px" >
 <div *ngFor="let campaign of latestcampaign" style="border: 1px groove; margin-bottom: 10px">
-  <div (click)="moreDetail(campaign)">
+  <div (click)="moreDetail(campaign.campaign_id)">
     <img src="{{campaign.campaign_image}}">
     <ion-card-content>
       <h6 no-margin>{{campaign.category}}</h6>
@@ -66,7 +66,7 @@
 
   <ion-row no-padding class="botBorder">
       <ion-col text-left col-3>
-        <button ion-button clear small  icon-start color="dark" (click)=commentPress(campaign)>
+        <button ion-button clear small  icon-start color="dark" (click)=commentPress(campaign.campaign_id)>
         <ion-icon name='ios-chatboxes-outline'></ion-icon>
         <!-- <ion-icon class="icon-comment" color="danger" ></ion-icon> -->
         <strong>{{getComment(campaign.campaign_id)}}</strong>
@@ -79,7 +79,7 @@
         </button>
       </ion-col>
       <ion-col text-right>
-        <button ion-button clear small color="dark" style="text-transform: lowercase;" (click)="moreDetail(campaign)">
+        <button ion-button clear small color="dark" style="text-transform: lowercase;" (click)="moreDetail(campaign.campaign_id)">
           lebih lanjut  
         <ion-icon ios="ios-arrow-forward" md="md-arrow-forward" style="margin-left: 5px"></ion-icon>
           

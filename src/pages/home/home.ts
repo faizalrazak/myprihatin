@@ -160,13 +160,13 @@ export class HomePage {
     }
   }
 
-  moreDetail(campaign){
-    this.navCtrl.push(AboutPage, {campaign:campaign});
+  moreDetail(id){
+    this.navCtrl.push(AboutPage, {id});
   }
 
-  commentPress(campaign){
+  commentPress(id){
 
-    this.navCtrl.push(CommentPage, {campaign:campaign})
+    this.navCtrl.push(CommentPage, {id})
   }
 
   shareButton() {

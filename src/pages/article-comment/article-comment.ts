@@ -16,11 +16,13 @@ export class ArticleCommentPage {
   article:any;
   userComment:any;
   user_id: any;
+  article_id:any;
+  user_image = "assets/user.png";
 
   constructor(
     public alert:AlertController, 
     public auth:AuthProvider, 
-    public httpProvider:HttpProvider, 
+    public httpprovider:HttpProvider, 
     public viewCtrl:ViewController, 
     public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -28,9 +30,29 @@ export class ArticleCommentPage {
     )
   {
     this.user_id = window.localStorage.getItem('user_id')
-  	this.article = this.navParams.get("article");
-    this.comments = this.article.comments; 
-  	console.log(this.comments);
+  	this.article_id = this.navParams.get("id");
+    // this.comments = this.article.comments; 
+  	console.log(this.article_id);
+
+    let load = this.loading.create({
+      content: 'Please wait...'
+    });
+
+    load.present();
+    this.httpprovider.getArticleComment(this.article_id).subscribe(
+          data => {
+            this.comments = data.data;
+            console.log(this.comments)
+          },
+          err => {
+            load.dismiss();
+            console.log(err);
+          },
+          ()=>{
+            load.dismiss();
+          console.log('comments is ok!')
+        }
+    );
   }
 
   getCommentTime(id){
@@ -45,7 +67,7 @@ export class ArticleCommentPage {
 
   postComment(){
     let details = {
-          article_id : this.article.article_id,
+          article_id : this.article_id,
           user_id : this.user_id,
           comment : this.userComment
     }
@@ -58,7 +80,7 @@ export class ArticleCommentPage {
 
     load.present();
     
-      this.httpProvider.articleComment(details).then((result) => {
+      this.httpprovider.articleComment(details).then((result) => {
 
         console.log(result)
         load.dismiss();

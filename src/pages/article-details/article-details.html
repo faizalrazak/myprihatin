@@ -18,10 +18,10 @@
 
 <ion-content>
 
-<div>
+<div *ngIf="article">
     <ion-row>  
         <div>
-          <img src="{{article.inline_image}}" >
+          <img src="{{article?.inline_image}}" >
         </div>  
     </ion-row>
 
@@ -31,7 +31,7 @@
         <ion-icon name="ios-pin-outline"></ion-icon>
       </ion-col>
       <ion-col col-7 style="padding-left: 0px">
-            <strong>{{article.location}}</strong>
+            <strong>{{article?.location}}</strong>
       </ion-col>
       <ion-col col-2 text-right no-padding>
         <ion-icon name="ios-chatboxes-outline"></ion-icon>
@@ -43,12 +43,11 @@
       </ion-col>
   </ion-row>
 
-  <!-- <h1 text-wrap style="margin-top: 10px; font-weight: bold;">{{details.article_title}}</h1> -->
   <h1 text-wrap style="margin-top: 10px; font-weight: bold;">Korban Aidil Adha</h1>
 
       <ion-item no-padding no-lines>
         <ion-avatar item-start>
-          <img src="{{article.header_image}}">
+          <img src="{{article?.header_image}}">
         </ion-avatar>
         <h2>Facebook MyPrihatin</h2>
       </ion-item>
@@ -56,12 +55,12 @@
   <hr>
        
   <div text-wrap style="padding-bottom: 10px; padding-top: 10px">
-    <p [innerHtml]="article.description" style="line-height: 150%"></p>  
+    <p [innerHtml]="article?.description" style="line-height: 150%"></p>  
   </div> 
 </ion-card-content>
   
     <ion-list>
-      <ion-item (click)="commentsTapped(kempen)" >
+      <ion-item (click)="commentsTapped(article_id)" >
         <p><strong style="color: black">Baca dan beri komen</strong></p>
         <ion-badge style="background-color: #40637B" item-end *ngIf="comments">{{comments}}</ion-badge>
       </ion-item>

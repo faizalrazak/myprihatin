@@ -1,6 +1,6 @@
 <ion-header no-border>
   <ion-navbar color="navbar">
-  <ion-title>{{campaign.category}}</ion-title>
+  <ion-title>{{campaign?.category}}</ion-title>
     <ion-buttons right>
       <button ion-button icon-only (click)="sebar()"><ion-icon name="md-share"></ion-icon></button>
     </ion-buttons>
@@ -9,10 +9,10 @@
 </ion-header>
 
 <ion-content>
-<div>
+<div *ngIf="campaign">
     <ion-row>  
         <div>
-        	<img src="{{image}}" >
+        	<img src="{{campaign?.campaign_image}}" >
         </div>  
     </ion-row>
     <!-- <ion-row>
@@ -27,7 +27,7 @@
         <ion-icon name="ios-pin-outline"></ion-icon>
       </ion-col>
       <ion-col col-7 style="padding-left: 0px">
-            <strong>{{campaign.location}}</strong>
+            <strong>{{campaign?.location}}</strong>
       </ion-col>
       <ion-col col-2 text-right no-padding>
         <ion-icon name="ios-chatboxes-outline"></ion-icon>
@@ -39,7 +39,7 @@
       </ion-col>
   </ion-row>
 
-  <h1 text-wrap style="margin-top: 10px; font-weight: bold;">{{campaign.campaign_name}}</h1>
+  <h1 text-wrap style="margin-top: 10px; font-weight: bold;">{{campaign?.campaign_name}}</h1>
   	
         <div class="process">
           <div class="raised">
@@ -48,7 +48,7 @@
         </div>
 
    <div class="details">
-    <p><strong>RM {{campaign.fund_amount | number:0}}</strong> terkumpul setakat ini</p>
+    <p><strong>RM {{campaign?.fund_amount | number:0}}</strong> terkumpul setakat ini</p>
     <p><strong>{{percentage}}%</strong> tepati sasaran</p>
     <p><strong>{{totalDay}}</strong> lagi</p>
   </div>
@@ -56,7 +56,7 @@
   <hr>
        
 	<div text-wrap style="padding-bottom: 10px; padding-top: 10px">
-    <p>{{campaign.short_desc}}</p>	
+    <p>{{campaign?.short_desc}}</p>	
 	</div>
 
       
@@ -65,15 +65,15 @@
 </ion-card-content>
   
     <ion-list>
-      <ion-item (click)="details(kempen)">
+      <ion-item (click)="details(campaign)">
         <p><strong style="color: black">Maklumat lebih lanjut</strong></p>
         <ion-icon name="arrow-forward" item-end></ion-icon>
       </ion-item>
-      <ion-item (click)="newsTapped(kempen)" >
+      <ion-item (click)="newsTapped(campaign.campaign_id)" >
         <p><strong style="color: black">Terkini</strong></p>
         <ion-badge style="background-color: #CB9B18" item-end *ngIf="newsBadge">{{newsBadge}}</ion-badge>
       </ion-item>
-      <ion-item (click)="commentsTapped(kempen)" >
+      <ion-item (click)="commentsTapped(campaign.campaign_id)" >
         <p><strong style="color: black">Baca dan beri komen</strong></p>
         <ion-badge style="background-color: #CB9B18" item-end *ngIf="commentBadge">{{commentBadge}}</ion-badge>
       </ion-item>

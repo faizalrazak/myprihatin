@@ -40,7 +40,7 @@
   <h1 style="font-weight: bold;">Aktiviti</h1>
 </div> -->
 
-  <ion-row padding *ngIf="!activities">
+  <ion-row padding>
     <ion-col col-4 center>
       <hr>
     </ion-col>
@@ -52,7 +52,7 @@
     </ion-col>
   </ion-row>
 
-  <p style="text-align: center;font-weight: bold" *ngIf="activities">Tiada Sumbangan Setakat Ini</p>
+  <p style="text-align: center;font-weight: bold" *ngIf="activities < 1">Tiada Sumbangan Setakat Ini</p>
 
   <ion-list>
     <ion-item *ngFor="let activity of activities" text-wrap>

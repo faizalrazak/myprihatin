@@ -38,7 +38,7 @@ export class ContactPage {
 
     load.present();
 
-  	this.httpprovider.getArticle().subscribe(
+  	this.httpprovider.getAllArticle().subscribe(
       response => {
         console.log(response)
         this.articles = response.data;
@@ -95,12 +95,12 @@ export class ContactPage {
        
   }
 
-  details(article){
-   this.navCtrl.push(ArticleDetailsPage, {article:article});
+  details(id){
+   this.navCtrl.push(ArticleDetailsPage, {id});
   }
 
-  commentPress(article){
-    this.navCtrl.push(ArticleCommentPage, {article:article})
+  commentPress(id){
+    this.navCtrl.push(ArticleCommentPage, {id})
   }
 
   shareButton() {

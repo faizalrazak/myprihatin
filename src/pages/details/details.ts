@@ -8,7 +8,7 @@ import { IonicPage, NavController, NavParams, ViewController, LoadingController 
 })
 export class DetailsPage {
 
-	campaignDetails = String;
+	campaign:any;
 
   constructor(
     public loading:LoadingController,
@@ -23,8 +23,8 @@ export class DetailsPage {
       });
 
         load.present();
-    		this.campaignDetails = navParams.get('campaign');
-        console.log(this.campaignDetails);
+    		this.campaign = navParams.get('campaign');
+        console.log(this.campaign);
     		load.dismiss();
   }
 

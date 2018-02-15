@@ -16,10 +16,11 @@ export class CommentPage {
   comments : any;
   commentTime : any;
   userComment = '';
-  campaign:any;
+  id:any;
   user:any;
   token:any;
   user_id: any;
+  user_image = "assets/user.png";
 
 
   constructor(
@@ -40,9 +41,23 @@ export class CommentPage {
     });
 
         load.present();
-        this.campaign = navParams.get('campaign');
-        this.comments = this.campaign.comments;
-        load.dismiss();
+        this.id = navParams.get('id');
+        console.log(this.id)
+
+        this.httpprovider.getCampaignComment(this.id).subscribe(
+          data => {
+            this.comments = data.data;
+            console.log(this.comments)
+          },
+          err => {
+            load.dismiss();
+            console.log(err);
+          },
+          ()=>{
+            load.dismiss();
+          console.log('Campaign is ok!')
+        }
+        );
   }
 
   getCommentTime(id){
@@ -59,7 +74,7 @@ export class CommentPage {
   sendComment(){
 
     let details = {
-          campaign_id : this.campaign.campaign_id,
+          campaign_id : this.id,
           user_id : this.user_id,
           title : 'this is my comment',
           desc : this.userComment,
@@ -74,7 +89,7 @@ export class CommentPage {
     load.present();
 
       this.httpprovider.postComment(details).then((result) => {
-        
+        this.navCtrl.pop();
         load.dismiss();
 
       }, (err) => {

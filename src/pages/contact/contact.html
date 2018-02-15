@@ -19,27 +19,22 @@
         </ion-avatar>
         <h2>Facebook MyPrihatin</h2>
       </ion-item>
-      <div (click)="details(article)">
+      <div (click)="details(article.article_id)">
         <img src="{{article.inline_image}}">
         <ion-card-content>
           <h6 no-margin>{{article.source}}</h6>
           <ion-card-title> 
-            <!-- <h1 text-wrap style="font-weight: bold;">{{article.article_title}}</h1> -->
-            <h1 no-margin text-wrap style="font-weight: bold;">Korban Aidil Adha</h1>
+            <h1 text-wrap style="font-weight: bold;">{{article.article_title}}</h1>
+            <!-- <h1 no-margin text-wrap style="font-weight: bold;">Korban Aidil Adha</h1> -->
           </ion-card-title>
             <!-- <p >{{article.short_desc}}</p> -->
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>{{article.short_desc}}</p>
         </ion-card-content>
       </div>
       
       <ion-row no-padding class="botBorder">
           <ion-col text-left col-3>
-            <button ion-button clear small  icon-start color="dark" (click)=commentPress(article)>
+            <button ion-button clear small  icon-start color="dark" (click)=commentPress(article.article_id)>
             <ion-icon name='ios-chatboxes-outline'></ion-icon>
             <!-- <ion-icon class="icon-comment" color="danger" ></ion-icon> -->
             <strong>{{getComment(article.article_id)}}</strong>

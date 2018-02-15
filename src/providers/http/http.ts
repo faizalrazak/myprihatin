@@ -31,8 +31,28 @@ export class HttpProvider {
     .map(res => res.json())  
   }
 
-  getArticle(){
+  getAllArticle(){
     return this.http.get("https://mydana.herokuapp.com/api/articles")
+    .map(res => res.json())
+  }
+
+  getArticle(id){
+    return this.http.get("https://mydana.herokuapp.com/api/article/"+ id)
+    .map(res => res.json())
+  }
+
+  getCampaignComment(id){
+    return this.http.get("https://mydana.herokuapp.com/api/campaign/"+ id + "/campaigncomment")
+    .map(res => res.json())
+  }
+
+   getArticleComment(id){
+    return this.http.get("https://mydana.herokuapp.com/api/article/"+ id + "/comment")
+    .map(res => res.json())
+  }
+
+  getCampaignNews(id){
+    return this.http.get("https://mydana.herokuapp.com/api/campaign/" + id +"/campaignnew")
     .map(res => res.json())
   }
 
@@ -56,35 +76,6 @@ export class HttpProvider {
         });
     });
   }
-
-  // getUserProfile(){
-
-  //   return new Promise((resolve, reject) => {
-
-  //   let headers = new Headers();
-  //     headers.append('Authorization', 'Bearer ' + window.localStorage.getItem('token'));
-  //     console.log('here')
-  //     console.log(headers);
- 
-  //     this.http.get('https://mydana.herokuapp.com/api/users', {headers: headers})
-  //       .map(res => res.json())
-  //       .subscribe(data => {
-  //         resolve(data);
-  //       }, (err) => {
-  //         reject(err);
-  //       });
-        
-  //   });
-    // return this.http.get("https://mydana.herokuapp.com/api/user/1")
-    // .map(res => res.json())
-
-    // let headers = new Headers();
-    // headers.append('Authorization','Bearer ' + token);
-
-    // var options = new RequestOptions({headers:headers})
-    // return this.http.get("https://mydana.herokuapp.com/api/user/", options)
-    // .map(res => res.json())
-  // }
 
   postLike(details){
    
@@ -228,29 +219,4 @@ export class HttpProvider {
     });
 
   }
-
-// login(credentials){
- 
-//     return new Promise((resolve, reject) => {
- 
-//         let headers = new Headers();
-//         headers.append('Content-Type', 'application/json');
- 
-//         this.http.post('https://mysterious-beach-83937.herokuapp.com/login', JSON.stringify(credentials), {headers: headers})
-//           .subscribe(res => {
- 
-//             let data = res.json();
-//             this.token = data.token;
-//             this.storage.set('token', data.token);
-//             resolve(data);
- 
-//             resolve(res.json());
-//           }, (err) => {
-//             reject(err);
-//           });
- 
-//     });
- 
-//   }
-
 }

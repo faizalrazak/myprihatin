@@ -21,6 +21,7 @@ export class AboutPage {
 
   buttonIcon : string = 'ios-heart-outline'
   campaign:any;
+  campaign_id:any;
   kempen :any;
   commentBadge : any;
   newsBadge : any;
@@ -50,18 +51,40 @@ export class AboutPage {
     public alert:AlertController,
     private auth:AuthProvider
     )
-  {
+  {   
 
-    this.campaign = navParams.get('campaign');
-    console.log(this.campaign)
-    this.remainingDays = moment(this.campaign.campaign_end_date, "YYYYMMDD").lang("ms").fromNow();
-    this.totalDay = this.remainingDays.replace('dalam ','');
-    this.percentage = Math.round((this.campaign.fund_amount/this.campaign.total_amount)*100);
-    this.progressbar = ((this.campaign.fund_amount/this.campaign.total_amount)*300)+"px";
-    this.like = this.campaign.number_of_like.length;
-    this.commentBadge = this.campaign.comments.length;
-    this.newsBadge = this.campaign.news.length;
-    this.image = this.campaign.campaign_image;
+  this.campaign_id = navParams.get('id');
+  console.log(this.campaign_id)
+
+    let load = this.loading.create({
+        content: 'Please wait...'
+        });
+
+          load.present();
+
+          this.httpprovider.getCampaign(this.campaign_id).subscribe(
+          data => {
+            this.campaign = data.data;
+            console.log(this.campaign)
+            this.remainingDays = moment(this.campaign.campaign_end_date, "YYYYMMDD").lang("ms").fromNow();
+            this.totalDay = this.remainingDays.replace('dalam ','');
+            this.percentage = Math.round((this.campaign.fund_amount/this.campaign.total_amount)*100);
+            this.progressbar = ((this.campaign.fund_amount/this.campaign.total_amount)*300)+"px";
+            this.like = this.campaign.number_of_like.length;
+            this.commentBadge = this.campaign.campaign_comments.length;
+            this.newsBadge = this.campaign.campaign_news.length;
+            this.image = this.campaign.campaign_image;
+          },
+          err => {
+            load.dismiss();
+            console.log(err);
+          },
+          ()=>{
+            load.dismiss();
+          console.log('Campaign is ok!')
+      }
+    );
+    
   }
 
   imageTapped(image){
@@ -109,19 +132,16 @@ export class AboutPage {
   }
 
 
-  commentsTapped(campaign){
-
-    this.navCtrl.push(CommentPage, {campaign:this.campaign});
+  commentsTapped(id){
+    this.navCtrl.push(CommentPage, {id});
   }
 
-  newsTapped(campaign){
-    
-    this.navCtrl.push(UpdatePage, this.campaign);
+  newsTapped(id){
+    this.navCtrl.push(UpdatePage, {id});
   }
 
   details(campaign){
-    
-    this.navCtrl.push(DetailsPage, {campaign:this.campaign});
+    this.navCtrl.push(DetailsPage, {campaign});
   }
 
   donate(campaign){

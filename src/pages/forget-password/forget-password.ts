@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 import { AuthProvider } from '../../providers/auth/auth';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { SignPage } from '../sign/sign';
+import { ProfilePage} from '../profile/profile';
 import { PasswordValidator } from '../../validators/password-validator';
 
 @IonicPage()
@@ -55,7 +56,7 @@ export class ForgetPasswordPage {
     }else{
 
           let details = this.emailForm.value;
-          // console.log(details);
+          console.log(details);
 
           let load = this.loading.create({
           content: 'Please wait...'
@@ -63,8 +64,18 @@ export class ForgetPasswordPage {
 
             load.present();
 
-            this.auth.login(details).then(result => {
-            this.navCtrl.setRoot(SignPage);
+            this.auth.forgotPassword(details).then(result => {
+              console.log(result)
+              if(result == "ok"){
+                this.navCtrl.setRoot(ProfilePage);
+              }else{
+                let alert = this.alertCtrl.create({
+                  title : "No data in server",
+                  subTitle : "Invalid email",
+                  buttons : ['OK']
+                })
+                alert.present();
+              }
             load.dismiss();
         }, 
           (err) => {
@@ -73,7 +84,7 @@ export class ForgetPasswordPage {
 
               let alert = this.alertCtrl.create({
                 title : "No data in server",
-                subTitle : err._body,
+                subTitle : "Invalid email",
                 buttons : ['OK']
               })
               alert.present();

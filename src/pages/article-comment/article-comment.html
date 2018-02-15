@@ -14,12 +14,13 @@
     <ion-row>
       <ion-col col-3>
         <ion-avatar item-start style="margin: 0px">
-          <img src="{{comment.user_image}}">
+          <img *ngIf="!comment.image" src="{{user_image}}">
+          <img *ngIf="comment.image" src="{{comment.image}}">
         </ion-avatar>
       </ion-col>
       <ion-col col-9 no-padding>
         <ion-row>
-          <strong>{{comment.user}}</strong>
+          <strong>{{comment.commenter.user}}</strong>
         </ion-row>
         <ion-row>
           <p style="font-size: 50%">{{getCommentTime(comment.comment_id)}}</p>
