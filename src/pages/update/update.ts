@@ -12,6 +12,7 @@ export class UpdatePage {
 
 	news : any;
   id: any;
+  news_length;
 
   constructor(
     public navCtrl: NavController,
@@ -31,7 +32,8 @@ export class UpdatePage {
         this.httpprovider.getCampaignNews(this.id).subscribe(
           data => {
             this.news = data.data;
-            console.log(this.news)
+            this.news_length = this.news.length;
+            console.log(this.news_length)
           },
           err => {
             load.dismiss();
@@ -44,8 +46,8 @@ export class UpdatePage {
         );
   }
 
-  newsDetails(news){
-    this.navCtrl.push(NewsDetailsPage, {news:news}); 
+  newsDetails(neww){
+    this.navCtrl.push(NewsDetailsPage, {neww}); 
   }
   
 

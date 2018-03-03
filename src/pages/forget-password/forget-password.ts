@@ -70,8 +70,8 @@ export class ForgetPasswordPage {
                 this.navCtrl.setRoot(ProfilePage);
               }else{
                 let alert = this.alertCtrl.create({
-                  title : "No data in server",
-                  subTitle : "Invalid email",
+                  title : "SUCCESS",
+                  subTitle : "Reset password sent to your email",
                   buttons : ['OK']
                 })
                 alert.present();

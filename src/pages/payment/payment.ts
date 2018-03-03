@@ -19,7 +19,7 @@ export class PaymentPage {
     timeEnds: '1990-02-20'
   }
 
-  value : number = 0;
+  value : number = 1;
   campaign : any;
   token : any;
   

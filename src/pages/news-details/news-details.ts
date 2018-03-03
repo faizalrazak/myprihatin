@@ -16,8 +16,6 @@ export class NewsDetailsPage {
     public navParams: NavParams
     )
   {
-  	this.details = navParams.get('news');
-  	console.log('sini')
-  	console.log(this.details)
+  	this.details = navParams.get('neww');
   }
 }

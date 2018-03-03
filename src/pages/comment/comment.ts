@@ -16,6 +16,7 @@ export class CommentPage {
   comments : any;
   commentTime : any;
   userComment = '';
+  comment_length;
   id:any;
   user:any;
   token:any;
@@ -36,17 +37,22 @@ export class CommentPage {
   {
     this.user_id = window.localStorage.getItem('user_id');
 
+    
+  }
+
+  ionViewDidLoad(){
     let load = this.loading.create({
-      content: 'Please wait...'
+      content: 'Tunggu Sebentar...'
     });
 
         load.present();
-        this.id = navParams.get('id');
+        this.id = this.navParams.get('id');
         console.log(this.id)
 
         this.httpprovider.getCampaignComment(this.id).subscribe(
           data => {
             this.comments = data.data;
+            this.comment_length = this.comments.length
             console.log(this.comments)
           },
           err => {
@@ -56,8 +62,7 @@ export class CommentPage {
           ()=>{
             load.dismiss();
           console.log('Campaign is ok!')
-        }
-        );
+        });
   }
 
   getCommentTime(id){
@@ -83,13 +88,13 @@ export class CommentPage {
     if(this.auth.isLogged() === true){
 
     let load = this.loading.create({
-    content: 'Posting...'
+    content: 'Tunggu Sebentar...'
     });
 
     load.present();
 
       this.httpprovider.postComment(details).then((result) => {
-        this.navCtrl.pop();
+        this.ionViewDidLoad();
         load.dismiss();
 
       }, (err) => {

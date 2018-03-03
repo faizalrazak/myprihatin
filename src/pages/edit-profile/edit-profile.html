@@ -46,9 +46,18 @@
         </ng-container>
       </div>
 
-      <ion-item>
+      <!-- <ion-item>
         <ion-label stacked>Nationality</ion-label>
         <ion-input formControlName="locale" type="text" class="form-control" value="{{profile.locale}}"></ion-input>
+      </ion-item> -->
+
+      <ion-item>
+        <ion-label>Nationality</ion-label>
+        <ion-select name="locale" [(ngModel)]="profile.locale" formControlName="locale">
+          <ion-option value="Malaysia">Malaysia</ion-option>
+          <ion-option value="Indonesia">Indonesia</ion-option>
+          <ion-option value="Singapura">Singapura</ion-option>
+        </ion-select>
       </ion-item>
 
 
@@ -57,15 +66,25 @@
         <ion-input formControlName="address" type="text" class="form-control" value="{{profile.address}}"></ion-input>
       </ion-item>
 
-      <ion-item>
+      <!-- <ion-item>
         <ion-label stacked>Race</ion-label>
         <ion-input formControlName="race" type="text" class="form-control" value="{{profile.race}}"></ion-input>
-      </ion-item>
+      </ion-item> -->
 
       <ion-item>
+        <ion-label>Race</ion-label>
+        <ion-select name="race" [(ngModel)]="profile.race" formControlName="race">
+          <ion-option value="melayu">Melayu</ion-option>
+          <ion-option value="india">India</ion-option>
+          <ion-option value="cina">Cina</ion-option>
+          <ion-option value="lain-lain">Lain-lain</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- <ion-item>
         <ion-label stacked>Gender</ion-label>
         <ion-input formControlName="gender" type="text" class="form-control" value="{{profile.gender}}"></ion-input>
-      </ion-item>
+      </ion-item> -->
 
       <!-- <ion-item>
         <ion-label floating>Gender</ion-label>
@@ -73,6 +92,14 @@
           <ion-option *ngFor="let gender of genders" [value]="gender" >{{ gender }}</ion-option>
         </ion-select>
       </ion-item> -->
+
+        <ion-item>
+          <ion-label>Gender</ion-label>
+          <ion-select name="gender" [(ngModel)]="profile.gender" formControlName="gender">
+            <ion-option value="male">Male</ion-option>
+            <ion-option value="female">Female</ion-option>
+          </ion-select>
+        </ion-item>
 
       <ion-item>
         <ion-label stacked>Birthdate</ion-label>

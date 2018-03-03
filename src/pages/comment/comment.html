@@ -14,41 +14,42 @@
 
 
 <ion-content>
+  <p *ngIf="comment_length == 0" style="text-align: center; margin-top: 50%">Tiada komen setakat ini..</p>
 
-<ion-list>
-  <ion-item *ngFor="let comment of comments">
+  <ion-list>
+    <ion-item *ngFor="let comment of comments">
+      <ion-row>
+        <ion-col col-3>
+          <ion-avatar item-start style="margin: 0px">
+            <img *ngIf="!comment.image" src="{{user_image}}">
+            <img *ngIf="comment.image" src="{{comment.image}}">
+          </ion-avatar>
+        </ion-col>
+        <ion-col col-9 no-padding>
+          <ion-row>
+            <strong>{{comment.commenter.user}}</strong>
+          </ion-row>
+          <ion-row>
+            <p style="font-size: 50%">{{getCommentTime(comment.id)}}</p>
+          </ion-row>
+        </ion-col>
+    </ion-row>
     <ion-row>
       <ion-col col-3>
-        <ion-avatar item-start style="margin: 0px">
-          <img *ngIf="!comment.image" src="{{user_image}}">
-          <img *ngIf="comment.image" src="{{comment.image}}">
-        </ion-avatar>
       </ion-col>
       <ion-col col-9 no-padding>
-        <ion-row>
-          <strong>{{comment.commenter.user}}</strong>
-        </ion-row>
-        <ion-row>
-          <p style="font-size: 50%">{{getCommentTime(comment.id)}}</p>
-        </ion-row>
+        <p text-wrap style="">{{comment.desc}}</p>
       </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col col-3>
-    </ion-col>
-    <ion-col col-9 no-padding>
-      <p text-wrap style="">{{comment.desc}}</p>
-    </ion-col>
-  </ion-row>
-  </ion-item>
-</ion-list>
+    </ion-row>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
 
 <ion-footer style="padding-bottom: 8px">
   <ion-item style="margin-bottom: 5px">
-    <ion-input no-margin type="text" placeholder="Tulis Komen" [(ngModel)]="userComment"></ion-input>
+    <ion-input no-margin type="text" placeholder="Tulis Komen" [(ngModel)]="userComment" required></ion-input>
   </ion-item>
   <button ion-button full round color="yayasan" (click)="sendComment()" style="text-transform: capitalize; width: 90%; margin: 0 auto">Hantar Komen</button>
-  <p text-center style="font-size: 8px; margin-top: 8px;">Perlu mendaftar masuk untuk memberi komen</p>
+  <p text-center style="font-size: 8px; margin-top: 8px;" *ngIf="!user_id">Perlu mendaftar masuk untuk memberi komen</p>
 </ion-footer>

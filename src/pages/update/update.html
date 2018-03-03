@@ -7,11 +7,11 @@
 
 
 <ion-content>
-
+<p *ngIf="news_length == 0" style="text-align: center; margin-top: 50%">Tiada maklumat terkini, Terima Kasih</p>
   <ion-list style="padding-top: 10px">
-    <ion-item *ngFor="let new of news" (click)="newsDetails(news)" text-wrap>
-      <h2 style="line-height: 150%; font-weight: bold; margin-bottom: 15px">#{{new.title}}</h2>
-      <p>{{new.desc}}</p>
+    <ion-item *ngFor="let neww of news" (click)="newsDetails(neww)" text-wrap>
+      <h2 style="line-height: 150%; font-weight: bold; margin-bottom: 15px">#{{neww.title}}</h2>
+      <p [innerHtml] = "neww.desc"></p>
     </ion-item> 
   </ion-list>
 

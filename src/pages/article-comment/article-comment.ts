@@ -18,6 +18,7 @@ export class ArticleCommentPage {
   user_id: any;
   article_id:any;
   user_image = "assets/user.png";
+  comment_length;
 
   constructor(
     public alert:AlertController, 
@@ -33,7 +34,9 @@ export class ArticleCommentPage {
   	this.article_id = this.navParams.get("id");
     // this.comments = this.article.comments; 
   	console.log(this.article_id);
+  }
 
+  ionViewDidLoad(){
     let load = this.loading.create({
       content: 'Please wait...'
     });
@@ -42,7 +45,7 @@ export class ArticleCommentPage {
     this.httpprovider.getArticleComment(this.article_id).subscribe(
           data => {
             this.comments = data.data;
-            console.log(this.comments)
+            this.comment_length = this.comments.length
           },
           err => {
             load.dismiss();
@@ -56,7 +59,6 @@ export class ArticleCommentPage {
   }
 
   getCommentTime(id){
-    console.log(id)
     for (let comment of this.comments){
                 if (id === comment["comment_id"]){
                return (moment(comment.created_at.date).startOf('second').lang("ms").fromNow());
@@ -82,13 +84,11 @@ export class ArticleCommentPage {
     
       this.httpprovider.articleComment(details).then((result) => {
 
-        console.log(result)
+        this.ionViewDidLoad();
         load.dismiss();
-        this.viewCtrl.dismiss(true);
 
       }, (err) => {
 
-        console.log(err);
         load.dismiss();
 
       });  
