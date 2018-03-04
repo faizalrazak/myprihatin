@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, LoadingController, AlertController, ToastController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 import * as moment from 'moment';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -14,7 +14,7 @@ export class ArticleCommentPage {
 
 	comments:any;
   article:any;
-  userComment:any;
+  userComment = "";
   user_id: any;
   article_id:any;
   user_image = "assets/user.png";
@@ -27,7 +27,8 @@ export class ArticleCommentPage {
     public viewCtrl:ViewController, 
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    public loading:LoadingController
+    public loading:LoadingController,
+    public toast:ToastController
     )
   {
     this.user_id = window.localStorage.getItem('user_id')
@@ -76,22 +77,33 @@ export class ArticleCommentPage {
 
     if(this.auth.isLogged() === true){
 
-    let load = this.loading.create({
-    content: 'Posting...'
-    });
+        if(details.comment == ""){
+            const toast = this.toast.create({
+              message: 'Sila isi komen anda',
+              duration: 3000,
+              position: 'bottom'
+            });      
+            
+            toast.present();
+        }else{
+          let load = this.loading.create({
+          content: 'Posting...'
+          });
 
-    load.present();
-    
-      this.httpprovider.articleComment(details).then((result) => {
+          load.present();
+        
+          this.httpprovider.articleComment(details).then((result) => {
 
-        this.ionViewDidLoad();
-        load.dismiss();
+            this.ionViewDidLoad();
+            load.dismiss();
 
-      }, (err) => {
+          }, (err) => {
 
-        load.dismiss();
+            load.dismiss();
 
-      });  
+          });
+        }
+      
     }else{
       let alert = this.alert.create({
               title : "Comment Failed",

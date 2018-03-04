@@ -14,7 +14,7 @@
       <h2 style="line-height: 150%; font-weight: bold; margin: 0px">{{s.title}}<!-- 
         <ion-icon color="success" item-right [name]="isGroupShown(i) ? 'arrow-up' : 'arrow-dropright'"></ion-icon> -->
       </h2>
-      <p *ngIf="isGroupShown(i)">{{s.description}}</p>
+      <p *ngIf="isGroupShown(i)" style="text-align: justify">{{s.description}}</p>
     </ion-item>
   </ion-list>
 </ion-content>

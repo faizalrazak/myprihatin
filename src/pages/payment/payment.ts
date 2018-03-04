@@ -19,7 +19,7 @@ export class PaymentPage {
     timeEnds: '1990-02-20'
   }
 
-  value : number = 1;
+  value : number = 0;
   campaign : any;
   token : any;
   
@@ -51,12 +51,23 @@ export class PaymentPage {
 
     if(this.auth.isLogged() === true){
       
-      this.httpProvider.molpay(details).then((result) => {
+      if(details.amount == 0){
+        const toast = this.toast.create({
+          message: 'Jumlah Harus Melebihi RM1',
+          duration: 3000,
+          position: 'middle'
+        });      
+        
+        toast.present();
+      }else{
+        
+        this.httpProvider.molpay(details).then((result) => {
         const browser = this.iab.create(result.toString());
         },
         (err)=>{
             console.log(err);
         });
+      }  
         
     }else{
       let alert = this.alertCtrl.create({
