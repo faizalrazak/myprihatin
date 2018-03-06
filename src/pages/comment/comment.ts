@@ -111,6 +111,13 @@ export class CommentPage {
         }, (err) => {
 
           console.log(err);
+          const toast = this.toast.create({
+          message: err,
+          duration: 3000,
+          position: 'bottom'
+        });      
+        
+        toast.present();
           load.dismiss();
 
         });

@@ -121,20 +121,25 @@ export class HomePage {
       this.navCtrl.push(SignPage);
   }
 
-  like(campaign){
+  like(id){
 
     if(this.auth.isLogged() === true){
-      console.log(campaign.campaign_id)
         let details = {
-            campaign_id : campaign.campaign_id,
+            campaign_id : id,
             user_id : window.localStorage.getItem('user_id'),
         }
 
       this.httpprovider.postLike(details).then((result) => {
-        this.navCtrl.setRoot(this.navCtrl.getActive().component);
-        this.likeIcon = 'danger';
+        this.ionViewDidLoad();
 
       }, (err) => {
+        const toast = this.toast.create({
+          message: err,
+          duration: 3000,
+          position: 'bottom'
+        });      
+        
+        toast.present();
         console.log(err);
       }); 
     }else{
@@ -158,6 +163,23 @@ export class HomePage {
 
       alert.present();
     }
+  }
+
+  deleteLike(campaign_id){
+    this.httpprovider.deleteLike(campaign_id).then((result) => {
+        this.ionViewDidLoad();
+        
+
+      }, (err) => {
+        const toast = this.toast.create({
+          message: err,
+          duration: 3000,
+          position: 'bottom'
+        });      
+        
+        toast.present();
+        console.log(err);
+      }); 
   }
 
   moreDetail(id){

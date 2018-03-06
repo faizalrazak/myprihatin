@@ -38,7 +38,8 @@
         <strong>{{comments}}</strong>
       </ion-col>
       <ion-col col-2 text-right no-padding>
-        <ion-icon name="ios-heart-outline"></ion-icon>
+        <ion-icon *ngIf ="article.like == false" name="ios-heart-outline"></ion-icon>
+        <ion-icon *ngIf="article.like == true" name="heart" style="color: red"></ion-icon>
         <strong>{{likes}}</strong>
       </ion-col>
   </ion-row>
@@ -68,8 +69,12 @@
  </div>
 
 <ion-fab right bottom>
-    <button ion-fab color="emas" (click)="toggleIcon()">
+    <button *ngIf="article?.like == false" ion-fab color="emas" (click)="likeArticle(article_id)">
       <ion-icon [name]="buttonIcon"></ion-icon>
+    </button>
+
+    <button *ngIf="article?.like == true" ion-fab color="emas" (click)="deleteLike(article_id)">
+      <ion-icon name="heart" style="color: red"></ion-icon>
     </button>
 </ion-fab>
 

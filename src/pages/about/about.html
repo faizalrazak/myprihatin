@@ -34,7 +34,8 @@
         <strong>{{commentBadge}}</strong>
       </ion-col>
       <ion-col col-2 text-right no-padding>
-        <ion-icon name="ios-heart-outline"></ion-icon>
+        <ion-icon *ngIf="campaign.like == false" name="ios-heart-outline"></ion-icon>
+        <ion-icon *ngIf="campaign.like == true" name="heart" style="color: red"></ion-icon>
         <strong>{{like}}</strong>
       </ion-col>
   </ion-row>
@@ -89,9 +90,14 @@
  </div>
 </ion-content>
 <ion-footer class="center-div" >
-  <ion-fab right top style="top: -25px" (click)="toggleIcon()">
-    <button ion-fab color="emas" >
-      <ion-icon [name]="buttonIcon"></ion-icon>
+  <ion-fab right top style="top: -25px"  *ngIf="isLike == false">
+    <button ion-fab color="emas" (click)="likeCampaign(campaign.campaign_id)">
+      <ion-icon name="heart"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-fab right top style="top: -25px" *ngIf="isLike == true">
+    <button ion-fab color="emas" (click)="deleteLike(campaign.campaign_id)">
+      <ion-icon  name="heart" style="color: red"></ion-icon>
     </button>
   </ion-fab>
   <p style="color: white; font-weight: bold;" (click)="donate(kempen)">KLIK UNTUK HULUR SUMBANGAN</p>

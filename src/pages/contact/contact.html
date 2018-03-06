@@ -41,9 +41,13 @@
             </button>
           </ion-col>
           <ion-col text-left col-3>
-            <button ion-button clear small color="dark" icon-start (click)=like(article)>
-            <ion-icon name="ios-heart-outline"></ion-icon>
-            <strong>{{getLike(article.article_id)}}</strong>
+            <button ion-button clear small color="dark" icon-start (click)=like(article.article_id) *ngIf="article.like == false">
+              <ion-icon name="ios-heart-outline"></ion-icon>
+              <strong>{{getLike(article.article_id)}}</strong>
+            </button>
+            <button ion-button clear small color="dark" icon-start (click)=deleteLike(article.article_id) *ngIf="article.like == true">
+              <ion-icon name="heart" style="color: red"></ion-icon>
+              <strong>{{getLike(article.article_id)}}</strong>
             </button>
           </ion-col>
           <ion-col text-right>

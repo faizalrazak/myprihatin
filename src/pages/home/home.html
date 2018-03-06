@@ -73,8 +73,12 @@
         </button>
       </ion-col>
       <ion-col text-left col-3>
-        <button ion-button clear small color="dark" icon-start (click)=like(campaign)>
-        <ion-icon name="ios-heart-outline"></ion-icon>
+        <button *ngIf="campaign.like == false"  ion-button clear small color="dark" icon-start (click)=like(campaign.campaign_id)>
+        <ion-icon name="ios-heart-outline" ></ion-icon>
+        <strong>{{getLike(campaign.campaign_id)}}</strong>
+        </button>
+        <button *ngIf="campaign.like == true" ion-button clear small color="dark" icon-start (click)=deleteLike(campaign.campaign_id)>
+        <ion-icon  name="heart" style="color: red"></ion-icon>
         <strong>{{getLike(campaign.campaign_id)}}</strong>
         </button>
       </ion-col>
@@ -82,7 +86,6 @@
         <button ion-button clear small color="dark" style="text-transform: lowercase;" (click)="moreDetail(campaign.campaign_id)">
           lebih lanjut  
         <ion-icon ios="ios-arrow-forward" md="md-arrow-forward" style="margin-left: 5px"></ion-icon>
-          
         </button>
       </ion-col>
     </ion-row>

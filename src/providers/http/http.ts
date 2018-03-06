@@ -11,18 +11,21 @@ import { AuthProvider } from '../auth/auth';
 */
 @Injectable()
 export class HttpProvider {
-
+user_id = "?user_id="+window.localStorage.getItem('user_id');
   constructor(public http: Http, public auth:AuthProvider) {
-    console.log('Hello HttpProvider Provider');
+    console.log(this.user_id)
+    if(this.user_id == ""){
+      this.user_id = "";
+    }
   }
 
    getLatest(page){
-    return this.http.get("https://mydana.herokuapp.com/api/latest?page="+page)
+    return this.http.get("https://mydana.herokuapp.com/api/latest"+this.user_id+"?page="+page)
     .map(res => res.json())  
   }
 
    getCampaign(campaign_id){
-    return this.http.get("https://mydana.herokuapp.com/api/campaign/"+campaign_id)
+    return this.http.get("https://mydana.herokuapp.com/api/campaign/"+campaign_id+this.user_id)
     .map(res => res.json())  
   }
 
@@ -32,12 +35,12 @@ export class HttpProvider {
   }
 
   getAllArticle(){
-    return this.http.get("https://mydana.herokuapp.com/api/articles")
+    return this.http.get("https://mydana.herokuapp.com/api/articles" + this.user_id)
     .map(res => res.json())
   }
 
   getArticle(id){
-    return this.http.get("https://mydana.herokuapp.com/api/article/"+ id)
+    return this.http.get("https://mydana.herokuapp.com/api/article/"+ id+this.user_id)
     .map(res => res.json())
   }
 
@@ -56,13 +59,31 @@ export class HttpProvider {
     .map(res => res.json())
   }
 
-    getUser(){
+  getLatestCampaign(page){
+    return new Promise((resolve, reject) => {
+ 
+      let headers = new Headers();
+      headers.append('user_id', window.localStorage.getItem('user_id'));
+ 
+      this.http.get("https://mydana.herokuapp.com/api/latest?page="+page)
+        .map(
+          res => res.json())
+        .subscribe(
+          data => {
+            resolve(data.data);
+            console.log('data')
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  getUser(){
     return new Promise((resolve, reject) => {
  
       let headers = new Headers();
       headers.append('Authorization', 'Bearer ' + window.localStorage.getItem('token'));
-      console.log( window.localStorage.getItem('token'))
-      console.log(headers)
+      
  
       this.http.get('https://mydana.herokuapp.com/api/users', {headers: headers})
         .map(
@@ -84,7 +105,7 @@ export class HttpProvider {
       let headers = new Headers();
       headers.append('Content-Type','application/json');
        console.log(details);
-      this.http.post('https://mydana.herokuapp.com/api/like', JSON.stringify(details), {headers:headers})
+      this.http.post('https://mydana.herokuapp.com/api/campaign/like', JSON.stringify(details), {headers:headers})
       .subscribe(res => {
        
         let data = res.json();
@@ -96,6 +117,64 @@ export class HttpProvider {
       });
     });
   }
+
+  deleteLike(campaign_id){
+    return new Promise((resolve, reject) => {
+
+      let headers = new Headers();
+      headers.append('Content-Type','application/json');
+      this.http.post('https://mydana.herokuapp.com/api/campaign/'+ campaign_id + '/like/delete/' + window.localStorage.getItem('user_id'), {headers:headers})
+      .subscribe(res => {
+       
+        let data = res.json();
+        console.log(data);
+        resolve(data);
+      
+      }, (err) => {
+        reject(err);
+      });
+    });
+  }
+
+  postArticleLike(details){
+   console.log('sini ' + details)
+    return new Promise((resolve, reject) => {
+
+      let headers = new Headers();
+      headers.append('Content-Type','application/json');
+       console.log(details);
+      this.http.post('https://mydana.herokuapp.com/api/article/like', JSON.stringify(details), {headers:headers})
+      .subscribe(res => {
+       
+        let data = res.json();
+        console.log(data);
+        resolve(data);
+      
+      }, (err) => {
+        reject(err);
+      });
+    });
+  }
+
+  deleteArticleLike(article_id){
+    return new Promise((resolve, reject) => {
+
+      let headers = new Headers();
+      headers.append('Content-Type','application/json');
+      this.http.post('http://mydana.herokuapp.com/api/article/'+ article_id + '/like/delete/' + window.localStorage.getItem('user_id'), {headers:headers})
+      .subscribe(res => {
+       
+        let data = res.json();
+        console.log(data);
+        resolve(data);
+      
+      }, (err) => {
+        reject(err);
+      });
+    });
+  }
+
+
 
   postComment(details){
    

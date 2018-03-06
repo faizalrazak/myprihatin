@@ -36,6 +36,7 @@ export class AboutPage {
   pickdt:any;
   remDay:number;
   totalDay:any;
+  isLike:any;
 
   constructor(
     public toast:ToastController, 
@@ -55,7 +56,10 @@ export class AboutPage {
 
   this.campaign_id = navParams.get('id');
   console.log(this.campaign_id)
+    
+  }
 
+  ionViewDidLoad(){
     let load = this.loading.create({
         content: 'Please wait...'
         });
@@ -74,6 +78,7 @@ export class AboutPage {
             this.commentBadge = this.campaign.campaign_comments.length;
             this.newsBadge = this.campaign.campaign_news.length;
             this.image = this.campaign.campaign_image;
+            this.isLike = this.campaign.like;
           },
           err => {
             load.dismiss();
@@ -84,7 +89,6 @@ export class AboutPage {
           console.log('Campaign is ok!')
       }
     );
-    
   }
 
   imageTapped(image){
@@ -92,20 +96,25 @@ export class AboutPage {
 
   }
 
-  toggleIcon(getIcon: string) {
+  likeCampaign(campaign_id) {
 
-    if(this.auth.isLogged() === true){
+      if(this.auth.isLogged() === true){
       let details = {
             campaign_id : this.campaign.campaign_id,
             user_id : window.localStorage.getItem('user_id'),
       }
 
       this.httpprovider.postLike(details).then((result) => {
-        if (this.buttonIcon === 'heart'){
-         this.buttonIcon = "ios-heart-outline"; 
-        }else if (this.buttonIcon === 'ios-heart-outline'){
-          this.buttonIcon = "heart";
-        }     
+
+        this.ionViewDidLoad();
+
+        const toast = this.toast.create({
+          message: "Anda Menyukai Kempen ❤",
+          duration: 3000,
+          position: 'middle'
+        });      
+        
+        toast.present();
       },
       (err) => {console.log(err)});
     }else{
@@ -129,6 +138,30 @@ export class AboutPage {
 
       alert.present();
     }
+  }
+
+  deleteLike(campaign_id){
+    this.httpprovider.deleteLike(campaign_id).then((result) => {
+
+        this.ionViewDidLoad();
+
+        const toast = this.toast.create({
+          message: "Anda Tidak Suka Kempen 💔",
+          duration: 3000,
+          position: 'middle'
+        });      
+        
+        toast.present();
+        
+      },(err) => {
+        const toast = this.toast.create({
+          message: err,
+          duration: 3000,
+          position: 'bottom'
+        });      
+        
+        toast.present();
+      }); 
   }
 
 

@@ -35,13 +35,19 @@ export class ArticleDetailsPage {
     )
   {
 
-    let load = this.loading.create({
-      content: 'Please wait...'
-    });
+    
 
   	this.article_id = navParams.get('id');
   	console.log(this.article_id);
 
+    
+  }
+
+  ionViewDidLoad(){
+
+    let load = this.loading.create({
+      content: 'Please wait...'
+    });
     load.present();
     this.httpprovider.getArticle(this.article_id).subscribe(
           data => {
@@ -61,21 +67,26 @@ export class ArticleDetailsPage {
         }
     );
   }
-
-   toggleIcon(getIcon: string) {
+  
+  likeArticle(id) {
 
      if(this.auth.isLogged() === true){
         let details = {
-          article_id : this.article_id,
+          article_id : id,
           user_id : window.localStorage.getItem('user_id'),
         }
 
-        this.httpprovider.postLike(details).then((result) => {
-          if (this.buttonIcon === 'heart'){
-           this.buttonIcon = "ios-heart-outline"; 
-          }else if (this.buttonIcon === 'ios-heart-outline'){
-            this.buttonIcon = "heart";
-          }     
+        this.httpprovider.postArticleLike(details).then((result) => {
+          
+          this.ionViewDidLoad();
+
+            const toast = this.toast.create({
+              message: "Anda Menyukai Artikel ❤",
+              duration: 3000,
+              position: 'middle'
+            });      
+            
+            toast.present();
         },
         (err) => {console.log(err)});  
      }else{
@@ -99,8 +110,31 @@ export class ArticleDetailsPage {
 
       alert.present();
      }
+  }
 
-    
+  deleteLike(id){
+
+    this.httpprovider.deleteArticleLike(id).then((result) => {
+
+      this.ionViewDidLoad();
+
+      const toast = this.toast.create({
+        message: "Anda Tidak Suka Artikel 💔",
+        duration: 3000,
+        position: 'middle'
+      });      
+      
+      toast.present();
+      
+    },(err) => {
+      const toast = this.toast.create({
+        message: err,
+        duration: 3000,
+        position: 'bottom'
+      });      
+      
+      toast.present();
+    });
   }
 
   commentsTapped(id){

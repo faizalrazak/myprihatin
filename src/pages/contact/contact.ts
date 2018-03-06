@@ -56,17 +56,17 @@ export class ContactPage {
     );
   }
 
-  like(article){
+  like(id){
 
     if(this.auth.isLogged() === true){
       let details = {
-            article_id : article.article_id,
+            article_id : id,
             user_id : window.localStorage.getItem('user_id'),
         }
 
-      this.httpprovider.postLike(details).then((result) => {
+      this.httpprovider.postArticleLike(details).then((result) => {
 
-        this.navCtrl.setRoot(this.navCtrl.getActive().component);
+        this.ionViewDidLoad();
 
       }, (err) => {
         console.log(err);
@@ -91,8 +91,18 @@ export class ContactPage {
         });
 
       alert.present();
-    }
-       
+    }     
+  }
+
+  deleteLike(id){
+
+    this.httpprovider.deleteArticleLike(id).then((result) => {
+
+        this.ionViewDidLoad();
+
+      }, (err) => {
+        console.log(err);
+      });
   }
 
   details(id){
