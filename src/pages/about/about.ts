@@ -37,6 +37,7 @@ export class AboutPage {
   remDay:number;
   totalDay:any;
   isLike:any;
+  user_id = window.localStorage.getItem('user_id');
 
   constructor(
     public toast:ToastController, 

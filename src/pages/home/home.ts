@@ -29,6 +29,7 @@ export class HomePage {
   totalData = 0;
   totalPage = 0;
   token: any;
+  user_id = window.localStorage.getItem('user_id');
 
   constructor(
     public toast:ToastController, 

@@ -11,7 +11,9 @@ import { AuthProvider } from '../auth/auth';
 */
 @Injectable()
 export class HttpProvider {
+
 user_id = "?user_id="+window.localStorage.getItem('user_id');
+
   constructor(public http: Http, public auth:AuthProvider) {
     console.log(this.user_id)
     if(this.user_id == ""){
