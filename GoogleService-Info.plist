@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>241362887966-7ob32ojt8h3303s42k3oj17uk9rh0nns.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.241362887966-7ob32ojt8h3303s42k3oj17uk9rh0nns</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDq9zLvkYTCb3gCMoRHYPwN3GQa2k3K92A</string>
+	<key>GCM_SENDER_ID</key>
+	<string>241362887966</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>my.myprihatin.mobile</string>
+	<key>PROJECT_ID</key>
+	<string>mydana-59746</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mydana-59746.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:241362887966:ios:e23dfda2e119227a</string>
+	<key>DATABASE_URL</key>
+	<string>https://mydana-59746.firebaseio.com</string>
+</dict>
+</plist>

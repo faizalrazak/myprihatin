@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "241362887966",
+    "firebase_url": "https://mydana-59746.firebaseio.com",
+    "project_id": "mydana-59746",
+    "storage_bucket": "mydana-59746.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241362887966:android:e23dfda2e119227a",
+        "android_client_info": {
+          "package_name": "my.myprihatin.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241362887966-q4d4u43688ah6j7i9eujarselbv6uqok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUNNf-396IOfZv8gAbj_-MiRmGJfH9w2M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

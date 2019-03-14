@@ -33,6 +33,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { IonicStorageModule } from '@ionic/Storage';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { FCM } from '@ionic-native/fcm';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     ArticleCommentPage
   ],
   providers: [
+    FCM,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

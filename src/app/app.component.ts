@@ -9,6 +9,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { ListPage } from '../pages/list/list';
 import { SignPage } from '../pages/sign/sign';
 import { AboutUsPage } from '../pages/about-us/about-us';
+import { FCM } from '@ionic-native/fcm';
 // import { AuthProvider } from '../providers/auth/auth'
 
 @Component({
@@ -25,6 +26,7 @@ export class MyApp {
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen, 
     public menuCtrl:MenuController,
+    public fcm:FCM
     // public auth:AuthProvider
     )
   {
@@ -37,30 +39,7 @@ export class MyApp {
         { title: 'Profil & Transaksi', component: ProfilePage, icon: 'md-finger-print' },
         { title: 'Bantuan', component: ListPage, icon: 'ios-help-circle-outline' },
         { title: 'Tentang Yayasan', component: AboutUsPage, icon: 'ios-briefcase-outline' }
-      ];
-
-    // if(this.auth.isLogged() === true){
-
-    //     this.pages = [
-    //     { title: 'Laman Utama', component: HomePage, icon: 'ios-home-outline' },
-    //     { title: 'Senarai Kempen', component: HomePage, icon: 'ios-list-box-outline' },
-    //     { title: 'Aktiviti Terkini', component: ContactPage, icon: 'ios-calendar-outline' },
-    //     { title: 'Profil & Transaksi', component: ProfilePage, icon: 'md-finger-print' },
-    //     { title: 'Bantuan', component: ListPage, icon: 'ios-help-circle-outline' },
-    //     { title: 'Tentang Yayasan', component: AboutUsPage, icon: 'ios-briefcase-outline' }
-    //   ];
-
-    // }else{
-
-    //     this.pages = [
-    //     { title: 'Laman Utama', component: HomePage, icon: 'ios-home-outline' },
-    //     { title: 'Senarai Kempen', component: HomePage, icon: 'ios-list-box-outline' },
-    //     { title: 'Aktiviti Terkini', component: ContactPage, icon: 'ios-calendar-outline' },
-    //     { title: 'Bantuan', component: ListPage, icon: 'ios-help-circle-outline' },
-    //     { title: 'Tentang Yayasan', component: AboutUsPage, icon: 'ios-briefcase-outline' }
-    //   ];
-
-    // }   
+      ];   
   }
 
   initializeApp() {
@@ -69,6 +48,23 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      // this.fcm.getToken().then(token => {
+      //   // Your best bet is to here store the token on the user's profile on the
+      //   // Firebase database, so that when you want to send notifications to this 
+      //   // specific user you can do it from Cloud Functions.
+      // });
+
+      // this.fcm.onNotification().subscribe(data => {
+      //   if (data.wasTapped) {
+      //     //Notification was received on device tray and tapped by the user.
+      //     console.log(JSON.stringify(data));
+      //   } else {
+      //     //Notification was received in foreground. Maybe the user needs to be notified.
+      //     console.log(JSON.stringify(data));
+      //     // this.navCtrl.push(, { profileId: data.profileId });
+      //   }
+      // });
     });
   }
 
